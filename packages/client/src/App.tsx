@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import './App.css'
+import { Liderboard } from './pages/Liderboard'
 
 function App() {
   useEffect(() => {
@@ -12,7 +13,13 @@ function App() {
 
     fetchServerData()
   }, [])
-  return <div className="App">Вот тут будет жить ваше приложение :)</div>
+
+  return (
+    <>
+      <h2>Вот тут будет жить ваше приложение :)</h2>
+      <Liderboard />
+    </>
+  )
 }
 
 export default App
