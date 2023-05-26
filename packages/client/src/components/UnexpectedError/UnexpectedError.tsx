@@ -1,4 +1,4 @@
-const reloadPage = () => {
+const updatePage = () => {
   // eslint-disabled-next-line no-restricted-globals
   window.location.reload()
 }
@@ -10,7 +10,7 @@ export const UnexpectedError = () => {
         <p className="text-lg font-medium leading-8 text-rose-500">
           Произошла непредвиденная ошибка
         </p>
-        <button className="ml-3 btn-primary" onClick={reloadPage}>
+        <button className="ml-3 btn-primary" onClick={updatePage}>
           Обновить страницу
         </button>
       </div>
