@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      <h2>Вот тут будет жить ваше приложение :)</h2>
+      <h2>Вот тут будет жить ваше приложение with react-router-dom :)</h2>
       <Liderboard />
     </>
   )
