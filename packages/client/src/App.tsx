@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import './App.css'
 import { Liderboard } from './pages/Liderboard'
-
+import { ErrorPage } from './pages/Error'
 function App() {
   useEffect(() => {
     const fetchServerData = async () => {
@@ -16,8 +16,8 @@ function App() {
 
   return (
     <>
-      <h2>Вот тут будет жить ваше приложение :)</h2>
-      <Liderboard />
+      {/* <h2>Вот тут будет жить ваше приложение :)</h2>
+      <Liderboard /> */}
     </>
   )
 }
