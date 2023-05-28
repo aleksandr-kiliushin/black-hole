@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { Navbar } from '../components/Navbar'
 
 const people = [
   {
@@ -24,6 +25,7 @@ const people = [
 export const Liderboard: FC = () => {
   return (
     <>
+      <Navbar />
       <h1 className="font-extrabold text-4xl">Liderboard</h1>
       <ul className="divide-y divide-gray-200">
         {people.map(person => (
