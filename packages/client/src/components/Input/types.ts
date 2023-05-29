@@ -5,4 +5,5 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   wrapperClassName?: string;
   label?: string;
   labelClassName?: string;
+  validationError?: string;
 };

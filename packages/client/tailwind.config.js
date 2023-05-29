@@ -2,7 +2,11 @@
 export default {
   content: ['./index.html', './src/**/*.tsx'],
   theme: {
-    extend: {},
+    extend: {
+      minHeight: {
+        16: '16px',
+      },
+    },
   },
   plugins: [],
-}
+};
