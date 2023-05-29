@@ -1,5 +1,5 @@
-import { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Navbar: FC = () => {
   return (
@@ -30,7 +30,12 @@ export const Navbar: FC = () => {
             Profile
           </Link>
         </li>
+        <li>
+          <Link className="text-blue-600" to="/login">
+            Login
+          </Link>
+        </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
