@@ -1,15 +1,14 @@
 import { FC } from 'react'
+import { GAME_NAME } from '../../utils/global'
 
 const GameStart: FC = () => {
   return (
     <section className="container m-auto px-4 lg:px-10 flex flex-col items-center">
-      <h1 className="font-black m-0 text-center text-4xl my-6">
-        Black Hole ✨
-      </h1>
+      <h1 className="font-black m-0 text-center text-4xl my-6">{GAME_NAME}</h1>
       <p className="text-base my-2 text-zinc-900">
         Подарите себе незабываемую прогулку по неизведанным просторам Вселенной
-        в нашей новой игре <span className="font-bold">"Black Hole ✨"</span>.
-        Это та самая игра, где вы не просто обычный путешественник - вы могучая
+        в нашей новой игре <span className="font-bold">{GAME_NAME}</span>. Это
+        та самая игра, где вы не просто обычный путешественник - вы могучая
         черная дыра с космическим аппетитом!
       </p>
       <p className="text-base my-2 text-zinc-900">
@@ -25,14 +24,15 @@ const GameStart: FC = () => {
         их. Сейчас они вас отшвыривают, а завтра вы их... поглотите!
       </p>
       <p className="text-base my-2 text-zinc-900">
-        <span className="font-bold">"Black Hole ✨"</span> предлагает уникальный
+        <span className="font-bold">{GAME_NAME}</span> предлагает уникальный
         геймплей, в котором вы не только упражняетесь в стратегическом выборе
         закуски, но и активно избегаете космических боссов, пока не наберете
         достаточно мощности.
       </p>
       <p className="text-base my-2 text-zinc-900">
         Приготовьтесь к захватывающему космическому путешествию. Нажмите кнопку
-        "Поглотить Вселенную" и поддайтесь своему космическому аппетиту.
+        <span className="italic"> "Поглотить Вселенную" </span> и поддайтесь
+        своему космическому аппетиту.
       </p>
       <p className="text-xl font-bold my-2 text-zinc-900 text-center">
         Вселенная, приготовься - пришло время стать космическим пожирателем!

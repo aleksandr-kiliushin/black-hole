@@ -16,6 +16,11 @@ export const Navbar: FC = () => {
           </Link>
         </li>
         <li>
+          <Link className="text-blue-600" to="/game-start">
+            Start Game
+          </Link>
+        </li>
+        <li>
           <Link className="text-blue-600" to="/liderboard">
             Liderboard
           </Link>
