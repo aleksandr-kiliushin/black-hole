@@ -5,10 +5,12 @@ import { Home } from './pages/Home'
 import { Forum } from './pages/Forum'
 import { Profile } from './pages/Profile'
 import { Game } from './pages/Game'
+import { GameStart } from './pages/GameStart'
 
 const browserRouter = createBrowserRouter([
   { path: '/', Component: Home },
   { path: '/game', Component: Game },
+  { path: '/game-start', Component: GameStart },
   { path: '/forum', Component: Forum },
   { path: '/liderboard', Component: Liderboard },
   { path: '/profile', Component: Profile },
