@@ -22,11 +22,11 @@ const people = [
   },
 ]
 
-export const Liderboard: FC = () => {
+export const Leaderboard: FC = () => {
   return (
     <>
       <Navbar />
-      <h1 className="font-extrabold text-4xl">Liderboard</h1>
+      <h1 className="font-extrabold text-4xl">Leaderboard</h1>
       <ul className="divide-y divide-gray-200">
         {people.map(person => (
           <li key={person.email} className="py-4 flex">

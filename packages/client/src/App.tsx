@@ -1,19 +1,20 @@
 import './App.css'
-import { Liderboard } from './pages/Liderboard'
+import { Leaderboard } from './pages/Leaderboard'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Forum } from './pages/Forum'
 import { Profile } from './pages/Profile'
 import { Game } from './pages/Game'
 import { GameStart } from './pages/GameStart'
+import { Routes } from './utils/global'
 
 const browserRouter = createBrowserRouter([
-  { path: '/', Component: Home },
-  { path: '/game', Component: Game },
-  { path: '/game-start', Component: GameStart },
-  { path: '/forum', Component: Forum },
-  { path: '/liderboard', Component: Liderboard },
-  { path: '/profile', Component: Profile },
+  { path: Routes.INDEX, Component: Home },
+  { path: Routes.GAME, Component: Game },
+  { path: Routes.GAME_START, Component: GameStart },
+  { path: Routes.FORUM, Component: Forum },
+  { path: Routes.LEADERBOARD, Component: Leaderboard },
+  { path: Routes.PROFILE, Component: Profile },
 ])
 
 function App() {
