@@ -1,7 +1,5 @@
 import { FC } from 'react'
 
-enum spaceEmoji {}
-
 const GameStart: FC = () => {
   return (
     <section className="container m-auto px-4 lg:px-10 flex flex-col items-center">
