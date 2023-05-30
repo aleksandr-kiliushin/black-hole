@@ -53,9 +53,6 @@ export const swallowEnemiesNearby = () => {
     const distanceBetweenCentersByX = Math.abs(gameState.hole.x - enemy.x)
     const distanceBetweenCentersByY = Math.abs(gameState.hole.y - enemy.y)
 
-    console.log('distanceBetweenCentersByX >>', distanceBetweenCentersByX)
-    console.log('distanceBetweenCentersByY >>', distanceBetweenCentersByY)
-
     const distanceByX = Math.max(
       distanceBetweenCentersByX - gameState.hole.points - enemy.points,
       0
