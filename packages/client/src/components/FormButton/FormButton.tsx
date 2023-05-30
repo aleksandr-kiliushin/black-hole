@@ -10,7 +10,7 @@ export const FormButton = ({
   ...buttonProps
 }: FormButtonProps) => {
   return (
-    <div className={clsx(containerClassName, ``)}>
+    <div className={clsx(containerClassName, '')}>
       <span
         className={clsx(
           errorClassName,
@@ -18,6 +18,7 @@ export const FormButton = ({
               mb-3 block
               text-xs text-red-500
               height-1 min-h-16
+              mx-auto w-fit
             `
         )}>
         {error}

@@ -11,6 +11,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       className,
       labelClassName,
       validationError,
+      errorClassName,
       ...inputProps
     },
     ref
@@ -42,7 +43,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             { [inputError]: !!validationError }
           )}
         />
-        <span className={'block text-xs text-red-500 mt-1 w-full min-h-16'}>
+        <span
+          className={clsx(
+            'block text-xs text-red-500 mt-1 w-full min-h-16',
+            errorClassName
+          )}>
           {validationError}
         </span>
       </div>
