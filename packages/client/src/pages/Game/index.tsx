@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef } from 'react'
 import { Navbar } from '../../components/Navbar'
-import { draw } from './draw'
+import { draw } from './helpers'
 import { CANVAS_HEIGHT, CANVAS_WIDTH, MOVE_STEP } from './constants'
 import { gameState } from './gameState'
 
@@ -15,13 +15,13 @@ export const Game: FC = () => {
 
     const animate = () => {
       draw.space({ canvasContext })
-      draw.enemy({ canvasContext })
+      draw.enemy({ canvasContext, x: 175, y: 100, points: 10 })
       draw.hole({ canvasContext })
       requestAnimationFrame(animate)
     }
 
     animate()
-  }, [gameState.holeX, gameState.holeY])
+  }, [])
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

@@ -4,7 +4,12 @@ import { gameState } from './gameState'
 type TDraw = {
   space: (params: { canvasContext: CanvasRenderingContext2D }) => void
   hole: (params: { canvasContext: CanvasRenderingContext2D }) => void
-  enemy: (params: { canvasContext: CanvasRenderingContext2D }) => void
+  enemy: (params: {
+    canvasContext: CanvasRenderingContext2D
+    x: number
+    y: number
+    points: number
+  }) => void
 }
 
 export const draw: TDraw = {
@@ -12,16 +17,22 @@ export const draw: TDraw = {
     canvasContext.fillStyle = 'gray'
     canvasContext.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
   },
-  enemy: ({ canvasContext }) => {
+  enemy: ({ canvasContext, x, y, points }) => {
     canvasContext.fillStyle = 'lightgray'
     canvasContext.beginPath()
-    canvasContext.arc(200, 200, 10, 0, 2 * Math.PI)
+    canvasContext.arc(x, y, points, 0, 2 * Math.PI)
     canvasContext.fill()
   },
   hole: ({ canvasContext }) => {
     canvasContext.fillStyle = 'black'
     canvasContext.beginPath()
-    canvasContext.arc(gameState.holeX, gameState.holeY, 50, 0, 2 * Math.PI)
+    canvasContext.arc(
+      gameState.holeX,
+      gameState.holeY,
+      gameState.holePoints,
+      0,
+      2 * Math.PI
+    )
     canvasContext.fill()
   },
 }
