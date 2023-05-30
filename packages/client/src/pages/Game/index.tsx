@@ -27,16 +27,16 @@ export const Game: FC = () => {
     const handleKeyDown = (event: KeyboardEvent) => {
       switch (event.key) {
         case 'ArrowUp':
-          gameState.holeY -= MOVE_STEP
+          gameState.hole.y -= MOVE_STEP
           break
         case 'ArrowDown':
-          gameState.holeY += MOVE_STEP
+          gameState.hole.y += MOVE_STEP
           break
         case 'ArrowLeft':
-          gameState.holeX -= MOVE_STEP
+          gameState.hole.x -= MOVE_STEP
           break
         case 'ArrowRight':
-          gameState.holeX += MOVE_STEP
+          gameState.hole.x += MOVE_STEP
           break
         default:
           break

@@ -27,9 +27,9 @@ export const draw: TDraw = {
     canvasContext.fillStyle = 'black'
     canvasContext.beginPath()
     canvasContext.arc(
-      gameState.holeX,
-      gameState.holeY,
-      gameState.holePoints,
+      gameState.hole.x,
+      gameState.hole.y,
+      gameState.hole.points,
       0,
       2 * Math.PI
     )
