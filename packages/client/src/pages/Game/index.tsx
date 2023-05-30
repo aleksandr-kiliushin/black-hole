@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef } from 'react'
 import { Navbar } from '../../components/Navbar'
-import { draw } from './helpers'
+import { draw, swallowEnemiesNearby } from './helpers'
 import { CANVAS_HEIGHT, CANVAS_WIDTH, MOVE_STEP } from './constants'
 import { gameState } from './gameState'
 
@@ -41,6 +41,8 @@ export const Game: FC = () => {
         default:
           break
       }
+
+      swallowEnemiesNearby()
     }
 
     window.addEventListener('keydown', handleKeyDown)
