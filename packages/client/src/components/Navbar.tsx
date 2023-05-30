@@ -35,6 +35,11 @@ export const Navbar: FC = () => {
             Login
           </Link>
         </li>
+        <li>
+          <Link className="text-blue-600" to="/signup">
+            Sign-up
+          </Link>
+        </li>
       </ul>
     </nav>
   );

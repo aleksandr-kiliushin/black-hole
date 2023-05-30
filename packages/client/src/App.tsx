@@ -6,6 +6,7 @@ import { Home } from './pages/Home';
 import { Liderboard } from './pages/Liderboard';
 import { LoginPage } from './pages/Login/Login';
 import { Profile } from './pages/Profile';
+import { SignUp } from './pages/Signup/SignUp';
 
 const browserRouter = createBrowserRouter([
   { path: '/', Component: Home },
@@ -14,6 +15,7 @@ const browserRouter = createBrowserRouter([
   { path: '/liderboard', Component: Liderboard },
   { path: '/profile', Component: Profile },
   { path: '/login', Component: LoginPage },
+  { path: '/signup', Component: SignUp },
 ]);
 
 function App() {

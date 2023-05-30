@@ -1,23 +1,25 @@
 import { useForm } from 'react-hook-form';
-import { redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-import { FormButton } from '../../components/FormButton/FormButton';
-import { Input } from '../../components/Input/Input';
+import { useState } from 'react';
+import { AuthApi } from '../../api/Auth/Auth';
+import { SignInDto } from '../../api/Auth/types';
+import AppLink from '../../components/AppLink/index';
+import FormButton from '../../components/FormButton';
+import Input from '../../components/Input';
 import { Navbar } from '../../components/Navbar';
 import { FormValues } from './types';
 import { validateLogin, validatePassword } from './validationUtils';
 
-const submit = (shouldThrow: boolean) => {
-  return new Promise(function (res, rej) {
-    if (shouldThrow) {
-      rej({ message: 'Error' });
-    } else {
-      res('Success!');
-    }
-  });
+const authApi = new AuthApi();
+
+const submit = (dto: SignInDto) => {
+  return authApi.SignIn(dto);
 };
 
 export const LoginPage = () => {
+  const [hasLoggedIn, setHasLoggedIn] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -26,14 +28,18 @@ export const LoginPage = () => {
       errors: { root, login: loginError, password: passwordError },
       isSubmitting,
     },
+    reset,
   } = useForm<FormValues>({
     mode: 'onChange',
   });
 
   const onSubmit = async (data: FormValues) => {
     try {
-      await submit(true);
-      redirect('profile');
+      await submit(data);
+
+      reset();
+
+      setHasLoggedIn(true);
     } catch (error) {
       const typedError = error as any;
       const errorMessage = typedError?.message;
@@ -43,6 +49,10 @@ export const LoginPage = () => {
       }
     }
   };
+
+  if (hasLoggedIn) {
+    return <Navigate to={'/profile'} />;
+  }
 
   return (
     <>
@@ -83,9 +93,12 @@ export const LoginPage = () => {
             text="Войти"
             error={root?.message}
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || hasLoggedIn}
           />
         </form>
+        <AppLink to={'/signup'} title="Регистрация">
+          Регистрация
+        </AppLink>
       </main>
     </>
   );
