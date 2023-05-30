@@ -1,13 +1,8 @@
 import { FC, useEffect, useRef } from 'react'
-import { Navbar } from '../components/Navbar'
-
-const NAVBAR_HEIGHT = 36
-const CANVAS_WIDTH = window.innerWidth
-const CANVAS_HEIGHT = window.innerHeight - NAVBAR_HEIGHT
-const MOVE_STEP = 10
-
-let holeX = 100
-let holeY = 100
+import { Navbar } from '../../components/Navbar'
+import { draw } from './draw'
+import { CANVAS_HEIGHT, CANVAS_WIDTH, MOVE_STEP } from './constants'
+import { gameState } from './gameState'
 
 export const Game: FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -15,37 +10,33 @@ export const Game: FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current
     if (canvas === null) return
-    const context = canvas.getContext('2d')
-    if (context === null) return
+    const canvasContext = canvas.getContext('2d')
+    if (canvasContext === null) return
 
     const animate = () => {
-      context.fillStyle = 'gray'
-      context.fillRect(0, 0, canvas.width, canvas.height)
-
-      context.fillStyle = 'black'
-      context.beginPath()
-      context.arc(holeX, holeY, 50, 0, 2 * Math.PI)
-      context.fill()
+      draw.space({ canvasContext })
+      draw.enemy({ canvasContext })
+      draw.hole({ canvasContext })
       requestAnimationFrame(animate)
     }
 
     animate()
-  }, [holeX, holeY])
+  }, [gameState.holeX, gameState.holeY])
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       switch (event.key) {
         case 'ArrowUp':
-          holeY -= MOVE_STEP
+          gameState.holeY -= MOVE_STEP
           break
         case 'ArrowDown':
-          holeY += MOVE_STEP
+          gameState.holeY += MOVE_STEP
           break
         case 'ArrowLeft':
-          holeX -= MOVE_STEP
+          gameState.holeX -= MOVE_STEP
           break
         case 'ArrowRight':
-          holeX += MOVE_STEP
+          gameState.holeX += MOVE_STEP
           break
         default:
           break
