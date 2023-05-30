@@ -15,7 +15,7 @@ export const Game: FC = () => {
 
     const animate = () => {
       draw.space({ canvasContext })
-      draw.enemy({ canvasContext, x: 175, y: 100, points: 10 })
+      draw.enemies({ canvasContext })
       draw.hole({ canvasContext })
       requestAnimationFrame(animate)
     }

@@ -15,5 +15,9 @@ export const gameState: TGameState = {
     x: 100,
     y: 100,
   },
-  enemies: [],
+  enemies: [
+    { x: 175, y: 100, points: 10 },
+    { x: 200, y: 200, points: 20 },
+    { x: 100, y: 250, points: 30 },
+  ],
 }
