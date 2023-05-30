@@ -13,11 +13,15 @@ export const draw: TDraw = {
     canvasContext.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
   },
   enemies: ({ canvasContext }) => {
-    canvasContext.fillStyle = 'lightgray'
     gameState.enemies.forEach(enemy => {
+      canvasContext.fillStyle = 'lightgray'
       canvasContext.beginPath()
       canvasContext.arc(enemy.x, enemy.y, enemy.points, 0, 2 * Math.PI)
       canvasContext.fill()
+
+      canvasContext.font = '16px Comic Sans MS'
+      canvasContext.fillStyle = 'red'
+      canvasContext.fillText(enemy.points.toString(), enemy.x, enemy.y)
     })
   },
   hole: ({ canvasContext }) => {
@@ -31,6 +35,14 @@ export const draw: TDraw = {
       2 * Math.PI
     )
     canvasContext.fill()
+
+    canvasContext.font = '16px Comic Sans MS'
+    canvasContext.fillStyle = 'green'
+    canvasContext.fillText(
+      gameState.hole.points.toString(),
+      gameState.hole.x,
+      gameState.hole.y
+    )
   },
 }
 
