@@ -1,13 +1,4 @@
-type TObjectState = {
-  points: number
-  x: number
-  y: number
-}
-
-type TGameState = {
-  hole: TObjectState
-  enemies: TObjectState[]
-}
+import { TGameState } from './types'
 
 export const gameState: TGameState = {
   hole: {

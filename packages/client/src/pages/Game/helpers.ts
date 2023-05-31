@@ -1,11 +1,6 @@
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from './constants'
 import { gameState } from './gameState'
-
-type TDraw = {
-  space: (params: { canvasContext: CanvasRenderingContext2D }) => void
-  enemies: (params: { canvasContext: CanvasRenderingContext2D }) => void
-  hole: (params: { canvasContext: CanvasRenderingContext2D }) => void
-}
+import { TDraw } from './types'
 
 export const draw: TDraw = {
   space: ({ canvasContext }) => {
