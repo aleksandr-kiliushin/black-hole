@@ -1,8 +1,8 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from './constants'
+import { CANVAS_HEIGHT, CANVAS_WIDTH, MOVE_STEP } from './constants'
 import { gameState } from './gameState'
 import { TDraw } from './types'
 
-export const draw: TDraw = {
+const draw: TDraw = {
   space: ({ canvasContext }) => {
     canvasContext.fillStyle = 'gray'
     canvasContext.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
@@ -41,7 +41,7 @@ export const draw: TDraw = {
   },
 }
 
-export const swallowEnemiesNearby = () => {
+const swallowEnemiesNearby = () => {
   const enemiesIndicesToSwallow: number[] = []
 
   gameState.enemies.forEach((enemy, enemyIndex) => {
@@ -73,4 +73,32 @@ export const swallowEnemiesNearby = () => {
   gameState.enemies = gameState.enemies.filter((enemy, enemyIndex) => {
     return !enemiesIndicesToSwallow.includes(enemyIndex)
   })
+}
+
+export const requestAnimation = (canvasContext: CanvasRenderingContext2D) => {
+  draw.space({ canvasContext })
+  draw.enemies({ canvasContext })
+  draw.hole({ canvasContext })
+  requestAnimationFrame(() => requestAnimation(canvasContext))
+}
+
+export const handleKeyDown = (event: KeyboardEvent) => {
+  switch (event.key) {
+    case 'ArrowUp':
+      gameState.hole.y -= MOVE_STEP
+      break
+    case 'ArrowDown':
+      gameState.hole.y += MOVE_STEP
+      break
+    case 'ArrowLeft':
+      gameState.hole.x -= MOVE_STEP
+      break
+    case 'ArrowRight':
+      gameState.hole.x += MOVE_STEP
+      break
+    default:
+      break
+  }
+
+  swallowEnemiesNearby()
 }
