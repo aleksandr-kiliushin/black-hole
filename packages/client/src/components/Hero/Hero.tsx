@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import blackHole from '../../assets/images/black-hole.png'
-import { GAME_NAME, Routes } from '../../utils/global'
-import { Link } from 'react-router-dom'
+import { GAME_NAME } from '../../utils/global'
 
 const Hero: FC = () => {
   return (
@@ -15,9 +14,6 @@ const Hero: FC = () => {
           становясь все больше и больше. Ваше космическое путешествие начинается
           прямо сейчас!
         </p>
-        <Link to={Routes.GAME_START} className="btn-primary my-6">
-          Подробнее
-        </Link>
       </div>
       <img
         src={blackHole}
