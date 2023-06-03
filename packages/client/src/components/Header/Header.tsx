@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { RANDOM_AVATAR_PATH } from '../../utils/global';
 import { Navbar } from '../Navbar';
 import IconMenu from '../icons/IconMenu';
 import { Modal } from '../Modal';
 
-const Header = () => {
+const Header: FC = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
 
   const onNavbarToggle = () => setIsNavbarOpen(!isNavbarOpen);
