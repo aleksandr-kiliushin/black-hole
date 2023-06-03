@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { Header } from '../components/Header'
 
-export const Forum: FC = () => {
+export const Game: FC = () => {
   return (
     <>
       <Header />
-      <h1 className="text-4xl font-bold">Forum</h1>
+      <h1 className="text-4xl font-bold">Game, canvas, etc</h1>
     </>
   )
 }

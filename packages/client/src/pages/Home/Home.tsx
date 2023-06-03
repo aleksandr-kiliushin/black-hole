@@ -1,12 +1,12 @@
 import { FC } from 'react'
-import { Navbar } from '../../components/Navbar'
 import { Hero } from '../../components/Hero'
 import { About } from '../../components/About'
+import { Header } from '../../components/Header'
 
 const Home: FC = () => {
   return (
     <>
-      <Navbar />
+      <Header />
       <Hero />
       <About />
     </>

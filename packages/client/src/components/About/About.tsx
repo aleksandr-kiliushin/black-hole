@@ -1,10 +1,10 @@
-import React from 'react'
-import { GAME_NAME, Routes } from '../../utils/global'
-import { Link } from 'react-router-dom'
+import { GAME_NAME } from '../../utils/global';
+import { Link } from 'react-router-dom';
+import { RoutePaths } from '../../providers/Router/AppRouter/constants';
 
 const About = () => {
   return (
-    <section className="container m-auto max-w-screen-xl w-11/12 flex flex-col justify-center items-center md:items-start pb-8">
+    <section className="page-container flex flex-col justify-center items-center md:items-start pb-8">
       <h2 className="font-black text-2xl my-6 text-center md:text-left">
         Исследуйте неизведанные глубины {GAME_NAME}!
       </h2>
@@ -16,11 +16,11 @@ const About = () => {
         вселенной и покажет вам, как это быть всемогущим. Приготовьтесь к
         незабываемому путешествию!
       </p>
-      <Link to={Routes.GAME_START} className="btn-primary my-6">
+      <Link to={RoutePaths.GAME_START} className="btn-primary my-6">
         Подробнее
       </Link>
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;
