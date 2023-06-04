@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
 import { RANDOM_AVATAR_PATH } from '../../utils/global';
 import { Navbar } from '../Navbar';
-import IconMenu from '../icons/IconMenu';
 import { Modal } from '../Modal';
+import { FiAlignCenter } from 'react-icons/fi';
 
 const Header: FC = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
@@ -17,7 +17,7 @@ const Header: FC = () => {
         <button
           className="btn-primary block sm:hidden p-2"
           onClick={onNavbarToggle}>
-          <IconMenu width={48} height={48} />
+          <FiAlignCenter className="w-8 h-8" />
         </button>
       </header>
       <Modal isOpen={isNavbarOpen} onClose={onNavbarToggle}>

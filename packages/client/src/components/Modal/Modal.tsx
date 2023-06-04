@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { ModalProps } from './types';
 import { createPortal } from 'react-dom';
-import IconClose from '../icons/IconClose';
+import { FiX } from 'react-icons/fi';
 
 const Modal: FC<ModalProps> = ({ isOpen, title, children, onClose }) => {
   if (!isOpen) return null;
@@ -11,7 +11,7 @@ const Modal: FC<ModalProps> = ({ isOpen, title, children, onClose }) => {
       <div className="flex justify-end">
         {title && <header className="mr-auto">{title}</header>}
         <button onClick={onClose}>
-          <IconClose width={48} height={48} />
+          <FiX className="w-8 h-8" />
         </button>
       </div>
       <div className="flex items-center justify-center grow">{children}</div>
