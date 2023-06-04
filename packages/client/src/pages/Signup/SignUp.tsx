@@ -6,7 +6,6 @@ import { authApi } from '../../api/Auth/Auth';
 import { AppLink } from '../../components/AppLink/AppLink';
 import { FormButton } from '../../components/FormButton/FormButton';
 import { Input } from '../../components/Input/Input';
-import { Navbar } from '../../components/Navbar';
 import {
   validateEmail,
   validateLogin,
@@ -17,6 +16,7 @@ import {
 import { isNetworkError } from '../../typeGuards/isNetworkError';
 import { RoutePaths } from '../../providers/Router/AppRouter/constants';
 import { FormValues } from './types';
+import { Header } from '../../components/Header';
 
 export const SignUp: FC = () => {
   const [hasRegistered, setHasRegistered] = useState(false);
@@ -94,7 +94,7 @@ export const SignUp: FC = () => {
 
   return (
     <>
-      <Navbar />
+      <Header />
       <main
         className="flex flex-col
   justify-center items-center

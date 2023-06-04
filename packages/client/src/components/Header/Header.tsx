@@ -21,7 +21,7 @@ const Header: FC = () => {
         </button>
       </header>
       <Modal isOpen={isNavbarOpen} onClose={onNavbarToggle}>
-        <Navbar />
+        <Navbar isVertical />
       </Modal>
     </>
   );

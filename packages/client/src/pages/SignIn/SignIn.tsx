@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import AppLink from '../../components/AppLink/index';
 import FormButton from '../../components/FormButton';
 import Input from '../../components/Input';
-import { Navbar } from '../../components/Navbar';
 import {
   validateLogin,
   validatePassword,
@@ -16,6 +15,7 @@ import {
 import { isNetworkError } from '../../typeGuards/isNetworkError';
 import { RoutePaths } from '../../providers/Router/AppRouter/constants';
 import { FormValues } from './types';
+import { Header } from '../../components/Header';
 
 export const SignIn: FC = () => {
   const dispatch = useAppDispatch();
@@ -72,7 +72,7 @@ export const SignIn: FC = () => {
 
   return (
     <>
-      <Navbar />
+      <Header />
       <main
         className="flex flex-col
     justify-center items-center
