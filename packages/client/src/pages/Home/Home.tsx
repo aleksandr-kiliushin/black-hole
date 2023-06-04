@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { Hero } from '../../components/Hero'
-import { About } from '../../components/About'
+import { Hero } from './parts/Hero'
+import { About } from './parts/About'
 import { Header } from '../../components/Header'
 
 const Home: FC = () => {

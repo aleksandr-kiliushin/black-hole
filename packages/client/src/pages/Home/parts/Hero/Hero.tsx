@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import blackHole from '../../assets/images/black-hole.png'
-import { GAME_NAME } from '../../utils/global'
+import blackHole from '../../../../assets/images/black-hole.png'
+import { GAME_NAME } from '../../../../utils/global'
 
 const Hero: FC = () => {
   return (
