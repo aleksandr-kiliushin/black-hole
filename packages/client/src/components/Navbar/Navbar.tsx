@@ -59,6 +59,20 @@ const Navbar: FC<NavbarProps> = ({ isVertical = false }) => {
             Profile
           </Link>
         </li>
+        <li>
+          <Link
+            className="text-blue-600 hover:text-blue-400"
+            to={RoutePaths.SIGN_IN}>
+            Login
+          </Link>
+        </li>
+        <li>
+          <Link
+            className="text-blue-600 hover:text-blue-400"
+            to={RoutePaths.SIGN_UP}>
+            Sign-up
+          </Link>
+        </li>
       </ul>
     </nav>
   );
