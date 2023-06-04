@@ -1,8 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { authApi } from '../../api/Auth/Auth';
+import { authActions, getAuthUserInfo } from '../../store/slices/auth';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import AppLink from '../../components/AppLink/index';
 import FormButton from '../../components/FormButton';
 import Input from '../../components/Input';
@@ -16,7 +18,8 @@ import { Routes } from '../../utils/global';
 import { FormValues } from './types';
 
 export const SignIn: FC = () => {
-  const [hasLoggedIn, setHasLoggedIn] = useState(false);
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector(state => state.auth.authData);
 
   const {
     register,
@@ -37,7 +40,8 @@ export const SignIn: FC = () => {
 
       reset();
 
-      setHasLoggedIn(true);
+      dispatch(getAuthUserInfo());
+      dispatch(authActions.initAuthData());
     } catch (error) {
       let message = 'Что-то пошло не так. Попробуйте перезагрузить страницу';
 
@@ -62,7 +66,7 @@ export const SignIn: FC = () => {
     }
   };
 
-  if (hasLoggedIn) {
+  if (auth) {
     return <Navigate to={Routes.PROFILE} />;
   }
 
@@ -104,7 +108,7 @@ export const SignIn: FC = () => {
             `}
             error={root?.message}
             type="submit"
-            disabled={isSubmitting || hasLoggedIn}>
+            disabled={isSubmitting || !!auth}>
             Войти
           </FormButton>
         </form>
