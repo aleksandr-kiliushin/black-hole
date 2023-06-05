@@ -67,7 +67,7 @@ export const SignIn: FC = () => {
   };
 
   if (auth) {
-    return <Navigate to={RoutePaths.profile} />;
+    return <Navigate to={RoutePaths.PROFILE} />;
   }
 
   return (

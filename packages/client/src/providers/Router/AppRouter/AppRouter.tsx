@@ -16,55 +16,55 @@ import { ChangePassword } from '../../../pages/Profile/ChangePassword';
 
 const routeConfig: Record<AppRoutes, AppRouteProps> = {
   [AppRoutes.HOME]: {
-    path: RoutePaths.home,
+    path: RoutePaths.HOME,
     element: <Home />,
     authOnly: true,
   },
   [AppRoutes.GAME]: {
-    path: RoutePaths.game,
+    path: RoutePaths.GAME,
     element: <Game />,
     authOnly: true,
   },
   [AppRoutes.GAME_START]: {
-    path: RoutePaths['game-start'],
+    path: RoutePaths.GAME_START,
     element: <GameStart />,
     authOnly: true,
   },
   [AppRoutes.GAME_END]: {
-    path: RoutePaths['game-end'],
+    path: RoutePaths.GAME_END,
     element: <GameEnd />,
     authOnly: true,
   },
   [AppRoutes.FORUM]: {
-    path: RoutePaths.forum,
+    path: RoutePaths.FORUM,
     element: <Forum />,
     authOnly: true,
   },
   [AppRoutes.LEADERBOARD]: {
-    path: RoutePaths.leaderboard,
+    path: RoutePaths.LEADERBOARD,
     element: <Leaderboard />,
     authOnly: true,
   },
   [AppRoutes.PROFILE]: {
-    path: RoutePaths.profile,
+    path: RoutePaths.PROFILE,
     element: <Profile />,
     authOnly: true,
   },
   [AppRoutes.CHANGE_PASSWORD]: {
-    path: RoutePaths['change-password'],
+    path: RoutePaths.CHANGE_PASSWORD,
     element: <ChangePassword />,
     authOnly: true,
   },
   [AppRoutes.SIGN_IN]: {
-    path: RoutePaths['sign-in'],
+    path: RoutePaths.SIGN_IN,
     element: <SignIn />,
   },
   [AppRoutes.SIGN_UP]: {
-    path: RoutePaths['sign-up'],
+    path: RoutePaths.SIGN_UP,
     element: <SignUp />,
   },
   [AppRoutes.NOT_FOUND]: {
-    path: RoutePaths['not-found'],
+    path: RoutePaths.NOT_FOUND,
     element: <div>Страница не найдена</div>,
   },
 };

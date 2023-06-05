@@ -1,17 +1,17 @@
 import { RouteProps } from 'react-router-dom';
 
 export enum AppRoutes {
-  HOME = 'home',
-  GAME = 'game',
-  GAME_START = 'game-start',
-  GAME_END = 'game-end',
-  FORUM = 'forum',
-  LEADERBOARD = 'leaderboard',
-  PROFILE = 'profile',
-  CHANGE_PASSWORD = 'change-password',
-  SIGN_IN = 'sign-in',
-  SIGN_UP = 'sign-up',
-  NOT_FOUND = 'not-found',
+  HOME = 'HOME',
+  GAME = 'GAME',
+  GAME_START = 'GAME_START',
+  GAME_END = 'GAME_END',
+  FORUM = 'FORUM',
+  LEADERBOARD = 'LEADERBOARD',
+  PROFILE = 'PROFILE',
+  CHANGE_PASSWORD = 'CHANGE_PASSWORD',
+  SIGN_IN = 'SIGN_IN',
+  SIGN_UP = 'SIGN_UP',
+  NOT_FOUND = 'NOT_FOUND',
 }
 
 export type AppRouteProps = RouteProps & {

@@ -48,10 +48,10 @@ const GameEnd: FC = () => {
         Определите свой следующий путь, о могучий поглотитель космоса!
       </p>
       <div className="flex flex-col md:flex-row w-full gap-4 justify-center text-center py-4 md:py-0">
-        <Link to={RoutePaths.game} className="btn-primary md:my-6">
+        <Link to={RoutePaths.GAME} className="btn-primary md:my-6">
           Поглотить вселенную снова ✨
         </Link>
-        <Link to={RoutePaths.home} className="btn-primary md:my-6">
+        <Link to={RoutePaths.HOME} className="btn-primary md:my-6">
           Вернуться на главную
         </Link>
       </div>

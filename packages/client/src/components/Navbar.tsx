@@ -7,47 +7,47 @@ export const Navbar: FC = () => {
     <nav>
       <ul className="flex xs:flex-col xs:items-center sm:flex-row gap-x-4 border border-black">
         <li>
-          <Link className="text-blue-600" to={RoutePaths.home}>
+          <Link className="text-blue-600" to={RoutePaths.HOME}>
             Home
           </Link>
         </li>
         <li>
-          <Link className="text-blue-600" to={RoutePaths.game}>
+          <Link className="text-blue-600" to={RoutePaths.GAME}>
             Game
           </Link>
         </li>
         <li>
-          <Link className="text-blue-600" to={RoutePaths['game-start']}>
+          <Link className="text-blue-600" to={RoutePaths.GAME_START}>
             Start Game
           </Link>
         </li>
         <li>
-          <Link className="text-blue-600" to={RoutePaths['game-end']}>
+          <Link className="text-blue-600" to={RoutePaths.GAME_END}>
             End Game
           </Link>
         </li>
         <li>
-          <Link className="text-blue-600" to={RoutePaths.leaderboard}>
+          <Link className="text-blue-600" to={RoutePaths.LEADERBOARD}>
             Leaderboard
           </Link>
         </li>
         <li>
-          <Link className="text-blue-600" to={RoutePaths.forum}>
+          <Link className="text-blue-600" to={RoutePaths.FORUM}>
             Forum
           </Link>
         </li>
         <li>
-          <Link className="text-blue-600" to={RoutePaths.profile}>
+          <Link className="text-blue-600" to={RoutePaths.PROFILE}>
             Profile
           </Link>
         </li>
         <li>
-          <Link className="text-blue-600" to={RoutePaths['sign-in']}>
+          <Link className="text-blue-600" to={RoutePaths.SIGN_IN}>
             Login
           </Link>
         </li>
         <li>
-          <Link className="text-blue-600" to={RoutePaths['sign-up']}>
+          <Link className="text-blue-600" to={RoutePaths.SIGN_UP}>
             Sign-up
           </Link>
         </li>

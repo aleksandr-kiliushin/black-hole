@@ -38,7 +38,7 @@ export const Profile = () => {
   };
 
   const handleChangePassword = () => {
-    navigate(RoutePaths['change-password']);
+    navigate(RoutePaths.CHANGE_PASSWORD);
   };
 
   return (

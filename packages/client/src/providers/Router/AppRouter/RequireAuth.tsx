@@ -11,7 +11,7 @@ export const RequireAuth: FC<RequireAuthProps> = ({ children }) => {
 
   if (!auth) {
     return (
-      <Navigate to={RoutePaths['sign-in']} state={{ from: location }} replace />
+      <Navigate to={RoutePaths.SIGN_IN} state={{ from: location }} replace />
     );
   }
 

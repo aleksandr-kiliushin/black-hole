@@ -89,7 +89,7 @@ export const SignUp: FC = () => {
   };
 
   if (hasRegistered) {
-    return <Navigate to={RoutePaths['sign-in']} />;
+    return <Navigate to={RoutePaths.SIGN_IN} />;
   }
 
   return (
