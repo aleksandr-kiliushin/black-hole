@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { IAvatarProps } from './types';
 import { UserApi } from '../../../api/UserApi/UserApi';
 import { BASE_URL } from '../../../api/constants';
+import defaultAvatar from '../../../assets/img/defaultAvatar.jpg';
 
 export const Avatar: FC<IAvatarProps> = ({ avatar, fetchUserInfo }) => {
   const [isVisibleFormAvatar, setIsVisibleFormAvatar] = useState(false);
@@ -32,7 +33,7 @@ export const Avatar: FC<IAvatarProps> = ({ avatar, fetchUserInfo }) => {
     <div className="flex flex-col justify-center items-center flex-wrap">
       <div className="flex justify-center align-middle flex-wrap w-32 h-32 bg-slate-50 rounded-full relative overflow-hidden">
         <img
-          src={AVATAR_URL}
+          src={avatar ? AVATAR_URL : defaultAvatar}
           alt="avatar"
           className="max-h-full max-w-full hover:bg-opacity-1 rounded-full hover:opacity-70 cursor-pointer"
           onClick={handleVisibleFormAvatar}

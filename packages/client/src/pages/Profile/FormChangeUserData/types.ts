@@ -2,7 +2,7 @@ import { IUser } from '../types';
 
 export interface IFormChangeUserDataProps {
   userInfo: IUser;
-  fetchUserInfo: () => void;
+  fetchUserInfo: VoidFunction;
 }
 
 export interface IFormChangeUserData {

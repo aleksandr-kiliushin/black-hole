@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../../components/Navbar';
 import { Layout } from './Layout';
 import { AuthApi } from '../../api/Auth/Auth';
@@ -7,12 +8,12 @@ import { Avatar } from './Avatar';
 import { IUser } from './types';
 import { useAppDispatch } from '../../store/hooks';
 import { authActions } from '../../store/slices/auth/auth';
-import { useNavigate } from 'react-router-dom';
+import { RoutePaths } from '../../providers/Router/AppRouter/constants';
 
 const authApi = new AuthApi();
 
 export const Profile = () => {
-  const [userInfo, setUserInfo] = useState<IUser | undefined>(undefined);
+  const [userInfo, setUserInfo] = useState<IUser | null>(null);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -22,22 +23,22 @@ export const Profile = () => {
     }
   }, [userInfo]);
 
-  const onLogout = useCallback(() => {
+  const onLogout = () => {
     authApi.SignOut();
     dispatch(authActions.logout());
-  }, [dispatch]);
+  };
 
   const handleLogout = () => {
     onLogout();
   };
 
-  const fetchUserInfo = useCallback(async () => {
+  const fetchUserInfo = async () => {
     const response = await authApi.GetUserInfo();
     setUserInfo(response.data);
-  }, []);
+  };
 
   const handleChangePassword = () => {
-    navigate('/change-password');
+    navigate(RoutePaths['change-password']);
   };
 
   return (
