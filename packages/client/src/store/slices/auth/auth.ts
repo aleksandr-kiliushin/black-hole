@@ -38,7 +38,7 @@ const authSlice = createSlice({
       state.isInited = true;
     },
     logout: state => {
-      state.authData = undefined;
+      state.authData = null;
       localStorage.removeItem('user');
     },
   },
