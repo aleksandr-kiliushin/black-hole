@@ -32,9 +32,9 @@ export const FormChangeUserData: FC<IFormChangeUserDataProps> = ({
       errors: {
         root,
         login: loginError,
-        firstName: nameError,
-        secondName: surnameError,
-        displayName: displayNameError,
+        first_name: nameError,
+        second_name: surnameError,
+        display_name: displayNameError,
         email: emailError,
         phone: phoneError,
       },
@@ -47,12 +47,7 @@ export const FormChangeUserData: FC<IFormChangeUserDataProps> = ({
   const onSubmit = async (value: IFormChangeUserData) => {
     try {
       await submit({
-        first_name: value.firstName,
-        second_name: value.secondName,
-        display_name: value.displayName,
-        login: value.login,
-        email: value.email,
-        phone: value.phone,
+        ...value,
       });
 
       fetchUserInfo();
@@ -81,14 +76,14 @@ export const FormChangeUserData: FC<IFormChangeUserDataProps> = ({
         className="text-xs p-0.5"
         label="Имя"
         validationError={nameError?.message}
-        {...register('firstName', { validate: validateNames })}
+        {...register('first_name', { validate: validateNames })}
       />
       <Input
         defaultValue={userInfo?.second_name}
         className="text-xs p-0.5"
         label="Фамилия"
         validationError={surnameError?.message}
-        {...register('secondName', { validate: validateNames })}
+        {...register('second_name', { validate: validateNames })}
       />
       <Input
         defaultValue={
@@ -97,7 +92,7 @@ export const FormChangeUserData: FC<IFormChangeUserDataProps> = ({
         className="text-xs p-0.5"
         label="Имя в чате"
         validationError={displayNameError?.message}
-        {...register('displayName', { validate: validateNames })}
+        {...register('display_name', { validate: validateNames })}
       />
       <Input
         defaultValue={userInfo?.login}
