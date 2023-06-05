@@ -26,57 +26,51 @@ const draw: TDraw = {
     });
   },
   hole: ({ canvasContext }) => {
+    const { hole } = gameState;
+
     canvasContext.fillStyle = Color.HERO_BODY;
     canvasContext.beginPath();
-    canvasContext.arc(
-      gameState.hole.x,
-      gameState.hole.y,
-      gameState.hole.points,
-      0,
-      2 * Math.PI
-    );
+    canvasContext.arc(hole.x, hole.y, hole.points, 0, 2 * Math.PI);
     canvasContext.fill();
 
     canvasContext.font = GAME_ENTITY_FONT;
     canvasContext.fillStyle = Color.HERO_POINTS_TEXT;
-    canvasContext.fillText(
-      gameState.hole.points.toString(),
-      gameState.hole.x,
-      gameState.hole.y
-    );
+    canvasContext.fillText(hole.points.toString(), hole.x, hole.y);
   },
 };
 
 const swallowEnemiesNearby = () => {
+  const { enemies, hole } = gameState;
+
   const enemiesIndicesToSwallow: number[] = [];
 
-  gameState.enemies.forEach((enemy, enemyIndex) => {
-    const distanceBetweenCentersByX = Math.abs(gameState.hole.x - enemy.x);
-    const distanceBetweenCentersByY = Math.abs(gameState.hole.y - enemy.y);
+  enemies.forEach((enemy, enemyIndex) => {
+    const distanceBetweenCentersByX = Math.abs(hole.x - enemy.x);
+    const distanceBetweenCentersByY = Math.abs(hole.y - enemy.y);
 
     const distanceByX = Math.max(
-      distanceBetweenCentersByX - gameState.hole.points - enemy.points,
+      distanceBetweenCentersByX - hole.points - enemy.points,
       0
     );
     const distanceByY = Math.max(
-      distanceBetweenCentersByY - gameState.hole.points - enemy.points,
+      distanceBetweenCentersByY - hole.points - enemy.points,
       0
     );
 
     const haveOverlap = distanceByX === 0 && distanceByY === 0;
 
-    if (haveOverlap && enemy.points < gameState.hole.points) {
-      gameState.hole.points += enemy.points;
+    if (haveOverlap && enemy.points < hole.points) {
+      hole.points += enemy.points;
       enemiesIndicesToSwallow.push(enemyIndex);
     }
 
-    if (haveOverlap && enemy.points >= gameState.hole.points) {
-      gameState.hole.points -= enemy.points / 2;
+    if (haveOverlap && enemy.points >= hole.points) {
+      hole.points -= enemy.points / 2;
       enemiesIndicesToSwallow.push(enemyIndex);
     }
   });
 
-  gameState.enemies = gameState.enemies.filter((enemy, enemyIndex) => {
+  gameState.enemies = enemies.filter((enemy, enemyIndex) => {
     return !enemiesIndicesToSwallow.includes(enemyIndex);
   });
 };
