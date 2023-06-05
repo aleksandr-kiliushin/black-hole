@@ -3,6 +3,7 @@ import { AuthApi } from '../../../api/Auth/Auth';
 import { User, UserSchema } from './types';
 
 const initialState: UserSchema = {
+  authData: null,
   isInited: false,
 };
 
