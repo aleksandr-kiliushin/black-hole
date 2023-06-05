@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 import { FC } from 'react';
 import { authApi } from '../../api/Auth/Auth';
-import { authActions, getAuthUserInfo } from '../../store/slices/auth';
+import { authActions, getAuthUserInfo } from '../../store/slices/auth/auth';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import AppLink from '../../components/AppLink/index';
 import FormButton from '../../components/FormButton';

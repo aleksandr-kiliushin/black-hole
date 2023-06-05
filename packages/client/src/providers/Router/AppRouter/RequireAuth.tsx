@@ -1,12 +1,10 @@
 import { Navigate, useLocation } from 'react-router-dom';
+import { FC } from 'react';
 import { useAppSelector } from '../../../store/hooks';
 import { RoutePaths } from './constants';
+import { RequireAuthProps } from './types';
 
-interface RequireAuthProps {
-  children: JSX.Element;
-}
-
-function RequireAuth({ children }: RequireAuthProps) {
+export const RequireAuth: FC<RequireAuthProps> = ({ children }) => {
   const auth = useAppSelector(state => state.auth.authData);
 
   const location = useLocation();
@@ -18,6 +16,4 @@ function RequireAuth({ children }: RequireAuthProps) {
   }
 
   return children;
-}
-
-export default RequireAuth;
+};

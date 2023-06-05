@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   IFormChangeUserData,
@@ -19,10 +20,10 @@ const submit = (data: IUserData) => {
   return UserApi.changeUserProfile(data);
 };
 
-export const FormChangeUserData = ({
+export const FormChangeUserData: FC<IFormChangeUserDataProps> = ({
   userInfo,
   fetchUserInfo,
-}: IFormChangeUserDataProps) => {
+}) => {
   const {
     register,
     handleSubmit,

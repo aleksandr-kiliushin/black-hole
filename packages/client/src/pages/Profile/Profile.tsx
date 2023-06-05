@@ -6,7 +6,7 @@ import { FormChangeUserData } from './FormChangeUserData';
 import { Avatar } from './Avatar';
 import { IUser } from './types';
 import { useAppDispatch } from '../../store/hooks';
-import { authActions } from '../../store/slices/auth';
+import { authActions } from '../../store/slices/auth/auth';
 import { useNavigate } from 'react-router-dom';
 
 const authApi = new AuthApi();

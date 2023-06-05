@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import RequireAuth from './RequireAuth';
+import { RequireAuth } from './RequireAuth';
 import { Home } from '../../../pages/Home';
 import { Game } from '../../../pages/Game';
 import { Forum } from '../../../pages/Forum';
@@ -69,7 +69,7 @@ const routeConfig: Record<AppRoutes, AppRouteProps> = {
   },
 };
 
-const AppRouter = () => {
+export const AppRouter = memo(() => {
   const renderWithWrapper = useCallback((route: AppRouteProps) => {
     const element = <>{route.element}</>;
 
@@ -85,6 +85,4 @@ const AppRouter = () => {
   }, []);
 
   return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>;
-};
-
-export default memo(AppRouter);
+});

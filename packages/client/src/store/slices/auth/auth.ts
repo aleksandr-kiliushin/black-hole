@@ -1,24 +1,9 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { AuthApi } from '../../api/Auth/Auth';
-
-export interface User {
-  id: number;
-  login: string;
-  first_name: string;
-  second_name: string;
-  display_name: null | string;
-  avatar: null | string;
-  email: string;
-  phone: string;
-}
-
-export interface UserSchema {
-  authData?: User;
-  _inited: boolean;
-}
+import { AuthApi } from '../../../api/Auth/Auth';
+import { User, UserSchema } from './types';
 
 const initialState: UserSchema = {
-  _inited: false,
+  isInited: false,
 };
 
 const authApi = new AuthApi();
@@ -50,7 +35,7 @@ const authSlice = createSlice({
       if (user) {
         state.authData = JSON.parse(user);
       }
-      state._inited = true;
+      state.isInited = true;
     },
     logout: state => {
       state.authData = undefined;
@@ -58,8 +43,8 @@ const authSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(getAuthUserInfo.fulfilled, (state, action) => {
-      state.authData = action.payload;
+    builder.addCase(getAuthUserInfo.fulfilled, (state, { payload }) => {
+      state.authData = payload;
     });
   },
 });
