@@ -1,7 +1,17 @@
 {
+  "arrowParens": "always",
+  "importOrder": [
+    "^@src",
+    "^@pages",
+    "^@api",
+    "^@components",
+    "^@utils",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "printWidth": 80,
   "singleQuote": true,
   "semi": true,
-  "arrowParens": "avoid",
-  "bracketSameLine": true,
-  "width": 50
+  "trailingComma": "es5"
 }

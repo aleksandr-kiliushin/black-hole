@@ -1,15 +1,25 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import dotenv from 'dotenv'
-dotenv.config()
+import react from '@vitejs/plugin-react';
+import dotenv from 'dotenv';
+import path from 'node:path';
+import { defineConfig } from 'vite';
 
-// https://vitejs.dev/config/
+dotenv.config();
+
 export default defineConfig({
-  server: {
-    port: Number(process.env.CLIENT_PORT) || 3000,
-  },
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
   plugins: [react()],
-})
+  resolve: {
+    alias: {
+      '@api': path.resolve(__dirname, 'src', 'api'),
+      '@components': path.resolve(__dirname, 'src', 'components'),
+      '@pages': path.resolve(__dirname, 'src', 'pages'),
+      '@utils': path.resolve(__dirname, 'src', 'utils'),
+      '@src': path.resolve(__dirname, 'src'),
+    },
+  },
+  server: {
+    port: Number(process.env.CLIENT_PORT) || 3000,
+  },
+});
