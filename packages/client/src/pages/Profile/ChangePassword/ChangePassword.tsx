@@ -5,7 +5,7 @@ import { FormButton } from '../../../components/FormButton/FormButton';
 import { Input } from '../../../components/Input/Input';
 import { UserApi } from '../../../api/UserApi/UserApi';
 import { validatePassword } from '../../../helpers/authFormValidation';
-import { IFormChangeUserPassword } from './types';
+import { ErrorMessage, IFormChangeUserPassword } from './types';
 import { useForm } from 'react-hook-form';
 import { isNetworkError } from '../../../typeGuards/isNetworkError';
 
@@ -32,31 +32,30 @@ export const ChangePassword = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = async (value: IFormChangeUserPassword) => {
+  const withErrorHandling = async (cb: () => Promise<void>) => {
     try {
-      await submit({
-        oldPassword: value.oldPassword,
-        newPassword: value.newPassword,
-      });
-
-      navigate('/profile');
+      await cb();
     } catch (error) {
-      let message = 'Что-то пошло не так. Попробуйте перезагрузить страницу';
+      let message = ErrorMessage.DEFAULT_MESSAGE;
 
       if (isNetworkError(error)) {
         if (error.response.status === 400) {
-          message = 'Старый пароль введен неверно';
+          message = ErrorMessage.OLD_PASSWORD_INCORRECT;
         }
         if (error.response.status >= 500) {
-          message = 'Повторите попытку позже';
+          message = ErrorMessage.SERVER_ERROR;
         }
       }
-
-      setError('root', {
-        type: 'server',
-        message,
-      });
+      setError('root', { type: 'server', message });
     }
+  };
+
+  const onSubmit = (value: IFormChangeUserPassword) => {
+    withErrorHandling(async () => {
+      await submit({ ...value });
+
+      navigate('/profile');
+    });
   };
 
   return (

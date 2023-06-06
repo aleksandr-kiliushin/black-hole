@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../../components/Navbar';
 import { Layout } from './Layout';
@@ -26,10 +26,6 @@ export const Profile = () => {
   const onLogout = () => {
     authApi.SignOut();
     dispatch(authActions.logout());
-  };
-
-  const handleLogout = () => {
-    onLogout();
   };
 
   const fetchUserInfo = async () => {
@@ -67,7 +63,7 @@ export const Profile = () => {
                 sm:w-1/2 lg:w-1/3 lg:max-w-464px 
                 gap-y-2 mt-3.5 focus:ring-red-400 
                 focus:ring-opacity-75"
-                onClick={handleLogout}>
+                onClick={onLogout}>
                 Выйти из профиля
               </button>
             </>
