@@ -9,11 +9,11 @@ import { gameState } from './gameState';
 import { TDraw } from './types';
 
 const draw: TDraw = {
-  space: ({ canvasContext }) => {
+  space: canvasContext => {
     canvasContext.fillStyle = 'gray';
     canvasContext.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   },
-  enemies: ({ canvasContext }) => {
+  enemies: canvasContext => {
     gameState.enemies.forEach(enemy => {
       canvasContext.fillStyle = Color.ENEMY_ASTEROID_BODY;
       canvasContext.beginPath();
@@ -25,7 +25,7 @@ const draw: TDraw = {
       canvasContext.fillText(enemy.points.toString(), enemy.x, enemy.y);
     });
   },
-  hole: ({ canvasContext }) => {
+  hole: canvasContext => {
     const { hole } = gameState;
 
     canvasContext.fillStyle = Color.HERO_BODY;
@@ -76,9 +76,9 @@ const swallowEnemiesNearby = () => {
 };
 
 export const requestAnimation = (canvasContext: CanvasRenderingContext2D) => {
-  draw.space({ canvasContext });
-  draw.enemies({ canvasContext });
-  draw.hole({ canvasContext });
+  draw.space(canvasContext);
+  draw.enemies(canvasContext);
+  draw.hole(canvasContext);
   requestAnimationFrame(() => requestAnimation(canvasContext));
 };
 
