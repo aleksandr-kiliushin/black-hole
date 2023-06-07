@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { GAME_NAME, Routes } from '../../utils/global';
 import { Link } from 'react-router-dom';
+import { RoutePaths } from '../../providers/Router/AppRouter/constants';
 
 const GameEnd: FC = () => {
   return (
@@ -48,10 +48,10 @@ const GameEnd: FC = () => {
         Определите свой следующий путь, о могучий поглотитель космоса!
       </p>
       <div className="flex flex-col md:flex-row w-full gap-4 justify-center text-center py-4 md:py-0">
-        <Link to={Routes.GAME} className="btn-primary md:my-6">
+        <Link to={RoutePaths.GAME} className="btn-primary md:my-6">
           Поглотить вселенную снова ✨
         </Link>
-        <Link to={Routes.INDEX} className="btn-primary md:my-6">
+        <Link to={RoutePaths.HOME} className="btn-primary md:my-6">
           Вернуться на главную
         </Link>
       </div>

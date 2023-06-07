@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { GAME_NAME, Routes } from '../../utils/global';
+import { GAME_NAME } from '../../utils/global';
 import { Link } from 'react-router-dom';
+import { RoutePaths } from '../../providers/Router/AppRouter/constants';
 
 const GameStart: FC = () => {
   return (
@@ -38,7 +39,7 @@ const GameStart: FC = () => {
       <p className="text-xl font-bold my-2 text-zinc-900 text-center">
         Вселенная, приготовься - пришло время стать космическим пожирателем!
       </p>
-      <Link to={Routes.GAME} className="btn-primary my-6">
+      <Link to={RoutePaths.GAME} className="btn-primary my-6">
         Поглотить Вселенную ✨
       </Link>
     </section>
