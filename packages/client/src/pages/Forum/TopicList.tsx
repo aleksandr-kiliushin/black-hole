@@ -66,7 +66,7 @@ export const TopicList: FC = () => {
     <>
       <Header />
       <main className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
-        <h1 className="w-full py-2 flex">
+        <div className="w-full py-2 flex">
           <h1 className="w-10/12 text-3xl text-slate-700">
             Раздел: (название раздела)
           </h1>
@@ -75,7 +75,7 @@ export const TopicList: FC = () => {
             onClick={() => setIsNewTopicOpen(true)}>
             Создать новую тему
           </button>
-        </h1>
+        </div>
         <nav className="flex text-base px-2 py-2 font-bold uppercase">
           <div className="w-6/12 text-center">тема</div>
           <div className="w-4/12 text-center">ответы</div>

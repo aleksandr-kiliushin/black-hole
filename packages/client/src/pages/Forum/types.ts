@@ -27,7 +27,7 @@ export interface ThemeTypes {
   data: {
     title: string;
     description: string;
-    countOfThemes: number;
+    countOfTopics: number;
     countOfAnswers: number;
     id: string;
   }[];

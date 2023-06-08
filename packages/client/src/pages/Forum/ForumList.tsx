@@ -11,7 +11,7 @@ export const ForumList: FC = () => {
       title: 'Обсуждение игровых моментов',
       description:
         'Зарегистрируйтесь на форуме сообщества Apex Legends для обсуждения информации об игре, кодов предзаказа, обновлений и списков изменений.',
-      countOfThemes: 2358,
+      countOfTopics: 2358,
       countOfAnswers: 18649,
       id: '2wtqosme50',
     },
@@ -19,7 +19,7 @@ export const ForumList: FC = () => {
       title: 'Технические вопросы',
       description:
         'Проблема с активацией кода или подключением? Низкая производительность? Сбой, зависание или ошибка? Ищите решения проблем в нашем сообществе.',
-      countOfThemes: 8114,
+      countOfTopics: 8114,
       countOfAnswers: 34412,
       id: 'uv2da0x5fz',
     },
@@ -27,7 +27,7 @@ export const ForumList: FC = () => {
       title: 'Сообщения об ошибках',
       description:
         'Рассказывайте об ошибках, чтобы получить помощь сообщества.',
-      countOfThemes: 2341,
+      countOfTopics: 2341,
       countOfAnswers: 7808,
       id: '95pkt1q2iy',
     },
@@ -50,10 +50,10 @@ export const ForumList: FC = () => {
 
           <div>
             {theme.data.map(
-              ({ title, description, countOfThemes, countOfAnswers, id }) => {
+              ({ title, description, countOfTopics, countOfAnswers, id }) => {
                 return (
-                  <div className="odd:bg-slate-200 px-2">
-                    <AppLink to={`/forum/${id}/topics`} key={id}>
+                  <div className="odd:bg-slate-200 px-2" key={id}>
+                    <AppLink to={`/forum/${id}/topics`}>
                       <div className="py-3 flex cursor-pointer text-black">
                         <div className="w-10/12">
                           <div className="text-indigo-600 text-2xl hover:underline">
@@ -64,7 +64,7 @@ export const ForumList: FC = () => {
                           </div>
                         </div>
                         <div className="w-1/12 flex justify-center items-center font-bold">
-                          {countOfThemes}
+                          {countOfTopics}
                         </div>
                         <div className="w-1/12 flex justify-center items-center font-bold">
                           {countOfAnswers}

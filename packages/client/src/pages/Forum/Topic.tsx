@@ -47,6 +47,7 @@ export const Topic: FC = () => {
   ];
 
   const [messages, setMessages] = useState<MessagesTypes>({ data: testTopic });
+  const [answer, setAnswer] = useState('');
 
   return (
     <>
@@ -83,18 +84,25 @@ export const Topic: FC = () => {
                 <div className="w-8/12">{content}</div>
               </div>
               <div className="flex justify-end">
-                <button className="btn-primary">Ответить</button>
+                <label
+                  htmlFor="sendMessage"
+                  className="btn-primary"
+                  onClick={() => setAnswer(`@${author}, `)}>
+                  Ответить
+                </label>
               </div>
             </div>
           );
         })}
         <form className="flex flex-col p-2" id="comment">
           <div className="text-2xl mb-2">Добавить сообщение</div>
-          <input
-            type="text"
-            className=" w-1/4 h-9 border border-slate-300 rounded indent-1 mb-3"
+          <textarea
+            name="message"
+            id="sendMessage"
+            className=" w-1/2 h-32 border border-slate-300 rounded indent-1 mb-3 resize-none"
             placeholder="Ваш комментарий"
-          />
+            value={answer}
+            onChange={e => setAnswer(e.target.value)}></textarea>
           <button className="btn-primary w-1/4" type="submit">
             Отправить
           </button>
