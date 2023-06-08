@@ -46,8 +46,8 @@ export const Topic: FC = () => {
     },
   ];
 
-  const [messages, setMessages] = useState<MessagesTypes>({ data: testTopic });
-  const [answer, setAnswer] = useState('');
+  const [messages, setMessages] = useState<MessagesTypes[]>(testTopic);
+  const [comment, setComment] = useState('');
 
   return (
     <>
@@ -65,7 +65,7 @@ export const Topic: FC = () => {
         <h1 className="text-xl py-2 border-b border-black">
           Изначальное сообщение
         </h1>
-        {messages.data.map(({ content, author, time, id }, index) => {
+        {messages.map(({ content, author, time, id }, index) => {
           return (
             <div className="py-2 px-2 border-b-2 border-black" key={id}>
               <div className="flex justify-between">
@@ -85,24 +85,24 @@ export const Topic: FC = () => {
               </div>
               <div className="flex justify-end">
                 <label
-                  htmlFor="sendMessage"
+                  htmlFor="comment"
                   className="btn-primary"
-                  onClick={() => setAnswer(`@${author}, `)}>
+                  onClick={() => setComment(`@${author}, `)}>
                   Ответить
                 </label>
               </div>
             </div>
           );
         })}
-        <form className="flex flex-col p-2" id="comment">
+        <form className="flex flex-col p-2">
           <div className="text-2xl mb-2">Добавить сообщение</div>
           <textarea
-            name="message"
-            id="sendMessage"
+            name="comment"
+            id="comment"
             className=" w-1/2 h-32 border border-slate-300 rounded indent-1 mb-3 resize-none"
             placeholder="Ваш комментарий"
-            value={answer}
-            onChange={e => setAnswer(e.target.value)}></textarea>
+            value={comment}
+            onChange={e => setComment(e.target.value)}></textarea>
           <button className="btn-primary w-1/4" type="submit">
             Отправить
           </button>

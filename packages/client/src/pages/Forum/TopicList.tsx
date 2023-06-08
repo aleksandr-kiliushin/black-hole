@@ -59,7 +59,7 @@ export const TopicList: FC = () => {
     },
   ];
 
-  const [topic, setTopic] = useState<TopicTypes>({ data: testTopicList });
+  const [topic, setTopic] = useState<TopicTypes[]>(testTopicList);
   const [isNewTopicOpen, setIsNewTopicOpen] = useState(false);
 
   return (
@@ -81,7 +81,7 @@ export const TopicList: FC = () => {
           <div className="w-4/12 text-center">ответы</div>
           <div className="w-2/12">последняя публикация</div>
         </nav>
-        {topic.data.map(({ title, answers, author, lastPublic, id }) => {
+        {topic.map(({ title, answers, author, lastPublic, id }) => {
           return (
             <div className="flex cursor-pointer px-2 odd:bg-slate-200" key={id}>
               <div className="w-1/12">

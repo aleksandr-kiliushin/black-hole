@@ -5,30 +5,24 @@ export interface NewTopicProps {
 }
 
 export interface MessagesTypes {
-  data: {
-    author: string;
-    content: string;
-    time: string;
-    id: string;
-  }[];
+  author: string;
+  content: string;
+  time: string;
+  id: string;
 }
 
 export interface TopicTypes {
-  data: {
-    title: string;
-    author: string;
-    answers: number;
-    lastPublic: { time: string; author: string };
-    id: string;
-  }[];
+  title: string;
+  author: string;
+  answers: number;
+  lastPublic: { time: string; author: string };
+  id: string;
 }
 
 export interface ThemeTypes {
-  data: {
-    title: string;
-    description: string;
-    countOfTopics: number;
-    countOfAnswers: number;
-    id: string;
-  }[];
+  title: string;
+  description: string;
+  countOfTopics: number;
+  countOfAnswers: number;
+  id: string;
 }

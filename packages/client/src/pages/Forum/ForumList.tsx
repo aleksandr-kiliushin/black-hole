@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { GAME_NAME } from '../../utils/global';
 import { AppLink } from '../../components/AppLink/AppLink';
 import { Header } from '../../components/Header';
+import { ThemeTypes } from './types';
 
 export const ForumList: FC = () => {
   const testList = [
@@ -33,7 +34,7 @@ export const ForumList: FC = () => {
     },
   ];
 
-  const [theme, setTheme] = useState({ data: testList });
+  const [theme, setTheme] = useState<ThemeTypes[]>(testList);
 
   return (
     <>
@@ -49,7 +50,7 @@ export const ForumList: FC = () => {
           </div>
 
           <div>
-            {theme.data.map(
+            {theme.map(
               ({ title, description, countOfTopics, countOfAnswers, id }) => {
                 return (
                   <div className="odd:bg-slate-200 px-2" key={id}>
