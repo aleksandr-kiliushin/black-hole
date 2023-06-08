@@ -3,6 +3,7 @@ import { TopicTypes } from './types';
 import { AppLink } from '../../components/AppLink/AppLink';
 import { Navbar } from '../../components/Navbar';
 import { NewTopic } from './components/NewTopic';
+import { Header } from '../../components/Header';
 
 export const TopicList: FC = () => {
   const testTopicList = [
@@ -63,14 +64,14 @@ export const TopicList: FC = () => {
 
   return (
     <>
-      <Navbar />
+      <Header />
       <main className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
         <h1 className="w-full py-2 flex">
-          <div className="w-10/12 text-3xl text-slate-700">
+          <h1 className="w-10/12 text-3xl text-slate-700">
             Раздел: (название раздела)
-          </div>
+          </h1>
           <button
-            className="w-2/12 border border-slate-300 rounded hover:bg-slate-300 hover:border-slate-400"
+            className="w-2/12 btn-primary"
             onClick={() => setIsNewTopicOpen(true)}>
             Создать новую тему
           </button>
