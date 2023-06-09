@@ -1,9 +1,9 @@
 import { FC, useState } from 'react';
 import { TopicTypes } from './types';
 import { AppLink } from '../../components/AppLink/AppLink';
-import { Navbar } from '../../components/Navbar';
 import { NewTopic } from './components/NewTopic';
 import { Header } from '../../components/Header';
+import { useParams } from 'react-router-dom';
 
 export const TopicList: FC = () => {
   const testTopicList = [
@@ -59,6 +59,7 @@ export const TopicList: FC = () => {
     },
   ];
 
+  const { idTopicList } = useParams();
   const [topic, setTopic] = useState<TopicTypes[]>(testTopicList);
   const [isNewTopicOpen, setIsNewTopicOpen] = useState(false);
 
@@ -92,7 +93,7 @@ export const TopicList: FC = () => {
                 />
               </div>
               <div className="w-5/12">
-                <AppLink to={`/forum/:idTopicList/topics/${id}`}>
+                <AppLink to={`/forum/${idTopicList}/topics/${id}`}>
                   <div className=" text-lg text-black font-bold hover:underline">
                     {title}
                   </div>

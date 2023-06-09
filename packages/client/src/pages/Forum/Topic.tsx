@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
 import { MessagesTypes } from './types';
-import { Navbar } from '../../components/Navbar';
 import { Link } from 'react-router-dom';
 import { Header } from '../../components/Header';
 

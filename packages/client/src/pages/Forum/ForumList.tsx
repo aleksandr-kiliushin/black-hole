@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { Navbar } from '../../components/Navbar';
 import { useState } from 'react';
 import { GAME_NAME } from '../../utils/global';
 import { AppLink } from '../../components/AppLink/AppLink';
