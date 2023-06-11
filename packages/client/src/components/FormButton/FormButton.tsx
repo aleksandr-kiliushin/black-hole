@@ -1,31 +1,25 @@
 import clsx from 'clsx';
+import { FC } from 'react';
 
-import { FormButtonProps } from './types';
+import { TFormButtonProps } from './types';
 
-export const FormButton = ({
+export const FormButton: FC<TFormButtonProps> = ({
   error,
   errorClassName,
   containerClassName,
-  ...buttonProps
-}: FormButtonProps) => {
+  ...restProps
+}) => {
   return (
     <div className={containerClassName}>
       <span
         className={clsx(
           errorClassName,
-          `
-              mb-3 block
-              text-xs text-red-500
-              height-1 min-h-16
-              mx-auto w-fit
-            `
-        )}>
+          'mb-3 block text-xs text-red-500 height-1 min-h-16 mx-auto w-fit'
+        )}
+      >
         {error}
       </span>
-      <button
-        {...buttonProps}
-        className={clsx(buttonProps.className, `btn-primary`)}
-      />
+      <button {...restProps} className={clsx(restProps.className, `btn-primary`)} />
     </div>
   );
 };

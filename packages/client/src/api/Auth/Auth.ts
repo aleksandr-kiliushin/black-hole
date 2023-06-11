@@ -1,9 +1,9 @@
-import { AxiosInstance } from 'axios';
+import { AxiosInstance, AxiosResponse } from 'axios';
 
 import { instance as defaultInstance } from '../constants';
-import { IAuth, SignInDto, SignUpDto, SignUpResponse } from './types';
+import { TSignInDto, TSignUpDto, TSignUpResponse } from './types';
 
-export class AuthApi implements IAuth {
+export class AuthApi {
   private readonly instance: AxiosInstance;
 
   constructor(ctorInstance?: AxiosInstance) {
@@ -14,16 +14,16 @@ export class AuthApi implements IAuth {
     return this.instance.get('/auth/user');
   }
 
-  SignIn(dto: SignInDto) {
+  SignIn(dto: TSignInDto): Promise<AxiosResponse<Record<string, never>>> {
     return this.instance.post<Record<string, never>>('/auth/signin', dto);
   }
 
-  SignOut() {
+  SignOut(): Promise<AxiosResponse<Record<string, never>>> {
     return this.instance.post<Record<string, never>>('/auth/logout');
   }
 
-  SignUp(dto: SignUpDto) {
-    return this.instance.post<SignUpResponse>('/auth/signup', dto);
+  SignUp(dto: TSignUpDto): Promise<AxiosResponse<TSignUpResponse>> {
+    return this.instance.post<TSignUpResponse>('/auth/signup', dto);
   }
 }
 

@@ -1,8 +1,3 @@
-const updatePage = () => {
-  // eslint-disabled-next-line no-restricted-globals
-  window.location.reload()
-}
-
 export const UnexpectedError = () => {
   return (
     <div className="h-screen flex justify-center items-center">
@@ -10,10 +5,10 @@ export const UnexpectedError = () => {
         <p className="text-lg font-medium leading-8 text-rose-500">
           Произошла непредвиденная ошибка
         </p>
-        <button className="ml-3 btn-primary" onClick={updatePage}>
+        <button className="ml-3 btn-primary" onClick={window.location.reload}>
           Обновить страницу
         </button>
       </div>
     </div>
-  )
-}
+  );
+};

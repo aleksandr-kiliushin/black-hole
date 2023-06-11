@@ -1,4 +1,4 @@
-export interface IUser {
+export type TUser = {
   id: number;
   first_name: string;
   second_name: string;
@@ -7,4 +7,4 @@ export interface IUser {
   email: string;
   phone: string;
   avatar: string | null;
-}
+};

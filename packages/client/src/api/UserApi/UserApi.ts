@@ -1,25 +1,17 @@
 import { AxiosResponse } from 'axios';
+
 import { instance as axios } from '../constants';
-import {
-  IChangePassword,
-  IPasswordResponse,
-  IUser,
-  IUserResponse,
-} from './types';
+import { TChangePassword, TPasswordResponse, TUser, TUserResponse } from './types';
 
 const changeAvatar = (data: FormData) => {
   return axios.put('/user/profile/avatar', data);
 };
 
-const changeUserProfile = (
-  data: IUser
-): Promise<AxiosResponse<IUserResponse>> => {
+const changeUserProfile = (data: TUser): Promise<AxiosResponse<TUserResponse>> => {
   return axios.put('/user/profile', data);
 };
 
-const changeUserPassword = (
-  data: IChangePassword
-): Promise<AxiosResponse<IPasswordResponse>> => {
+const changeUserPassword = (data: TChangePassword): Promise<AxiosResponse<TPasswordResponse>> => {
   return axios.put('/user/password', data);
 };
 

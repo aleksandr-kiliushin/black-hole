@@ -1,19 +1,13 @@
 import clsx from 'clsx';
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import { AppLinkProps } from './types';
+import { Link, LinkProps } from 'react-router-dom';
 
-export const AppLink: FC<AppLinkProps> = ({
-  className,
-  ...props
-}: AppLinkProps) => {
+export const AppLink: FC<LinkProps> = ({ className, ...props }) => {
   return (
     <Link
       {...props}
-      className={clsx(
-        'text-blue-600 mt-4 visited:text-blue-600 hover:text-blue-800',
-        className
-      )}>
+      className={clsx('text-blue-600 mt-4 visited:text-blue-600 hover:text-blue-800', className)}
+    >
       {props.children}
     </Link>
   );

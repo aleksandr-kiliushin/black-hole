@@ -1,20 +1,19 @@
-import { ErrorInfo, Component } from 'react';
-import { UnexpectedError } from '../../components/UnexpectedError/UnexpectedError';
-import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
+import { Component, ErrorInfo } from 'react';
 
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
+import { UnexpectedError } from '../../components/UnexpectedError/UnexpectedError';
+import { TErrorBoundaryProps, TErrorBoundaryState } from './types';
+
+export class ErrorBoundary extends Component<TErrorBoundaryProps, TErrorBoundaryState> {
+  constructor(props: TErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
 
   static getDerivedStateFromError() {
-    // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // You can also log the error to an error reporting service
     console.log(error, errorInfo);
   }
 
@@ -28,5 +27,3 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     return children;
   }
 }
-
-export default ErrorBoundary;

@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 
-export interface ErrorBoundaryProps {
+export type TErrorBoundaryProps = {
   children: ReactNode;
-}
+};
 
-export interface ErrorBoundaryState {
+export type TErrorBoundaryState = {
   hasError: boolean;
-}
+};

@@ -1,8 +1,9 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { AuthApi } from '../../../api/Auth/Auth';
-import { User, UserSchema } from './types';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-const initialState: UserSchema = {
+import { AuthApi } from '../../../api/Auth/Auth';
+import { TUser, TUserSchema } from './types';
+
+const initialState: TUserSchema = {
   authData: null,
   isInited: false,
 };
@@ -28,22 +29,22 @@ const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
-    setAuthData: (state, action: PayloadAction<User>) => {
+    setAuthData: (state, action: PayloadAction<TUser>) => {
       state.authData = action.payload;
     },
-    initAuthData: state => {
+    initAuthData: (state) => {
       const user = localStorage.getItem('user');
       if (user) {
         state.authData = JSON.parse(user);
       }
       state.isInited = true;
     },
-    logout: state => {
+    logout: (state) => {
       state.authData = null;
       localStorage.removeItem('user');
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(getAuthUserInfo.fulfilled, (state, { payload }) => {
       state.authData = payload;
     });

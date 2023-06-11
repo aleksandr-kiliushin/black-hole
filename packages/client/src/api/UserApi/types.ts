@@ -1,24 +1,24 @@
-export interface IUser {
+export type TUser = {
   first_name: string;
   second_name: string;
   display_name: string;
   login: string;
   email: string;
   phone: string;
-}
+};
 
-export interface IUserResponse extends Omit<IUser, 'display_name'> {
+export type TUserResponse = Omit<TUser, 'display_name'> & {
   id: number;
   display_name: string | null;
   avatar: string | null;
   status: null;
-}
+};
 
-export interface IChangePassword {
+export type TChangePassword = {
   oldPassword: string;
   newPassword: string;
-}
+};
 
-export interface IPasswordResponse {
+export type TPasswordResponse = {
   reason: 'string';
-}
+};

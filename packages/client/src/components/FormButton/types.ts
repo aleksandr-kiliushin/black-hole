@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from 'react';
 
-export type FormButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type TFormButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   error?: string;
   errorClassName?: string;
   containerClassName?: string;

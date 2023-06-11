@@ -1,4 +1,4 @@
-export type FormValues = {
+export type TFormValues = {
   firstName: string;
   secondName: string;
   login: string;

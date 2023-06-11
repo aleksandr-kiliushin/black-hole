@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Navbar } from '../../components/Navbar';
-import { Layout } from './Layout';
+
 import { AuthApi } from '../../api/Auth/Auth';
-import { FormChangeUserData } from './FormChangeUserData';
-import { Avatar } from './Avatar';
-import { IUser } from './types';
+import { Navbar } from '../../components/Navbar';
+import { RoutePaths } from '../../providers/Router/AppRouter/constants';
 import { useAppDispatch } from '../../store/hooks';
 import { authActions } from '../../store/slices/auth/auth';
-import { RoutePaths } from '../../providers/Router/AppRouter/constants';
+import { Avatar } from './Avatar';
+import { FormChangeUserData } from './FormChangeUserData';
+import { Layout } from './Layout';
+import { TUser } from './types';
 
 const authApi = new AuthApi();
 
 export const Profile = () => {
-  const [userInfo, setUserInfo] = useState<IUser | null>(null);
+  const [userInfo, setUserInfo] = useState<TUser | null>(null);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -45,16 +46,14 @@ export const Profile = () => {
           {userInfo && (
             <>
               <Avatar avatar={userInfo.avatar} fetchUserInfo={fetchUserInfo} />
-              <FormChangeUserData
-                userInfo={userInfo}
-                fetchUserInfo={fetchUserInfo}
-              />
+              <FormChangeUserData fetchUserInfo={fetchUserInfo} userInfo={userInfo} />
               <button
                 className="btn-primary text-white btn-primary 
                 xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px 
                 gap-y-2 mt-3.5 focus:ring-red-400 
                 focus:ring-opacity-75"
-                onClick={handleChangePassword}>
+                onClick={handleChangePassword}
+              >
                 Изменить пароль
               </button>
               <button
@@ -63,7 +62,8 @@ export const Profile = () => {
                 sm:w-1/2 lg:w-1/3 lg:max-w-464px 
                 gap-y-2 mt-3.5 focus:ring-red-400 
                 focus:ring-opacity-75"
-                onClick={onLogout}>
+                onClick={onLogout}
+              >
                 Выйти из профиля
               </button>
             </>

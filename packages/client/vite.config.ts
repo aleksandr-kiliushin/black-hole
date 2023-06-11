@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 
 dotenv.config();
 
-export default defineConfig({
+module.exports = defineConfig({
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },

@@ -1,29 +1,23 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  IFormChangeUserData,
-  IFormChangeUserDataProps,
-  IUserData,
-} from './types';
-import { Input } from '../../../components/Input/Input';
-import { FormButton } from '../../../components/FormButton/FormButton';
+
 import { UserApi } from '../../../api/UserApi/UserApi';
+import { FormButton } from '../../../components/FormButton/FormButton';
+import { Input } from '../../../components/Input/Input';
 import {
+  validateEmail,
   validateLogin,
   validateNames,
-  validateEmail,
   validatePhone,
 } from '../../../helpers/authFormValidation';
 import { isNetworkError } from '../../../typeGuards/isNetworkError';
+import { TFormChangeUserData, TFormChangeUserDataProps, TUserData } from './types';
 
-const submit = (data: IUserData) => {
+const submit = (data: TUserData) => {
   return UserApi.changeUserProfile(data);
 };
 
-export const FormChangeUserData: FC<IFormChangeUserDataProps> = ({
-  userInfo,
-  fetchUserInfo,
-}) => {
+export const FormChangeUserData: FC<TFormChangeUserDataProps> = ({ userInfo, fetchUserInfo }) => {
   const {
     register,
     handleSubmit,
@@ -40,11 +34,11 @@ export const FormChangeUserData: FC<IFormChangeUserDataProps> = ({
       },
       isSubmitting,
     },
-  } = useForm<IFormChangeUserData>({
+  } = useForm<TFormChangeUserData>({
     mode: 'onChange',
   });
 
-  const onSubmit = async (value: IFormChangeUserData) => {
+  const onSubmit = async (value: TFormChangeUserData) => {
     try {
       await submit({
         ...value,
@@ -68,67 +62,67 @@ export const FormChangeUserData: FC<IFormChangeUserDataProps> = ({
   return (
     <form
       action="submit"
-      noValidate
       className="flex flex-col items-center justify-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2"
-      onSubmit={handleSubmit(onSubmit)}>
+      noValidate
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Input
-        defaultValue={userInfo?.first_name}
         className="text-xs p-0.5"
+        defaultValue={userInfo?.first_name}
         label="Имя"
         validationError={nameError?.message}
         {...register('first_name', { validate: validateNames })}
       />
       <Input
-        defaultValue={userInfo?.second_name}
         className="text-xs p-0.5"
+        defaultValue={userInfo?.second_name}
         label="Фамилия"
         validationError={surnameError?.message}
         {...register('second_name', { validate: validateNames })}
       />
       <Input
-        defaultValue={
-          userInfo?.display_name === null ? '' : userInfo?.display_name
-        }
         className="text-xs p-0.5"
+        defaultValue={userInfo?.display_name === null ? '' : userInfo?.display_name}
         label="Имя в чате"
         validationError={displayNameError?.message}
         {...register('display_name', { validate: validateNames })}
       />
       <Input
-        defaultValue={userInfo?.login}
         className="text-xs p-0.5"
+        defaultValue={userInfo?.login}
         label="Логин"
         validationError={loginError?.message}
         {...register('login', { validate: validateLogin })}
       />
       <Input
-        defaultValue={userInfo?.email}
         className="text-xs p-0.5"
+        defaultValue={userInfo?.email}
         label="Email"
         type="email"
         validationError={emailError?.message}
         {...register('email', { validate: validateEmail })}
       />
       <Input
-        defaultValue={userInfo?.phone}
-        type="phone"
         className="text-xs p-0.5"
+        defaultValue={userInfo?.phone}
         label="Телефон"
+        type="phone"
         validationError={phoneError?.message}
         {...register('phone', { validate: validatePhone })}
       />
       <FormButton
-        containerClassName={`
-            w-full mt-5
-          `}
         className={`
               w-full px-3
               py-2 mt-3 text-white
               font-medium text-sm
             `}
+        containerClassName={`
+            w-full mt-5
+          `}
+        disabled={isSubmitting}
         error={root?.message}
         type="submit"
-        disabled={isSubmitting}>
+      >
         Сохранить
       </FormButton>
     </form>

@@ -14,10 +14,6 @@ export enum AppRoutes {
   NOT_FOUND = 'NOT_FOUND',
 }
 
-export type AppRouteProps = RouteProps & {
+export type TAppRouteProps = RouteProps & {
   authOnly?: boolean;
 };
-
-export interface RequireAuthProps {
-  children: JSX.Element;
-}

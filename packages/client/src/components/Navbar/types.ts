@@ -1,3 +1,3 @@
-export interface NavbarProps {
+export type TNavbarProps = {
   isVertical?: boolean;
-}
+};

@@ -1,25 +1,22 @@
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 
-import { FC } from 'react';
 import { authApi } from '../../api/Auth/Auth';
-import { authActions, getAuthUserInfo } from '../../store/slices/auth/auth';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import AppLink from '../../components/AppLink/index';
 import FormButton from '../../components/FormButton';
-import Input from '../../components/Input';
-import {
-  validateLogin,
-  validatePassword,
-} from '../../helpers/authFormValidation';
-import { isNetworkError } from '../../typeGuards/isNetworkError';
-import { RoutePaths } from '../../providers/Router/AppRouter/constants';
-import { FormValues } from './types';
 import { Header } from '../../components/Header';
+import { Input } from '../../components/Input';
+import { validateLogin, validatePassword } from '../../helpers/authFormValidation';
+import { RoutePaths } from '../../providers/Router/AppRouter/constants';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { authActions, getAuthUserInfo } from '../../store/slices/auth/auth';
+import { isNetworkError } from '../../typeGuards/isNetworkError';
+import { TFormValues } from './types';
 
 export const SignIn: FC = () => {
   const dispatch = useAppDispatch();
-  const auth = useAppSelector(state => state.auth.authData);
+  const auth = useAppSelector((state) => state.auth.authData);
 
   const {
     register,
@@ -30,11 +27,11 @@ export const SignIn: FC = () => {
       isSubmitting,
     },
     reset,
-  } = useForm<FormValues>({
+  } = useForm<TFormValues>({
     mode: 'onChange',
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: TFormValues) => {
     try {
       await authApi.SignIn(data);
 
@@ -73,16 +70,14 @@ export const SignIn: FC = () => {
   return (
     <>
       <Header />
-      <main
-        className="flex flex-col
-    justify-center items-center
-    h-screen w-full">
+      <main className="flex flex-col justify-center items-center h-screen w-full">
         <h1 className="text-4xl mb-8">Войти</h1>
         <form
           action="submit"
-          noValidate
           className="flex flex-col items-center justify-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2"
-          onSubmit={handleSubmit(onSubmit)}>
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <Input
             className="text-xs p-0.5 text-xs"
             label="Логин"
@@ -90,29 +85,23 @@ export const SignIn: FC = () => {
             {...register('login', { validate: validateLogin })}
           />
           <Input
-            type="password"
             className="text-xs p-0.5 text-xs"
             label="Пароль"
+            type="password"
             validationError={passwordError?.message}
             {...register('password', { validate: validatePassword })}
           />
           <FormButton
-            containerClassName={`
-            w-full mt-5
-          `}
-            className={`
-              w-full px-3
-              py-2 mt-3 text-white
-              font-medium text-sm
-              mt-0
-            `}
+            className="w-full px-3 py-2 mt-3 text-white font-medium text-sm mt-0"
+            containerClassName="w-full mt-5"
+            disabled={isSubmitting || !!auth}
             error={root?.message}
             type="submit"
-            disabled={isSubmitting || !!auth}>
+          >
             Войти
           </FormButton>
         </form>
-        <AppLink to={'/sign-up'} title="Регистрация">
+        <AppLink title="Регистрация" to="/sign-up">
           Регистрация
         </AppLink>
       </main>

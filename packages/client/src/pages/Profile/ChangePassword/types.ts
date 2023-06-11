@@ -1,7 +1,7 @@
-export interface IFormChangeUserPassword {
+export type TFormChangeUserPassword = {
   oldPassword: string;
   newPassword: string;
-}
+};
 
 export enum ErrorMessage {
   DEFAULT_MESSAGE = 'Что-то пошло не так. Попробуйте перезагрузить страницу',

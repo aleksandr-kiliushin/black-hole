@@ -1,10 +1,11 @@
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 
-import { FC, useState } from 'react';
 import { authApi } from '../../api/Auth/Auth';
 import { AppLink } from '../../components/AppLink/AppLink';
 import { FormButton } from '../../components/FormButton/FormButton';
+import { Header } from '../../components/Header';
 import { Input } from '../../components/Input/Input';
 import {
   validateEmail,
@@ -13,10 +14,9 @@ import {
   validatePassword,
   validatePhone,
 } from '../../helpers/authFormValidation';
-import { isNetworkError } from '../../typeGuards/isNetworkError';
 import { RoutePaths } from '../../providers/Router/AppRouter/constants';
-import { FormValues } from './types';
-import { Header } from '../../components/Header';
+import { isNetworkError } from '../../typeGuards/isNetworkError';
+import { TFormValues } from './types';
 
 export const SignUp: FC = () => {
   const [hasRegistered, setHasRegistered] = useState(false);
@@ -38,9 +38,7 @@ export const SignUp: FC = () => {
       },
       isSubmitting,
     },
-  } = useForm<FormValues>({
-    mode: 'onChange',
-  });
+  } = useForm<TFormValues>({ mode: 'onChange' });
 
   const onSubmit = async ({
     firstName,
@@ -49,7 +47,7 @@ export const SignUp: FC = () => {
     email,
     password,
     phone,
-  }: FormValues) => {
+  }: TFormValues) => {
     try {
       await authApi.SignUp({
         first_name: firstName,
@@ -95,16 +93,14 @@ export const SignUp: FC = () => {
   return (
     <>
       <Header />
-      <main
-        className="flex flex-col
-  justify-center items-center
-  h-screen w-full">
+      <main className="flex flex-col justify-center items-center h-screen w-full">
         <h1 className="text-4xl mb-8">Регистрация</h1>
         <form
           action="submit"
-          noValidate
           className="flex flex-col items-center justify-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2"
-          onSubmit={handleSubmit(onSubmit)}>
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <Input
             className="text-xs p-0.5 text-xs"
             label="Имя"
@@ -131,36 +127,30 @@ export const SignUp: FC = () => {
             {...register('email', { validate: validateEmail })}
           />
           <Input
-            type="password"
             className="text-xs p-0.5 text-xs"
             label="Пароль"
+            type="password"
             validationError={passwordError?.message}
             {...register('password', { validate: validatePassword })}
           />
           <Input
-            type="phone"
             className="text-xs p-0.5 text-xs"
             label="Телефон"
+            type="phone"
             validationError={phoneError?.message}
             {...register('phone', { validate: validatePhone })}
           />
           <FormButton
-            containerClassName={`
-          w-full mt-5
-        `}
-            className={`
-            w-full px-3
-            py-2 mt-3 text-white
-            font-medium text-sm
-            mt-0
-          `}
+            className="w-full px-3 py-2 mt-3 text-white font-medium text-sm mt-0"
+            containerClassName="w-full mt-5"
+            disabled={isSubmitting}
             error={root?.message}
             type="submit"
-            disabled={isSubmitting}>
+          >
             Регистрация
           </FormButton>
         </form>
-        <AppLink to="/sign-in" title="Войти">
+        <AppLink title="Войти" to="/sign-in">
           Войти
         </AppLink>
       </main>

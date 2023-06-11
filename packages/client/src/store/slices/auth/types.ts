@@ -1,4 +1,4 @@
-export interface User {
+export type TUser = {
   id: number;
   login: string;
   first_name: string;
@@ -7,9 +7,9 @@ export interface User {
   avatar: null | string;
   email: string;
   phone: string;
-}
+};
 
-export interface UserSchema {
-  authData: User | null;
+export type TUserSchema = {
+  authData: TUser | null;
   isInited: boolean;
-}
+};

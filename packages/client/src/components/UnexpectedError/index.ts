@@ -1,1 +1,1 @@
-export { UnexpectedError } from './UnexpectedError'
+export { UnexpectedError } from './UnexpectedError';

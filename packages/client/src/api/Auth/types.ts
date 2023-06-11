@@ -1,11 +1,9 @@
-import { AxiosResponse } from 'axios';
-
-export type SignInDto = {
+export type TSignInDto = {
   login: string;
   password: string;
 };
 
-export type SignUpDto = {
+export type TSignUpDto = {
   first_name: string;
   second_name: string;
   login: string;
@@ -14,12 +12,4 @@ export type SignUpDto = {
   phone: string;
 };
 
-export type SignUpResponse = { id: number };
-
-export interface IAuth {
-  SignIn(dto: SignInDto): Promise<AxiosResponse<Record<string, never>>>;
-
-  SignOut(): Promise<AxiosResponse<Record<string, never>>>;
-
-  SignUp(dto: SignUpDto): Promise<AxiosResponse<SignUpResponse>>;
-}
+export type TSignUpResponse = { id: number };
