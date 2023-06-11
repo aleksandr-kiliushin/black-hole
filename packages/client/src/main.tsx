@@ -3,9 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
+import { ErrorBoundary } from '@components/ErrorBoundary';
+
 import { App } from './App';
 import './index.css';
-import { ErrorBoundary } from './providers/ErrorBoundary';
 import { store } from './store';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
