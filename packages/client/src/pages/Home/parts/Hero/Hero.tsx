@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
+import { GAME_NAME } from '@src/constants';
+
 import blackHole from '../../../../assets/images/black-hole.png';
-import { GAME_NAME } from '../../../../utils/global';
 
 export const Hero: FC = () => {
   return (
