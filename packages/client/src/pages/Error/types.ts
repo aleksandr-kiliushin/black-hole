@@ -1,5 +1,5 @@
 export interface ErrorPageProps {
-  code: number
-  message: string
-  subMessage: string
+  code: number;
+  message: string;
+  subMessage: string;
 }
