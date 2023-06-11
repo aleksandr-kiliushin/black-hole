@@ -1,15 +1,18 @@
+import { TUser } from '@app-types/TUser';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthApi } from '../../api/Auth/Auth';
-import { Navbar } from '../../components/Navbar';
-import { RoutePaths } from '../../providers/Router/AppRouter/constants';
-import { useAppDispatch } from '../../store/hooks';
-import { authActions } from '../../store/slices/auth/auth';
+import { useAppDispatch } from '@store/hooks';
+
+import { Navbar } from '@components/Navbar';
+
+import { AuthApi } from '@src/api/Auth/Auth';
+import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
+import { authActions } from '@src/store/slices/auth/auth';
+
 import { Avatar } from './Avatar';
 import { FormChangeUserData } from './FormChangeUserData';
 import { Layout } from './Layout';
-import { TUser } from './types';
 
 const authApi = new AuthApi();
 

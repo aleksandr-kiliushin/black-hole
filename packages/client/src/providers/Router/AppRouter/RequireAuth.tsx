@@ -1,7 +1,8 @@
 import { FC, PropsWithChildren } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import { useAppSelector } from '../../../store/hooks';
+import { useAppSelector } from '@store/hooks';
+
 import { RoutePaths } from './constants';
 
 export const RequireAuth: FC<PropsWithChildren> = ({ children }) => {

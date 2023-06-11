@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { GAME_NAME } from '@src/constants';
+import { GAME_NAME } from '@constants';
 
-import { RoutePaths } from '../../../../providers/Router/AppRouter/constants';
+import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
 
 export const About = () => {
   return (

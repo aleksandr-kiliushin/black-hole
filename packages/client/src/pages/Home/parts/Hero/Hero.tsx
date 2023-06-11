@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { GAME_NAME } from '@src/constants';
+import { GAME_NAME } from '@constants';
 
-import blackHole from '../../../../assets/images/black-hole.png';
+import blackHoleImageSrc from '@assets/images/black-hole.png';
 
 export const Hero: FC = () => {
   return (
@@ -16,7 +16,7 @@ export const Hero: FC = () => {
           больше. Ваше космическое путешествие начинается прямо сейчас!
         </p>
       </div>
-      <img alt={GAME_NAME} className="w-full md:w-80 max-w-xs" src={blackHole} />
+      <img alt={GAME_NAME} className="w-full md:w-80 max-w-xs" src={blackHoleImageSrc} />
     </section>
   );
 };

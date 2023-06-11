@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { AuthApi } from '../../../api/Auth/Auth';
+import { AuthApi } from '@src/api/Auth/Auth';
+
 import { TUser, TUserSchema } from './types';
 
 const initialState: TUserSchema = {

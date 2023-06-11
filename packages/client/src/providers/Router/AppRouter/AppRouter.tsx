@@ -1,16 +1,17 @@
-import { FC, memo, useCallback } from 'react';
+import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Forum } from '../../../pages/Forum';
-import { Game } from '../../../pages/Game';
-import { GameEnd } from '../../../pages/GameEnd';
-import { GameStart } from '../../../pages/GameStart';
-import { Home } from '../../../pages/Home';
-import { Leaderboard } from '../../../pages/Leaderboard/Leaderboard';
-import { Profile } from '../../../pages/Profile';
-import { ChangePassword } from '../../../pages/Profile/ChangePassword';
-import { SignIn } from '../../../pages/SignIn/SignIn';
-import { SignUp } from '../../../pages/Signup/SignUp';
+import { Forum } from '@pages/Forum';
+import { Game } from '@pages/Game';
+import { GameEnd } from '@pages/GameEnd';
+import { GameStart } from '@pages/GameStart';
+import { Home } from '@pages/Home';
+import { Leaderboard } from '@pages/Leaderboard/Leaderboard';
+import { Profile } from '@pages/Profile';
+import { ChangePassword } from '@pages/Profile/ChangePassword';
+import { SignIn } from '@pages/SignIn/SignIn';
+import { SignUp } from '@pages/Signup/SignUp';
+
 import { RequireAuth } from './RequireAuth';
 import { RoutePaths } from './constants';
 import { AppRoutes, TAppRouteProps } from './types';

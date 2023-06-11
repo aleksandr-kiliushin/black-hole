@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
-import { Header } from '../../components/Header';
+import { Header } from '@components/Header';
+
 import './LeaderBoard.css';
 
 const people = [

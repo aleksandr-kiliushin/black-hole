@@ -1,29 +1,24 @@
-import { AxiosInstance, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
-import { instance as defaultInstance } from '../constants';
+import { baseAxiosInstance } from '@src/api/baseAxiosInstance';
+
 import { TSignInDto, TSignUpDto, TSignUpResponse } from './types';
 
 export class AuthApi {
-  private readonly instance: AxiosInstance;
-
-  constructor(ctorInstance?: AxiosInstance) {
-    this.instance = ctorInstance ?? defaultInstance;
-  }
-
   GetUserInfo() {
-    return this.instance.get('/auth/user');
+    return baseAxiosInstance.get('/auth/user');
   }
 
   SignIn(dto: TSignInDto): Promise<AxiosResponse<Record<string, never>>> {
-    return this.instance.post<Record<string, never>>('/auth/signin', dto);
+    return baseAxiosInstance.post<Record<string, never>>('/auth/signin', dto);
   }
 
   SignOut(): Promise<AxiosResponse<Record<string, never>>> {
-    return this.instance.post<Record<string, never>>('/auth/logout');
+    return baseAxiosInstance.post<Record<string, never>>('/auth/logout');
   }
 
   SignUp(dto: TSignUpDto): Promise<AxiosResponse<TSignUpResponse>> {
-    return this.instance.post<TSignUpResponse>('/auth/signup', dto);
+    return baseAxiosInstance.post<TSignUpResponse>('/auth/signup', dto);
   }
 }
 

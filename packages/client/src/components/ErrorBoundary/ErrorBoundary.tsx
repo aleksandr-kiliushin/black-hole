@@ -1,6 +1,6 @@
 import { Component, ErrorInfo, PropsWithChildren } from 'react';
 
-import { UnexpectedError } from '../../components/UnexpectedError/UnexpectedError';
+import { UnexpectedError } from './UnexpectedError';
 
 export class ErrorBoundary extends Component<PropsWithChildren, { hasError: boolean }> {
   state = { hasError: false };

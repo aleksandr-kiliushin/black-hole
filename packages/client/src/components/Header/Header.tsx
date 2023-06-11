@@ -1,10 +1,10 @@
 import { FC, useState } from 'react';
 import { FiAlignCenter } from 'react-icons/fi';
 
-import { randomAvatarPath } from '@utils/randomAvatarPath';
+import { Modal } from '@components/Modal';
+import { Navbar } from '@components/Navbar';
 
-import { Modal } from '../Modal';
-import { Navbar } from '../Navbar';
+import { randomAvatarPath } from '@utils/randomAvatarPath';
 
 export const Header: FC = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);

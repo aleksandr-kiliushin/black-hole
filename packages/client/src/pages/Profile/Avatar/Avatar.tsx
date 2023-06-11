@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 
 import { API_BASE_URL } from '@constants';
 
-import { UserApi } from '../../../api/UserApi/UserApi';
+import { UserApi } from '@src/api/UserApi/UserApi';
+
 import { TAvatarProps } from './types';
 
 export const Avatar: FC<TAvatarProps> = ({ avatar, fetchUserInfo }) => {

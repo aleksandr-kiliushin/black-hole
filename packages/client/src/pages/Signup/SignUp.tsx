@@ -2,6 +2,11 @@ import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 
+import AppLink from '@components/AppLink';
+import FormButton from '@components/FormButton';
+import { Header } from '@components/Header';
+import { Input } from '@components/Input';
+
 import {
   validateEmail,
   validateLogin,
@@ -11,12 +16,9 @@ import {
 } from '@utils/authFormValidation';
 import { isNetworkError } from '@utils/isNetworkError';
 
-import { authApi } from '../../api/Auth/Auth';
-import { AppLink } from '../../components/AppLink/AppLink';
-import { FormButton } from '../../components/FormButton/FormButton';
-import { Header } from '../../components/Header';
-import { Input } from '../../components/Input/Input';
-import { RoutePaths } from '../../providers/Router/AppRouter/constants';
+import { authApi } from '@src/api/Auth/Auth';
+import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
+
 import { TFormValues } from './types';
 
 export const SignUp: FC = () => {

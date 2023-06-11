@@ -2,7 +2,8 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { RoutePaths } from '../../providers/Router/AppRouter/constants';
+import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
+
 import { TNavbarProps } from './types';
 
 export const Navbar: FC<TNavbarProps> = ({ isVertical = false }) => {

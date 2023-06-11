@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Header } from '../../components/Header';
-import { RoutePaths } from '../../providers/Router/AppRouter/constants';
+import { Header } from '@components/Header';
+
+import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
 
 export const GameEnd: FC = () => {
   return (

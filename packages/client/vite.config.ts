@@ -12,10 +12,12 @@ module.exports = defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@api': path.resolve(__dirname, 'src', 'api'),
+      '@assets': path.resolve(__dirname, 'src', 'assets'),
       '@components': path.resolve(__dirname, 'src', 'components'),
       '@constants': path.resolve(__dirname, 'src', 'constants'),
       '@pages': path.resolve(__dirname, 'src', 'pages'),
+      '@store': path.resolve(__dirname, 'src', 'store'),
+      '@app-types': path.resolve(__dirname, 'src', 'app-types'),
       '@utils': path.resolve(__dirname, 'src', 'utils'),
       '@src': path.resolve(__dirname, 'src'),
     },

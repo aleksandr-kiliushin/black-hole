@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef } from 'react';
 
-import { Navbar } from '../../components/Navbar';
+import { Navbar } from '@components/Navbar';
+
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from './constants';
 import { handleKeyDown, requestAnimation } from './helpers';
 

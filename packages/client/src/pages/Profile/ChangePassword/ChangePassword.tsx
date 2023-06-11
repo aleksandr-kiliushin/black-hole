@@ -1,13 +1,15 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import FormButton from '@components/FormButton';
+import { Input } from '@components/Input';
+import { Navbar } from '@components/Navbar';
+
 import { validatePassword } from '@utils/authFormValidation';
 import { isNetworkError } from '@utils/isNetworkError';
 
-import { UserApi } from '../../../api/UserApi/UserApi';
-import { FormButton } from '../../../components/FormButton/FormButton';
-import { Input } from '../../../components/Input/Input';
-import { Navbar } from '../../../components/Navbar';
+import { UserApi } from '@src/api/UserApi/UserApi';
+
 import { Layout } from '../Layout';
 import { ErrorMessage, TFormChangeUserPassword } from './types';
 
@@ -83,14 +85,8 @@ export const ChangePassword = () => {
               {...register('newPassword', { validate: validatePassword })}
             />
             <FormButton
-              className={`
-              w-full px-3
-              py-2 mt-3 text-white
-              font-medium text-sm
-            `}
-              containerClassName={`
-            w-full mt-5
-          `}
+              className="w-full px-3 py-2 mt-3 text-white font-medium text-sm"
+              containerClassName="w-full mt-5"
               disabled={isSubmitting}
               error={root?.message}
               type="submit"

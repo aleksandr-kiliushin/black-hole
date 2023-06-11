@@ -1,4 +1,4 @@
-import { TUser } from '../types';
+import { TUser } from '@app-types/TUser';
 
 export type TFormChangeUserDataProps = {
   userInfo: TUser;

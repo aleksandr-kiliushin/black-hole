@@ -15,10 +15,12 @@
     "noImplicitReturns": false,
     "noUnusedParameters": false,
     "paths": {
-      "@api/*": ["./src/api/*"],
+      "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
       "@constants": ["./src/constants/index.ts"],
       "@pages/*": ["./src/pages/*"],
+      "@store/*": ["./src/store/*"],
+      "@app-types/*": ["./src/app-types/*"],
       "@utils/*": ["./src/utils/*"],
       "@src/*": ["./src/*"]
     },
