@@ -4,10 +4,12 @@
   "description": "",
   "scripts": {
     "build": "tsc --p ./tsconfig.prod.json",
-    "preview": "node ./dist/index.js",
+    "check-types": "tsc --noEmit",
+    "check-types:watch": "tsc --noEmit --watch",
     "dev": "cross-env NODE_ENV=development nodemon index.ts",
-    "lint": "eslint .",
     "format": "prettier --write .",
+    "lint": "eslint .",
+    "preview": "node ./dist/index.js",
     "test": "jest ."
   },
   "dependencies": {
