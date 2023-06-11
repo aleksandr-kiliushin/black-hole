@@ -4,7 +4,7 @@ import { RequireAuth } from './RequireAuth';
 import { Home } from '../../../pages/Home';
 import { Game } from '../../../pages/Game';
 import { Forum } from '../../../pages/Forum';
-import { Leaderboard } from '../../../pages/Leaderboard';
+import { Leaderboard } from '../../../pages/Leaderboard/Leaderboard';
 import { SignIn } from '../../../pages/SignIn/SignIn';
 import { SignUp } from '../../../pages/Signup/SignUp';
 import { GameStart } from '../../../pages/GameStart';
