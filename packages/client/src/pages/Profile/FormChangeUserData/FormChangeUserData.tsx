@@ -1,16 +1,17 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { UserApi } from '../../../api/UserApi/UserApi';
-import { FormButton } from '../../../components/FormButton/FormButton';
-import { Input } from '../../../components/Input/Input';
 import {
   validateEmail,
   validateLogin,
   validateNames,
   validatePhone,
-} from '../../../helpers/authFormValidation';
-import { isNetworkError } from '../../../typeGuards/isNetworkError';
+} from '@utils/authFormValidation';
+import { isNetworkError } from '@utils/isNetworkError';
+
+import { UserApi } from '../../../api/UserApi/UserApi';
+import { FormButton } from '../../../components/FormButton/FormButton';
+import { Input } from '../../../components/Input/Input';
 import { TFormChangeUserData, TFormChangeUserDataProps, TUserData } from './types';
 
 const submit = (data: TUserData) => {
@@ -40,9 +41,7 @@ export const FormChangeUserData: FC<TFormChangeUserDataProps> = ({ userInfo, fet
 
   const onSubmit = async (value: TFormChangeUserData) => {
     try {
-      await submit({
-        ...value,
-      });
+      await submit({ ...value });
 
       fetchUserInfo();
     } catch (error) {

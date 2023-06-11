@@ -2,16 +2,17 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 
+import { validateLogin, validatePassword } from '@utils/authFormValidation';
+import { isNetworkError } from '@utils/isNetworkError';
+
 import { authApi } from '../../api/Auth/Auth';
 import AppLink from '../../components/AppLink/index';
 import FormButton from '../../components/FormButton';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
-import { validateLogin, validatePassword } from '../../helpers/authFormValidation';
 import { RoutePaths } from '../../providers/Router/AppRouter/constants';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { authActions, getAuthUserInfo } from '../../store/slices/auth/auth';
-import { isNetworkError } from '../../typeGuards/isNetworkError';
 import { TFormValues } from './types';
 
 export const SignIn: FC = () => {

@@ -1,12 +1,13 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import { validatePassword } from '@utils/authFormValidation';
+import { isNetworkError } from '@utils/isNetworkError';
+
 import { UserApi } from '../../../api/UserApi/UserApi';
 import { FormButton } from '../../../components/FormButton/FormButton';
 import { Input } from '../../../components/Input/Input';
 import { Navbar } from '../../../components/Navbar';
-import { validatePassword } from '../../../helpers/authFormValidation';
-import { isNetworkError } from '../../../typeGuards/isNetworkError';
 import { Layout } from '../Layout';
 import { ErrorMessage, TFormChangeUserPassword } from './types';
 
