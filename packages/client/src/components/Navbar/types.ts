@@ -1,3 +1,3 @@
 export interface NavbarProps {
-  isVertical?: boolean
+  isVertical?: boolean;
 }

@@ -1,5 +1,5 @@
-import { FC } from 'react'
-import { Header } from '../components/Header'
+import { FC } from 'react';
+import { Header } from '../components/Header';
 
 export const Forum: FC = () => {
   return (
@@ -7,5 +7,5 @@ export const Forum: FC = () => {
       <Header />
       <h1 className="text-4xl font-bold">Forum</h1>
     </>
-  )
-}
+  );
+};
