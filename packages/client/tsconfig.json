@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "allowJs": false,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
     "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -26,6 +27,13 @@
     "target": "ESNext",
     "useDefineForClassFields": true
   },
-  "include": ["src"],
+  "include": [
+    "./src",
+    "./.eslintrc.js",
+    "./jest.config.js",
+    "./postcss.config.js",
+    "./tailwind.config.js",
+    "./vite.config.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -10,7 +10,7 @@
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "printWidth": 80,
+  "printWidth": 100,
   "singleQuote": true,
   "semi": true,
   "trailingComma": "es5"
