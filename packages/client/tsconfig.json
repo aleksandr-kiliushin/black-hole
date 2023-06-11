@@ -17,6 +17,7 @@
     "paths": {
       "@api/*": ["./src/api/*"],
       "@components/*": ["./src/components/*"],
+      "@constants": ["./src/constants/index.ts"],
       "@pages/*": ["./src/pages/*"],
       "@utils/*": ["./src/utils/*"],
       "@src/*": ["./src/*"]

@@ -1,13 +1,6 @@
 {
   "arrowParens": "always",
-  "importOrder": [
-    "^@src",
-    "^@pages",
-    "^@api",
-    "^@components",
-    "^@utils",
-    "^[./]"
-  ],
+  "importOrder": ["^@src", "^@pages", "^@api", "^@components", "^@utils", "^@constants", "^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "printWidth": 100,

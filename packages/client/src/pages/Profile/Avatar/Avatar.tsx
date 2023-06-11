@@ -1,14 +1,15 @@
 import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { API_BASE_URL } from '@constants';
+
 import { UserApi } from '../../../api/UserApi/UserApi';
-import { BASE_URL } from '../../../api/constants';
 import { TAvatarProps } from './types';
 
 export const Avatar: FC<TAvatarProps> = ({ avatar, fetchUserInfo }) => {
   const [isVisibleFormAvatar, setIsVisibleFormAvatar] = useState(false);
   const { register, handleSubmit } = useForm<{ picture: FileList }>();
-  const AVATAR_URL = `${BASE_URL}/resources${avatar}`;
+  const AVATAR_URL = `${API_BASE_URL}/resources${avatar}`;
   const RANDOM_AVATAR_PATH = `https://api.dicebear.com/6.x/adventurer-neutral/svg?seed=${Math.random()}&radius=20`;
 
   const onSubmit = (data: { picture: FileList }) => {

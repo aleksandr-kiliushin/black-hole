@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const BASE_URL = 'https://ya-praktikum.tech/api/v2';
+import { API_BASE_URL } from '@constants';
 
 export const instance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: API_BASE_URL,
   withCredentials: true,
 });
