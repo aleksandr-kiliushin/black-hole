@@ -13,5 +13,7 @@ export const App: FC = () => {
     dispatch(authActions.initAuthData());
   }, [dispatch]);
 
-  return <>{isInited && <AppRouter />}</>;
+  if (!isInited) return null;
+
+  return <AppRouter />;
 };
