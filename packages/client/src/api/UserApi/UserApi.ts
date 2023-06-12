@@ -1,8 +1,13 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-import { baseAxiosInstance } from '@src/api/baseAxiosInstance';
+import { API_BASE_URL } from '@constants';
 
 import { TChangePassword, TPasswordResponse, TUser, TUserResponse } from './types';
+
+export const baseAxiosInstance = axios.create({
+  baseURL: API_BASE_URL,
+  withCredentials: true,
+});
 
 const changeAvatar = (data: FormData) => {
   return baseAxiosInstance.put('/user/profile/avatar', data);
