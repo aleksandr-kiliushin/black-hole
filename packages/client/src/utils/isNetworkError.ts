@@ -1,7 +1,7 @@
 import { AxiosError, isAxiosError } from 'axios';
 
-export function isNetworkError(e: unknown): e is AxiosError & {
+export function isNetworkError(error: unknown): error is AxiosError & {
   response: { data: { reason: string } };
 } {
-  return e && isAxiosError(e) && e.response?.status && e.response.data.reason;
+  return error && isAxiosError(error) && error.response?.status && error.response.data.reason;
 }
