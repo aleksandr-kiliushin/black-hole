@@ -25,18 +25,7 @@ export const FormChangeUserData: FC = () => {
     register,
     handleSubmit,
     setError,
-    formState: {
-      errors: {
-        root,
-        login: loginError,
-        first_name: nameError,
-        second_name: surnameError,
-        display_name: displayNameError,
-        email: emailError,
-        phone: phoneError,
-      },
-      isSubmitting,
-    },
+    formState: { errors, isSubmitting },
   } = useForm<TFormChangeUserData>({
     mode: 'onChange',
   });
@@ -73,28 +62,28 @@ export const FormChangeUserData: FC = () => {
         className="text-xs p-0.5"
         defaultValue={authorizedUser.first_name}
         label="Имя"
-        validationError={nameError?.message}
+        validationError={errors.first_name?.message}
         {...register('first_name', { validate: validateNames })}
       />
       <Input
         className="text-xs p-0.5"
         defaultValue={authorizedUser.second_name}
         label="Фамилия"
-        validationError={surnameError?.message}
+        validationError={errors.second_name?.message}
         {...register('second_name', { validate: validateNames })}
       />
       <Input
         className="text-xs p-0.5"
         defaultValue={authorizedUser.display_name === null ? '' : authorizedUser.display_name}
         label="Имя в чате"
-        validationError={displayNameError?.message}
+        validationError={errors.display_name?.message}
         {...register('display_name', { validate: validateNames })}
       />
       <Input
         className="text-xs p-0.5"
         defaultValue={authorizedUser.login}
         label="Логин"
-        validationError={loginError?.message}
+        validationError={errors.login?.message}
         {...register('login', { validate: validateLogin })}
       />
       <Input
@@ -102,7 +91,7 @@ export const FormChangeUserData: FC = () => {
         defaultValue={authorizedUser.email}
         label="Email"
         type="email"
-        validationError={emailError?.message}
+        validationError={errors.email?.message}
         {...register('email', { validate: validateEmail })}
       />
       <Input
@@ -110,14 +99,14 @@ export const FormChangeUserData: FC = () => {
         defaultValue={authorizedUser.phone}
         label="Телефон"
         type="phone"
-        validationError={phoneError?.message}
+        validationError={errors.email?.message}
         {...register('phone', { validate: validatePhone })}
       />
       <FormButton
         className="w-full px-3 py-2 mt-3 text-white font-medium text-sm"
         containerClassName="w-full mt-5"
         disabled={isSubmitting}
-        error={root?.message}
+        error={errors.root?.message}
         type="submit"
       >
         Сохранить
