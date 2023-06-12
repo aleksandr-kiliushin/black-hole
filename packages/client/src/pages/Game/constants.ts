@@ -1,4 +1,4 @@
-export const NAVBAR_HEIGHT = 26;
+export const NAVBAR_HEIGHT = 80;
 export const CANVAS_WIDTH = window.innerWidth;
 export const CANVAS_HEIGHT = window.innerHeight - NAVBAR_HEIGHT;
 export const MOVE_STEP = 10;

@@ -8,7 +8,6 @@ import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
 
 import { Avatar } from './Avatar';
 import { FormChangeUserData } from './FormChangeUserData';
-import { Layout } from './Layout';
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ export const Profile = () => {
   return (
     <>
       <Header />
-      <Layout>
+      <div className="min-h-[calc(100vh-1.75rem)] max-w-4xl my-0 mx-auto p-8 bg-white relative border border-gray-300">
         <main className="flex flex-col justify-center items-center w-full">
           <Avatar />
           <FormChangeUserData />
@@ -44,7 +43,7 @@ export const Profile = () => {
             Выйти из профиля
           </button>
         </main>
-      </Layout>
+      </div>
     </>
   );
 };

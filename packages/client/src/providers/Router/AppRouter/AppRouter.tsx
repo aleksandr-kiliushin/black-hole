@@ -1,15 +1,15 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { ChangePassword } from '@pages/ChangePassword';
 import { Forum } from '@pages/Forum';
 import { Game } from '@pages/Game';
 import { GameEnd } from '@pages/GameEnd';
 import { GameStart } from '@pages/GameStart';
 import { Home } from '@pages/Home';
-import { Leaderboard } from '@pages/Leaderboard/Leaderboard';
+import { Leaderboard } from '@pages/Leaderboard';
 import { Profile } from '@pages/Profile';
-import { ChangePassword } from '@pages/Profile/ChangePassword';
-import { SignIn } from '@pages/SignIn/SignIn';
+import { SignIn } from '@pages/SignIn';
 import { SignUp } from '@pages/SignUp';
 
 import { RequireAuth } from './RequireAuth';

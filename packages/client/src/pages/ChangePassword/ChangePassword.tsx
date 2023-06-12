@@ -10,7 +10,6 @@ import { isNetworkError } from '@utils/isNetworkError';
 
 import { UserApi } from '@src/api/UserApi/UserApi';
 
-import { Layout } from '../Layout';
 import { ErrorMessage } from './constants';
 import { TFormChangeUserPassword } from './types';
 
@@ -61,7 +60,7 @@ export const ChangePassword = () => {
   return (
     <>
       <Header />
-      <Layout>
+      <div className="min-h-[calc(100vh-1.75rem)] max-w-4xl my-0 mx-auto p-8 bg-white relative border border-gray-300">
         <main className="flex flex-col justify-center items-center w-full">
           <h1 className="text-4xl font-bold pb-14">Изменить пароль</h1>
           <form
@@ -95,7 +94,7 @@ export const ChangePassword = () => {
             </FormButton>
           </form>
         </main>
-      </Layout>
+      </div>
     </>
   );
 };
