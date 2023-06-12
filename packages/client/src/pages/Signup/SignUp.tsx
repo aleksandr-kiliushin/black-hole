@@ -1,6 +1,8 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { useSignUpMutation } from '@store/authorizedUser/api';
 
 import { AppLink } from '@components/AppLink';
 import { FormButton } from '@components/FormButton';
@@ -16,13 +18,13 @@ import {
 } from '@utils/authFormValidation';
 import { isNetworkError } from '@utils/isNetworkError';
 
-import { authApi } from '@src/api/Auth/Auth';
 import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
 
 import { TFormValues } from './types';
 
 export const SignUp: FC = () => {
-  const [hasRegistered, setHasRegistered] = useState(false);
+  const navigate = useNavigate();
+  const [signUp] = useSignUpMutation();
 
   const {
     register,
@@ -34,8 +36,8 @@ export const SignUp: FC = () => {
         root,
         login: loginError,
         password: passwordError,
-        firstName: nameError,
-        secondName: surnameError,
+        first_name: nameError,
+        second_name: surnameError,
         email: emailError,
         phone: phoneError,
       },
@@ -43,27 +45,12 @@ export const SignUp: FC = () => {
     },
   } = useForm<TFormValues>({ mode: 'onChange' });
 
-  const onSubmit = async ({
-    firstName,
-    secondName,
-    login,
-    email,
-    password,
-    phone,
-  }: TFormValues) => {
+  const onSubmit = async (formValues: TFormValues) => {
     try {
-      await authApi.SignUp({
-        first_name: firstName,
-        second_name: secondName,
-        login,
-        email,
-        password,
-        phone,
-      });
+      await signUp(formValues);
 
       reset();
-
-      setHasRegistered(true);
+      navigate(RoutePaths.SIGN_IN);
     } catch (error) {
       let message = 'Что-то пошло не так. Попробуйте перезагрузить страницу';
 
@@ -89,10 +76,6 @@ export const SignUp: FC = () => {
     }
   };
 
-  if (hasRegistered) {
-    return <Navigate to={RoutePaths.SIGN_IN} />;
-  }
-
   return (
     <>
       <Header />
@@ -108,13 +91,13 @@ export const SignUp: FC = () => {
             className="text-xs p-0.5 text-xs"
             label="Имя"
             validationError={nameError?.message}
-            {...register('firstName', { validate: validateNames })}
+            {...register('first_name', { validate: validateNames })}
           />
           <Input
             className="text-xs p-0.5 text-xs"
             label="Фамилия"
             validationError={surnameError?.message}
-            {...register('secondName', { validate: validateNames })}
+            {...register('second_name', { validate: validateNames })}
           />
           <Input
             className="text-xs p-0.5 text-xs"

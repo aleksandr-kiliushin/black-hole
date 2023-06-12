@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { authActions, getAuthUserInfo } from '@store/slices/auth/auth';
+import { useGetAuthorizedUserQuery, useSignInMutation } from '@store/authorizedUser/api';
 
 import { AppLink } from '@components/AppLink';
 import { FormButton } from '@components/FormButton';
@@ -13,36 +12,27 @@ import { Input } from '@components/Input';
 import { validateLogin, validatePassword } from '@utils/authFormValidation';
 import { isNetworkError } from '@utils/isNetworkError';
 
-import { authApi } from '@src/api/Auth/Auth';
 import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
 
 import { TFormValues } from './types';
 
 export const SignIn: FC = () => {
-  const dispatch = useAppDispatch();
-  const auth = useAppSelector((state) => state.auth.authData);
+  const navigate = useNavigate();
+  const [signIn] = useSignInMutation();
 
   const {
     register,
     handleSubmit,
     setError,
-    formState: {
-      errors: { root, login: loginError, password: passwordError },
-      isSubmitting,
-    },
+    formState: { errors, isSubmitting },
     reset,
-  } = useForm<TFormValues>({
-    mode: 'onChange',
-  });
+  } = useForm<TFormValues>({ mode: 'onChange' });
 
   const onSubmit = async (data: TFormValues) => {
     try {
-      await authApi.SignIn(data);
-
+      await signIn(data);
       reset();
-
-      dispatch(getAuthUserInfo());
-      dispatch(authActions.initAuthData());
+      navigate(RoutePaths.HOME);
     } catch (error) {
       let message = 'Что-то пошло не так. Попробуйте перезагрузить страницу';
 
@@ -60,15 +50,20 @@ export const SignIn: FC = () => {
         }
       }
 
-      setError('root', {
-        type: 'server',
-        message,
-      });
+      setError('root', { type: 'server', message });
     }
   };
 
-  if (auth) {
-    return <Navigate to={RoutePaths.PROFILE} />;
+  const {
+    data: authorizedUser,
+    isError: isAuthorizationError,
+    isFetching: isAuthorizedUserFetching,
+  } = useGetAuthorizedUserQuery();
+
+  if (isAuthorizedUserFetching) return null;
+
+  if (!isAuthorizationError && authorizedUser !== undefined) {
+    return <Navigate to={RoutePaths.HOME} />;
   }
 
   return (
@@ -85,21 +80,21 @@ export const SignIn: FC = () => {
           <Input
             className="text-xs p-0.5 text-xs"
             label="Логин"
-            validationError={loginError?.message}
+            validationError={errors.login?.message}
             {...register('login', { validate: validateLogin })}
           />
           <Input
             className="text-xs p-0.5 text-xs"
             label="Пароль"
             type="password"
-            validationError={passwordError?.message}
+            validationError={errors.password?.message}
             {...register('password', { validate: validatePassword })}
           />
           <FormButton
             className="w-full px-3 py-2 mt-3 text-white font-medium text-sm mt-0"
             containerClassName="w-full mt-5"
-            disabled={isSubmitting || !!auth}
-            error={root?.message}
+            disabled={isSubmitting}
+            error={errors.root?.message}
             type="submit"
           >
             Войти

@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useGetAuthorizedUserQuery } from '@store/authorizedUser/api';
+
 import { FormButton } from '@components/FormButton';
 import { Input } from '@components/Input';
 
@@ -14,9 +16,11 @@ import { isNetworkError } from '@utils/isNetworkError';
 
 import { UserApi } from '@src/api/UserApi/UserApi';
 
-import { TFormChangeUserData, TFormChangeUserDataProps } from './types';
+import { TFormChangeUserData } from './types';
 
-export const FormChangeUserData: FC<TFormChangeUserDataProps> = ({ userInfo, fetchUserInfo }) => {
+export const FormChangeUserData: FC = () => {
+  const { data: authorizedUser, refetch: refetchAuthorizedUser } = useGetAuthorizedUserQuery();
+
   const {
     register,
     handleSubmit,
@@ -40,8 +44,7 @@ export const FormChangeUserData: FC<TFormChangeUserDataProps> = ({ userInfo, fet
   const onSubmit = async (value: TFormChangeUserData) => {
     try {
       await UserApi.changeUserProfile({ ...value });
-
-      fetchUserInfo();
+      refetchAuthorizedUser();
     } catch (error) {
       let message = 'Что-то пошло не так. Попробуйте перезагрузить страницу';
 
@@ -56,6 +59,9 @@ export const FormChangeUserData: FC<TFormChangeUserDataProps> = ({ userInfo, fet
       setError('root', { type: 'server', message });
     }
   };
+
+  if (authorizedUser === undefined) return null;
+
   return (
     <form
       action="submit"
@@ -65,35 +71,35 @@ export const FormChangeUserData: FC<TFormChangeUserDataProps> = ({ userInfo, fet
     >
       <Input
         className="text-xs p-0.5"
-        defaultValue={userInfo?.first_name}
+        defaultValue={authorizedUser.first_name}
         label="Имя"
         validationError={nameError?.message}
         {...register('first_name', { validate: validateNames })}
       />
       <Input
         className="text-xs p-0.5"
-        defaultValue={userInfo?.second_name}
+        defaultValue={authorizedUser.second_name}
         label="Фамилия"
         validationError={surnameError?.message}
         {...register('second_name', { validate: validateNames })}
       />
       <Input
         className="text-xs p-0.5"
-        defaultValue={userInfo?.display_name === null ? '' : userInfo?.display_name}
+        defaultValue={authorizedUser.display_name === null ? '' : authorizedUser.display_name}
         label="Имя в чате"
         validationError={displayNameError?.message}
         {...register('display_name', { validate: validateNames })}
       />
       <Input
         className="text-xs p-0.5"
-        defaultValue={userInfo?.login}
+        defaultValue={authorizedUser.login}
         label="Логин"
         validationError={loginError?.message}
         {...register('login', { validate: validateLogin })}
       />
       <Input
         className="text-xs p-0.5"
-        defaultValue={userInfo?.email}
+        defaultValue={authorizedUser.email}
         label="Email"
         type="email"
         validationError={emailError?.message}
@@ -101,21 +107,15 @@ export const FormChangeUserData: FC<TFormChangeUserDataProps> = ({ userInfo, fet
       />
       <Input
         className="text-xs p-0.5"
-        defaultValue={userInfo?.phone}
+        defaultValue={authorizedUser.phone}
         label="Телефон"
         type="phone"
         validationError={phoneError?.message}
         {...register('phone', { validate: validatePhone })}
       />
       <FormButton
-        className={`
-              w-full px-3
-              py-2 mt-3 text-white
-              font-medium text-sm
-            `}
-        containerClassName={`
-            w-full mt-5
-          `}
+        className="w-full px-3 py-2 mt-3 text-white font-medium text-sm"
+        containerClassName="w-full mt-5"
         disabled={isSubmitting}
         error={root?.message}
         type="submit"
