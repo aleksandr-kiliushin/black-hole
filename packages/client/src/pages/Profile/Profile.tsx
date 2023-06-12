@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useGetAuthorizedUserQuery, useLogOutMutation } from '@store/authorizedUser/api';
 
-import { Navbar } from '@components/Navbar';
+import { Header } from '@components/Header';
 
 import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
 
@@ -21,7 +21,7 @@ export const Profile = () => {
 
   return (
     <>
-      <Navbar />
+      <Header />
       <Layout>
         <main className="flex flex-col justify-center items-center w-full">
           <Avatar />

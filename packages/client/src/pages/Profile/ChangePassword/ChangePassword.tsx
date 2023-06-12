@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { FormButton } from '@components/FormButton';
+import { Header } from '@components/Header';
 import { Input } from '@components/Input';
-import { Navbar } from '@components/Navbar';
 
 import { validatePassword } from '@utils/authFormValidation';
 import { isNetworkError } from '@utils/isNetworkError';
@@ -11,7 +11,8 @@ import { isNetworkError } from '@utils/isNetworkError';
 import { UserApi } from '@src/api/UserApi/UserApi';
 
 import { Layout } from '../Layout';
-import { ErrorMessage, TFormChangeUserPassword } from './types';
+import { ErrorMessage } from './constants';
+import { TFormChangeUserPassword } from './types';
 
 const submit = (data: TFormChangeUserPassword) => {
   return UserApi.changeUserPassword(data);
@@ -53,14 +54,13 @@ export const ChangePassword = () => {
   const onSubmit = (value: TFormChangeUserPassword) => {
     withErrorHandling(async () => {
       await submit({ ...value });
-
       navigate('/profile');
     });
   };
 
   return (
     <>
-      <Navbar />
+      <Header />
       <Layout>
         <main className="flex flex-col justify-center items-center w-full">
           <h1 className="text-4xl font-bold pb-14">Изменить пароль</h1>

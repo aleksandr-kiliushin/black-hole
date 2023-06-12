@@ -6,13 +6,14 @@ import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
 
 import { TNavbarProps } from './types';
 
-export const Navbar: FC<TNavbarProps> = ({ isVertical = false }) => {
+export const Navbar: FC<TNavbarProps> = ({ orientation }) => {
   return (
     <nav>
       <ul
         className={clsx(
           'items-center gap-2 justify-end w-full gap-x-4',
-          isVertical ? 'flex flex-col' : 'hidden sm:flex'
+          orientation === 'vertical' && 'flex flex-col',
+          orientation === 'horizontal' && 'hidden sm:flex'
         )}
       >
         <li>

@@ -10,7 +10,7 @@ import { Leaderboard } from '@pages/Leaderboard/Leaderboard';
 import { Profile } from '@pages/Profile';
 import { ChangePassword } from '@pages/Profile/ChangePassword';
 import { SignIn } from '@pages/SignIn/SignIn';
-import { SignUp } from '@pages/Signup/SignUp';
+import { SignUp } from '@pages/_SignUp';
 
 import { RequireAuth } from './RequireAuth';
 import { RoutePaths } from './constants';

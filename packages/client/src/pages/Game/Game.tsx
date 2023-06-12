@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef } from 'react';
 
-import { Navbar } from '@components/Navbar';
+import { Header } from '@components/Header';
 
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from './constants';
 import { handleKeyDown, requestAnimation } from './helpers';
@@ -27,7 +27,7 @@ export const Game: FC = () => {
 
   return (
     <>
-      <Navbar />
+      <Header />
       <canvas height={CANVAS_HEIGHT} ref={canvasRef} width={CANVAS_WIDTH} />
     </>
   );
