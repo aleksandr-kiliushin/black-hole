@@ -5,8 +5,8 @@ import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { authActions, getAuthUserInfo } from '@store/slices/auth/auth';
 
-import AppLink from '@components/AppLink';
-import FormButton from '@components/FormButton';
+import { AppLink } from '@components/AppLink';
+import { FormButton } from '@components/FormButton';
 import { Header } from '@components/Header';
 import { Input } from '@components/Input';
 

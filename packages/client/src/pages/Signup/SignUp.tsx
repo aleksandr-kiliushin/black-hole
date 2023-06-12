@@ -2,8 +2,8 @@ import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 
-import AppLink from '@components/AppLink';
-import FormButton from '@components/FormButton';
+import { AppLink } from '@components/AppLink';
+import { FormButton } from '@components/FormButton';
 import { Header } from '@components/Header';
 import { Input } from '@components/Input';
 

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import FormButton from '@components/FormButton';
+import { FormButton } from '@components/FormButton';
 import { Input } from '@components/Input';
 import { Navbar } from '@components/Navbar';
 
