@@ -46,7 +46,7 @@ export const Leaderboard: FC = () => {
               <p className="text-sm text-gray-500">{person.email}</p>
             </div>
             <p className="mx-auto">Очки: {person.score}</p>
-            <button className="w-1/2 sm:w-full sm:ml-auto btn-primary">Like</button>
+            <button className="btn btn-primary w-1/2 sm:w-full sm:ml-auto">Like</button>
           </li>
         ))}
       </ul>

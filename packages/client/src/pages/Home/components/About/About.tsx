@@ -17,7 +17,7 @@ export const About = () => {
         представление о вселенной и покажет вам, как это быть всемогущим. Приготовьтесь к
         незабываемому путешествию!
       </p>
-      <Link className="btn-primary my-6" to={RoutePaths.GAME_START}>
+      <Link className="btn btn-primary my-6" to={RoutePaths.GAME_START}>
         Подробнее
       </Link>
     </section>

@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useSignUpMutation } from '@store/authorizedUser/api';
 
-import { AppLink } from '@components/AppLink';
 import { FormButton } from '@components/FormButton';
 import { Header } from '@components/Header';
 import { Input } from '@components/Input';
@@ -127,18 +126,18 @@ export const SignUp: FC = () => {
             {...register('phone', { validate: validatePhone })}
           />
           <FormButton
-            className="w-full px-3 py-2 mt-3 text-white font-medium text-sm mt-0"
+            className="w-full px-3 py-2 mt-3"
             containerClassName="w-full mt-5"
             disabled={isSubmitting}
             error={root?.message}
             type="submit"
           >
-            Регистрация
+            Зарегистрироваться
           </FormButton>
         </form>
-        <AppLink title="Войти" to="/sign-in">
+        <Link className="btn btn-secondary text-center mt-3" title="Войти" to="/sign-in">
           Войти
-        </AppLink>
+        </Link>
       </main>
     </>
   );

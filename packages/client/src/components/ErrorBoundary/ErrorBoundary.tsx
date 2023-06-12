@@ -19,7 +19,7 @@ export class ErrorBoundary extends Component<PropsWithChildren, { hasError: bool
             <p className="text-lg font-medium leading-8 text-rose-500">
               Произошла непредвиденная ошибка
             </p>
-            <button className="ml-3 btn-primary" onClick={window.location.reload}>
+            <button className="btn btn-primary ml-3" onClick={window.location.reload}>
               Обновить страницу
             </button>
           </div>

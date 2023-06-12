@@ -41,7 +41,7 @@ export const GameStart: FC = () => {
         <p className="text-xl font-bold my-2 text-zinc-900 text-center">
           Начните свою миссию по поглощению вселенной!
         </p>
-        <Link className="btn-primary my-6" to={RoutePaths.GAME}>
+        <Link className="btn btn-primary my-6" to={RoutePaths.GAME}>
           Поглотить Вселенную ✨
         </Link>
       </section>

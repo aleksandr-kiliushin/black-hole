@@ -84,7 +84,7 @@ export const ChangePassword = () => {
               {...register('newPassword', { validate: validatePassword })}
             />
             <FormButton
-              className="w-full px-3 py-2 mt-3 text-white font-medium text-sm"
+              className="w-full"
               containerClassName="w-full mt-5"
               disabled={isSubmitting}
               error={root?.message}

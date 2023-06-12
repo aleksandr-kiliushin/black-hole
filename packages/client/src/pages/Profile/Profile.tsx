@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useGetAuthorizedUserQuery, useLogOutMutation } from '@store/authorizedUser/api';
 
@@ -25,16 +25,14 @@ export const Profile = () => {
         <main className="flex flex-col justify-center items-center w-full">
           <Avatar />
           <FormChangeUserData />
-          <button
-            className="btn-primary text-white btn-primary xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2 mt-3.5 focus:ring-red-400 focus:ring-opacity-75"
-            onClick={() => {
-              navigate(RoutePaths.CHANGE_PASSWORD);
-            }}
+          <Link
+            className="btn btn-primary text-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2 mt-3.5"
+            to={RoutePaths.CHANGE_PASSWORD}
           >
             Изменить пароль
-          </button>
+          </Link>
           <button
-            className="text-white btn-primary bg-red-400 hover:bg-red-600 xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2 mt-3.5 focus:ring-red-400 focus:ring-opacity-75"
+            className="btn btn-danger xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2 mt-3.5"
             onClick={async () => {
               await logOut();
               navigate(RoutePaths.SIGN_IN);

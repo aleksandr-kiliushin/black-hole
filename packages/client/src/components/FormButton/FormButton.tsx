@@ -19,7 +19,7 @@ export const FormButton: FC<TFormButtonProps> = ({
       >
         {error}
       </span>
-      <button {...restProps} className={clsx(restProps.className, `btn-primary`)} />
+      <button {...restProps} className={clsx(restProps.className, 'btn btn-primary')} />
     </div>
   );
 };

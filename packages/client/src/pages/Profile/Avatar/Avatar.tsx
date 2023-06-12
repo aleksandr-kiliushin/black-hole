@@ -53,7 +53,7 @@ export const Avatar: FC = () => {
       {isVisibleFormAvatar && (
         <form onSubmit={handleSubmit(onSubmit)}>
           <input {...register('picture')} type="file" />
-          <button className="text-white btn-primary">Отправить</button>
+          <button className="btn btn-primary">Отправить</button>
         </form>
       )}
     </div>

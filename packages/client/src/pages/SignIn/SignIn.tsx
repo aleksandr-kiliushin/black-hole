@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { useGetAuthorizedUserQuery, useSignInMutation } from '@store/authorizedUser/api';
 
-import { AppLink } from '@components/AppLink';
 import { FormButton } from '@components/FormButton';
 import { Header } from '@components/Header';
 import { Input } from '@components/Input';
@@ -91,7 +90,7 @@ export const SignIn: FC = () => {
             {...register('password', { validate: validatePassword })}
           />
           <FormButton
-            className="w-full px-3 py-2 mt-3 text-white font-medium text-sm mt-0"
+            className="w-full px-3 py-2 mt-3"
             containerClassName="w-full mt-5"
             disabled={isSubmitting}
             error={errors.root?.message}
@@ -100,9 +99,9 @@ export const SignIn: FC = () => {
             Войти
           </FormButton>
         </form>
-        <AppLink title="Регистрация" to="/sign-up">
+        <Link className="btn btn-secondary text-center mt-3" title="Регистрация" to="/sign-up">
           Регистрация
-        </AppLink>
+        </Link>
       </main>
     </>
   );
