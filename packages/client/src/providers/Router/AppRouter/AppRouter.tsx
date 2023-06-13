@@ -2,7 +2,9 @@ import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { ChangePassword } from '@pages/ChangePassword';
-import { Forum } from '@pages/Forum';
+import { ForumList } from '@pages/Forum/ForumList';
+import { Topic } from '@pages/Forum/Topic';
+import { TopicList } from '@pages/Forum/TopicList';
 import { Game } from '@pages/Game';
 import { GameEnd } from '@pages/GameEnd';
 import { GameStart } from '@pages/GameStart';
@@ -39,7 +41,17 @@ const routeConfig: Record<AppRoutes, TAppRouteProps> = {
   },
   [AppRoutes.FORUM]: {
     path: RoutePaths.FORUM,
-    element: <Forum />,
+    element: <ForumList />,
+    authOnly: true,
+  },
+  [AppRoutes.TOPIC_LIST]: {
+    path: RoutePaths.TOPIC_LIST,
+    element: <TopicList />,
+    authOnly: true,
+  },
+  [AppRoutes.TOPIC]: {
+    path: RoutePaths.TOPIC,
+    element: <Topic />,
     authOnly: true,
   },
   [AppRoutes.LEADERBOARD]: {
