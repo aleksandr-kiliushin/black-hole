@@ -14,7 +14,7 @@ import {
 } from '@utils/authFormValidation';
 import { isNetworkError } from '@utils/isNetworkError';
 
-import { UserApi } from '@src/api/UserApi/UserApi';
+import { userApi } from '@src/api/userApi';
 
 import { TFormChangeUserData } from './types';
 
@@ -32,7 +32,7 @@ export const FormChangeUserData: FC = () => {
 
   const onSubmit = async (value: TFormChangeUserData) => {
     try {
-      await UserApi.changeUserProfile({ ...value });
+      await userApi.changeUserProfile({ ...value });
       refetchAuthorizedUser();
     } catch (error) {
       let message = 'Что-то пошло не так. Попробуйте перезагрузить страницу';

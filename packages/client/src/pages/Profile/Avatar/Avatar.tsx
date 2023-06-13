@@ -7,7 +7,7 @@ import { randomAvatarPath } from '@utils/randomAvatarPath';
 
 import { API_BASE_URL } from '@constants';
 
-import { UserApi } from '@src/api/UserApi/UserApi';
+import { userApi } from '@src/api/userApi';
 
 export const Avatar: FC = () => {
   const { data: authorizedUser, refetch: refetchAuthorizedUser } = useGetAuthorizedUserQuery();
@@ -20,7 +20,7 @@ export const Avatar: FC = () => {
     formData.append('avatar', data.picture[0]);
 
     const fetchServerData = async () => {
-      const response = await UserApi.changeAvatar(formData);
+      const response = await userApi.changeAvatar(formData);
       if (response.status === 200) {
         refetchAuthorizedUser();
         handleVisibleFormAvatar();

@@ -8,14 +8,10 @@ import { Input } from '@components/Input';
 import { validatePassword } from '@utils/authFormValidation';
 import { isNetworkError } from '@utils/isNetworkError';
 
-import { UserApi } from '@src/api/UserApi/UserApi';
+import { userApi } from '@src/api/userApi';
 
 import { ErrorMessage } from './constants';
 import { TFormChangeUserPassword } from './types';
-
-const submit = (data: TFormChangeUserPassword) => {
-  return UserApi.changeUserPassword(data);
-};
 
 export const ChangePassword = () => {
   const navigate = useNavigate();
@@ -50,9 +46,9 @@ export const ChangePassword = () => {
     }
   };
 
-  const onSubmit = (value: TFormChangeUserPassword) => {
+  const onSubmit = (formValues: TFormChangeUserPassword) => {
     withErrorHandling(async () => {
-      await submit({ ...value });
+      await userApi.changeUserPassword(formValues);
       navigate('/profile');
     });
   };
