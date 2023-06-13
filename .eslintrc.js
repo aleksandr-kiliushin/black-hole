@@ -13,7 +13,6 @@ module.exports = {
   root: true,
   rules: {
     '@typescript-eslint/ban-ts-comment': 1,
-    '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/naming-convention': [
       1,
@@ -27,6 +26,11 @@ module.exports = {
         selector: 'typeAlias',
         format: ['StrictPascalCase'],
         prefix: ['T'],
+      },
+      {
+        selector: 'interface',
+        format: ['StrictPascalCase'],
+        prefix: ['I'],
       },
     ],
     '@typescript-eslint/no-empty-function': 'off',
