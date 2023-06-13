@@ -10,7 +10,7 @@ const initialState: TAuthState = {
   isInitiated: false,
 };
 
-export const getAuthUserInfo = createAsyncThunk('auth/get', async () => {
+export const getAuthUserInfo = createAsyncThunk('auth/get', async (arg, thunkApi) => {
   try {
     const res = await authApi.getUserInfo();
 
@@ -21,7 +21,8 @@ export const getAuthUserInfo = createAsyncThunk('auth/get', async () => {
 
     return res.data;
   } catch (error) {
-    return console.error('Вы не авторизованы');
+    console.error('Вы не авторизованы');
+    return thunkApi.rejectWithValue(undefined);
   }
 });
 
@@ -47,6 +48,9 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAuthUserInfo.fulfilled, (state, { payload }) => {
       state.authorizedUser = payload;
+    });
+    builder.addCase(getAuthUserInfo.rejected, (state) => {
+      state.authorizedUser = null;
     });
   },
 });
