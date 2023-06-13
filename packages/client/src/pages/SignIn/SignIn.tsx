@@ -2,7 +2,9 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
-import { useGetAuthorizedUserQuery, useSignInMutation } from '@store/authorizedUser/api';
+import { authActions, getAuthUserInfo } from '@store/slices/auth/authSlice';
+
+import { authApi } from '@api/authApi';
 
 import { FormButton } from '@components/FormButton';
 import { Header } from '@components/Header';
@@ -10,6 +12,8 @@ import { Input } from '@components/Input';
 
 import { validateLogin, validatePassword } from '@utils/authFormValidation';
 import { isNetworkError } from '@utils/isNetworkError';
+import { useAppDispatch } from '@utils/useAppDispatch';
+import { useAppSelector } from '@utils/useAppSelector';
 
 import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
 
@@ -17,7 +21,8 @@ import { TFormValues } from './types';
 
 export const SignIn: FC = () => {
   const navigate = useNavigate();
-  const [signIn] = useSignInMutation();
+  const dispatch = useAppDispatch();
+  const authorizedUser = useAppSelector((state) => state.auth.authorizedUser);
 
   const {
     register,
@@ -29,8 +34,10 @@ export const SignIn: FC = () => {
 
   const onSubmit = async (data: TFormValues) => {
     try {
-      await signIn(data);
+      await authApi.signIn(data);
       reset();
+      dispatch(getAuthUserInfo());
+      dispatch(authActions.initAuthData());
       navigate(RoutePaths.HOME);
     } catch (error) {
       let message = 'Что-то пошло не так. Попробуйте перезагрузить страницу';
@@ -53,16 +60,8 @@ export const SignIn: FC = () => {
     }
   };
 
-  const {
-    data: authorizedUser,
-    isError: isAuthorizationError,
-    isFetching: isAuthorizedUserFetching,
-  } = useGetAuthorizedUserQuery();
-
-  if (isAuthorizedUserFetching) return null;
-
-  if (!isAuthorizationError && authorizedUser !== undefined) {
-    return <Navigate to={RoutePaths.HOME} />;
+  if (authorizedUser !== null) {
+    return <Navigate to={RoutePaths.PROFILE} />;
   }
 
   return (

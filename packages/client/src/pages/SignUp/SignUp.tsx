@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useSignUpMutation } from '@store/authorizedUser/api';
+import { authApi } from '@api/authApi';
 
 import { FormButton } from '@components/FormButton';
 import { Header } from '@components/Header';
@@ -23,7 +23,6 @@ import { TFormValues } from './types';
 
 export const SignUp: FC = () => {
   const navigate = useNavigate();
-  const [signUp] = useSignUpMutation();
 
   const {
     register,
@@ -46,7 +45,7 @@ export const SignUp: FC = () => {
 
   const onSubmit = async (formValues: TFormValues) => {
     try {
-      await signUp(formValues);
+      await authApi.signUp(formValues);
 
       reset();
       navigate(RoutePaths.SIGN_IN);
