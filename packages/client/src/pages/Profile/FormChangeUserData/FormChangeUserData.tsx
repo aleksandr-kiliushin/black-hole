@@ -99,7 +99,7 @@ export const FormChangeUserData: FC = () => {
         defaultValue={authorizedUser.phone}
         label="Телефон"
         type="phone"
-        validationError={errors.email?.message}
+        validationError={errors.phone?.message}
         {...register('phone', { validate: validatePhone })}
       />
       <FormButton
