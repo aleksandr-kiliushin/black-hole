@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useGetAuthorizedUserQuery } from '@store/authorizedUser/api';
-
 import { FormButton } from '@components/FormButton';
 import { Input } from '@components/Input';
 
@@ -16,24 +14,20 @@ import { isNetworkError } from '@utils/isNetworkError';
 
 import { userApi } from '@src/api/userApi';
 
-import { TFormChangeUserData } from './types';
+import { TFormChangeUserData, TFormChangeUserDataProps } from './types';
 
-export const FormChangeUserData: FC = () => {
-  const { data: authorizedUser, refetch: refetchAuthorizedUser } = useGetAuthorizedUserQuery();
-
+export const FormChangeUserData: FC<TFormChangeUserDataProps> = ({ fetchUserInfo, userInfo }) => {
   const {
     register,
     handleSubmit,
     setError,
     formState: { errors, isSubmitting },
-  } = useForm<TFormChangeUserData>({
-    mode: 'onChange',
-  });
+  } = useForm<TFormChangeUserData>({ mode: 'onChange' });
 
   const onSubmit = async (value: TFormChangeUserData) => {
     try {
       await userApi.changeUserProfile({ ...value });
-      refetchAuthorizedUser();
+      fetchUserInfo();
     } catch (error) {
       let message = 'Что-то пошло не так. Попробуйте перезагрузить страницу';
 
@@ -49,8 +43,6 @@ export const FormChangeUserData: FC = () => {
     }
   };
 
-  if (authorizedUser === undefined) return null;
-
   return (
     <form
       action="submit"
@@ -60,35 +52,35 @@ export const FormChangeUserData: FC = () => {
     >
       <Input
         className="text-xs p-0.5"
-        defaultValue={authorizedUser.first_name}
+        defaultValue={userInfo.first_name}
         label="Имя"
         validationError={errors.first_name?.message}
         {...register('first_name', { validate: validateNames })}
       />
       <Input
         className="text-xs p-0.5"
-        defaultValue={authorizedUser.second_name}
+        defaultValue={userInfo.second_name}
         label="Фамилия"
         validationError={errors.second_name?.message}
         {...register('second_name', { validate: validateNames })}
       />
       <Input
         className="text-xs p-0.5"
-        defaultValue={authorizedUser.display_name === null ? '' : authorizedUser.display_name}
+        defaultValue={userInfo.display_name === null ? '' : userInfo.display_name}
         label="Имя в чате"
         validationError={errors.display_name?.message}
         {...register('display_name', { validate: validateNames })}
       />
       <Input
         className="text-xs p-0.5"
-        defaultValue={authorizedUser.login}
+        defaultValue={userInfo.login}
         label="Логин"
         validationError={errors.login?.message}
         {...register('login', { validate: validateLogin })}
       />
       <Input
         className="text-xs p-0.5"
-        defaultValue={authorizedUser.email}
+        defaultValue={userInfo.email}
         label="Email"
         type="email"
         validationError={errors.email?.message}
@@ -96,7 +88,7 @@ export const FormChangeUserData: FC = () => {
       />
       <Input
         className="text-xs p-0.5"
-        defaultValue={authorizedUser.phone}
+        defaultValue={userInfo.phone}
         label="Телефон"
         type="phone"
         validationError={errors.phone?.message}

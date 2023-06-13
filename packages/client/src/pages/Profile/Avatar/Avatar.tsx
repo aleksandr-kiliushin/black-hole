@@ -1,17 +1,15 @@
 import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useGetAuthorizedUserQuery } from '@store/authorizedUser/api';
-
 import { randomAvatarPath } from '@utils/randomAvatarPath';
 
 import { API_BASE_URL } from '@constants';
 
 import { userApi } from '@src/api/userApi';
 
-export const Avatar: FC = () => {
-  const { data: authorizedUser, refetch: refetchAuthorizedUser } = useGetAuthorizedUserQuery();
+import { TAvatarProps } from './types';
 
+export const Avatar: FC<TAvatarProps> = ({ avatar, fetchUserInfo }) => {
   const [isVisibleFormAvatar, setIsVisibleFormAvatar] = useState(false);
   const { register, handleSubmit } = useForm<{ picture: FileList }>();
 
@@ -22,7 +20,7 @@ export const Avatar: FC = () => {
     const fetchServerData = async () => {
       const response = await userApi.changeAvatar(formData);
       if (response.status === 200) {
-        refetchAuthorizedUser();
+        fetchUserInfo();
         handleVisibleFormAvatar();
       }
     };
@@ -34,11 +32,7 @@ export const Avatar: FC = () => {
     setIsVisibleFormAvatar((prev) => !prev);
   };
 
-  if (authorizedUser === undefined) return null;
-
-  const avatarUrl = authorizedUser.avatar
-    ? `${API_BASE_URL}/resources${authorizedUser?.avatar}`
-    : randomAvatarPath;
+  const avatarUrl = avatar ? `${API_BASE_URL}/resources${avatar}` : randomAvatarPath;
 
   return (
     <div className="flex flex-col justify-center items-center flex-wrap">
