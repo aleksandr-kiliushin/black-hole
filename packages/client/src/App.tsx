@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from './store/hooks';
 import { useEffect } from 'react';
-import { authActions, getAuthUserInfo } from './store/slices/auth/auth';
-import { AppRouter } from './providers/Router';
 import './App.css';
+import { AppRouter } from './providers/Router';
+import { useAppDispatch, useAppSelector } from './store/hooks';
+import { authActions, getAuthUserInfo } from './store/slices/auth/auth';
 
 function App() {
   const isInited = useAppSelector(state => state.auth.isInited);

@@ -6,7 +6,7 @@ import { Game } from '../../../pages/Game';
 import { ForumList } from '../../../pages/Forum/ForumList';
 import { TopicList } from '../../../pages/Forum/TopicList';
 import { Topic } from '../../../pages/Forum/Topic';
-import { Leaderboard } from '../../../pages/Leaderboard';
+import { Leaderboard } from '../../../pages/Leaderboard/Leaderboard';
 import { SignIn } from '../../../pages/SignIn/SignIn';
 import { SignUp } from '../../../pages/Signup/SignUp';
 import { GameStart } from '../../../pages/GameStart';

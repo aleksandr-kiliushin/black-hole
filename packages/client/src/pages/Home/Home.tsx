@@ -1,7 +1,7 @@
-import { FC } from 'react'
-import { Hero } from './parts/Hero'
-import { About } from './parts/About'
-import { Header } from '../../components/Header'
+import { FC } from 'react';
+import { Hero } from './parts/Hero';
+import { About } from './parts/About';
+import { Header } from '../../components/Header';
 
 const Home: FC = () => {
   return (
@@ -10,7 +10,7 @@ const Home: FC = () => {
       <Hero />
       <About />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

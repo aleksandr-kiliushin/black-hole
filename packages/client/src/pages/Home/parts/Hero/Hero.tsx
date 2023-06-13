@@ -1,6 +1,6 @@
-import { FC } from 'react'
-import blackHole from '../../../../assets/images/black-hole.png'
-import { GAME_NAME } from '../../../../utils/global'
+import { FC } from 'react';
+import blackHole from '../../../../assets/images/black-hole.png';
+import { GAME_NAME } from '../../../../utils/global';
 
 const Hero: FC = () => {
   return (
@@ -21,7 +21,7 @@ const Hero: FC = () => {
         className={'w-full md:w-80 max-w-xs'}
       />
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

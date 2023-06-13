@@ -1,4 +1,4 @@
-import { TGameState } from './types'
+import { TGameState } from './types';
 
 export const gameState: TGameState = {
   hole: {
@@ -13,4 +13,4 @@ export const gameState: TGameState = {
     { x: 500, y: 400, points: 125 },
     { x: 600, y: 200, points: 30 },
   ],
-}
+};
