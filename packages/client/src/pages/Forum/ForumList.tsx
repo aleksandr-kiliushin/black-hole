@@ -41,14 +41,12 @@ export const ForumList: FC = () => {
       <Header />
       <main style={{ width: 1280, margin: '50px auto' }}>
         <h1 className="text-4xl py-3 text-slate-700">Сообщество {GAME_NAME}</h1>
-
         <div className="border-y border-slate-700 ">
           <div className="flex text-sm font-bold uppercase py-2 px-2">
             <div className="w-10/12">Название и описание форума</div>
             <div className="w-1/12 text-center">темы</div>
             <div className="w-1/12 text-center">ответы</div>
           </div>
-
           <div>
             {theme.map(({ title, description, countOfTopics, countOfAnswers, id }) => {
               return (
