@@ -51,7 +51,7 @@ export const ForumList: FC = () => {
             {theme.map(({ title, description, countOfTopics, countOfAnswers, id }) => {
               return (
                 <div className="odd:bg-slate-200 px-2" key={id}>
-                  <Link className="btn btn-primary" to={`/forum/${id}/topics`}>
+                  <Link to={`/forum/${id}/topics`}>
                     <div className="py-3 flex cursor-pointer text-black">
                       <div className="w-10/12">
                         <div className="text-indigo-600 text-2xl hover:underline">{title}</div>

@@ -90,7 +90,7 @@ export const TopicList: FC = () => {
                 />
               </div>
               <div className="w-5/12">
-                <Link className="btn btn-primary" to={`/forum/${idTopicList}/topics/${id}`}>
+                <Link to={`/forum/${idTopicList}/topics/${id}`}>
                   <div className=" text-lg text-black font-bold hover:underline">{title}</div>
                 </Link>
                 <div className="text-xs mt-4 flex ">

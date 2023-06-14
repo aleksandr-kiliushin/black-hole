@@ -100,7 +100,7 @@ export const Topic: FC = () => {
             placeholder="Ваш комментарий"
             value={comment}
           />
-          <button className="btn-primary w-1/4" type="submit">
+          <button className="btn btn-primary w-1/4" type="submit">
             Отправить
           </button>
         </form>
