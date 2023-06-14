@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply py-2 px-4 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75;
+  }
+
+  .btn-primary {
+    @apply bg-blue-500 text-white hover:bg-blue-700 focus:ring-blue-400;
+  }
+
+  .btn-secondary {
+    @apply bg-teal-500 text-white hover:bg-teal-700 focus:ring-teal-400;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-white hover:bg-red-700 focus:ring-red-400;
+  }
+
+  .page-container {
+    @apply container m-auto max-w-screen-xl w-11/12;
+  }
+}

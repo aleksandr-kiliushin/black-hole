@@ -1,18 +1,24 @@
-import { useEffect } from 'react'
-import './App.css'
+import { FC, useEffect } from 'react';
 
-function App() {
+import { authActions, getAuthUserInfo } from '@store/slices/auth/authSlice';
+
+import { useAppDispatch } from '@utils/useAppDispatch';
+import { useAppSelector } from '@utils/useAppSelector';
+
+import { AppRouter } from './providers/Router';
+
+export const App: FC = () => {
+  const isInitiated = useAppSelector((state) => state.auth.isInitiated);
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    const fetchServerData = async () => {
-      const url = `http://localhost:${__SERVER_PORT__}`
-      const response = await fetch(url)
-      const data = await response.json()
-      console.log(data)
-    }
+    dispatch(getAuthUserInfo());
+    dispatch(authActions.initAuthData());
+  }, [dispatch]);
 
-    fetchServerData()
-  }, [])
-  return <div className="App">Вот тут будет жить ваше приложение :)</div>
-}
+  if (!isInitiated) {
+    return null;
+  }
 
-export default App
+  return <AppRouter />;
+};
