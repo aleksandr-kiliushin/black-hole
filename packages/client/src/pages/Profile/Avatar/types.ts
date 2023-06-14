@@ -1,4 +1,6 @@
-export interface IAvatarProps {
-  avatar: string | null;
+import { TUser } from '@app-types/TUser';
+
+export type TAvatarProps = {
+  avatar: TUser['avatar'];
   fetchUserInfo: VoidFunction;
-}
+};

@@ -1,23 +1,24 @@
-import { useEffect } from 'react';
-import './App.css';
-import { AppRouter } from './providers/Router';
-import { useAppDispatch, useAppSelector } from './store/hooks';
-import { authActions, getAuthUserInfo } from './store/slices/auth/auth';
+import { FC, useEffect } from 'react';
 
-function App() {
-  const isInited = useAppSelector(state => state.auth.isInited);
+import { authActions, getAuthUserInfo } from '@store/slices/auth/authSlice';
+
+import { useAppDispatch } from '@utils/useAppDispatch';
+import { useAppSelector } from '@utils/useAppSelector';
+
+import { AppRouter } from './providers/Router';
+
+export const App: FC = () => {
+  const isInitiated = useAppSelector((state) => state.auth.isInitiated);
   const dispatch = useAppDispatch();
 
-  const initFetch = () => {
+  useEffect(() => {
     dispatch(getAuthUserInfo());
     dispatch(authActions.initAuthData());
-  };
+  }, [dispatch]);
 
-  useEffect(() => {
-    initFetch();
-  }, []);
+  if (!isInitiated) {
+    return null;
+  }
 
-  return <>{isInited && <AppRouter />}</>;
-}
-
-export default App;
+  return <AppRouter />;
+};

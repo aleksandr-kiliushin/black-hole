@@ -1,17 +1,17 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export interface NewTopicProps {
+export interface INewTopicProps {
   setIsNewTopicOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export interface MessagesTypes {
+export interface IMessagesTypes {
   author: string;
   content: string;
   time: string;
   id: string;
 }
 
-export interface TopicTypes {
+export interface ITopicTypes {
   title: string;
   author: string;
   answers: number;
@@ -19,7 +19,7 @@ export interface TopicTypes {
   id: string;
 }
 
-export interface ThemeTypes {
+export interface IThemeTypes {
   title: string;
   description: string;
   countOfTopics: number;

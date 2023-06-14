@@ -1,20 +1,19 @@
-import { IUser } from '../types';
+import { TUser } from '@app-types/TUser';
 
-export interface IFormChangeUserDataProps {
-  userInfo: IUser;
+export type TFormChangeUserDataProps = {
+  userInfo: TUser;
   fetchUserInfo: VoidFunction;
-}
+};
 
-export interface IFormChangeUserData {
+export type TFormChangeUserData = {
   first_name: string;
   second_name: string;
   display_name: string;
   login: string;
   email: string;
   phone: string;
-}
+};
 
-export interface IUserData
-  extends Omit<IUser, 'id' | 'display_name' | 'avatar'> {
+export type TUserData = Omit<TUser, 'id' | 'display_name' | 'avatar'> & {
   display_name: string;
-}
+};

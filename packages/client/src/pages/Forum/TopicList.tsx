@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
-import { TopicTypes } from './types';
-import { AppLink } from '../../components/AppLink/AppLink';
+import { Link, useParams } from 'react-router-dom';
+
+import { Header } from '@components/Header';
+
 import { NewTopic } from './components/NewTopic';
-import { Header } from '../../components/Header';
-import { useParams } from 'react-router-dom';
+import { ITopicTypes } from './types';
 
 export const TopicList: FC = () => {
   const testTopicList = [
@@ -60,7 +61,7 @@ export const TopicList: FC = () => {
   ];
 
   const { idTopicList } = useParams();
-  const [topic, setTopic] = useState<TopicTypes[]>(testTopicList);
+  const [topic] = useState<ITopicTypes[]>(testTopicList);
   const [isNewTopicOpen, setIsNewTopicOpen] = useState(false);
 
   return (
@@ -68,12 +69,8 @@ export const TopicList: FC = () => {
       <Header />
       <main className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
         <div className="w-full py-2 flex">
-          <h1 className="w-10/12 text-3xl text-slate-700">
-            Раздел: (название раздела)
-          </h1>
-          <button
-            className="w-2/12 btn-primary"
-            onClick={() => setIsNewTopicOpen(true)}>
+          <h1 className="w-10/12 text-3xl text-slate-700">Раздел: (название раздела)</h1>
+          <button className="w-2/12 btn-primary" onClick={() => setIsNewTopicOpen(true)}>
             Создать новую тему
           </button>
         </div>
@@ -87,17 +84,15 @@ export const TopicList: FC = () => {
             <div className="flex cursor-pointer px-2 odd:bg-slate-200" key={id}>
               <div className="w-1/12">
                 <img
-                  src="https://api.mozambiquehe.re/assets/ranks/gold1.png"
                   alt="Author_Icon"
                   className="h-24"
+                  src="https://api.mozambiquehe.re/assets/ranks/gold1.png"
                 />
               </div>
               <div className="w-5/12">
-                <AppLink to={`/forum/${idTopicList}/topics/${id}`}>
-                  <div className=" text-lg text-black font-bold hover:underline">
-                    {title}
-                  </div>
-                </AppLink>
+                <Link to={`/forum/${idTopicList}/topics/${id}`}>
+                  <div className=" text-lg text-black font-bold hover:underline">{title}</div>
+                </Link>
                 <div className="text-xs mt-4 flex ">
                   <div className="text-black">Автор:</div>
                   <div className="font-bold text-indigo-600">{author}</div>
@@ -115,9 +110,7 @@ export const TopicList: FC = () => {
           );
         })}
       </main>
-      {isNewTopicOpen === true && (
-        <NewTopic setIsNewTopicOpen={setIsNewTopicOpen} />
-      )}
+      {isNewTopicOpen === true && <NewTopic setIsNewTopicOpen={setIsNewTopicOpen} />}
     </>
   );
 };

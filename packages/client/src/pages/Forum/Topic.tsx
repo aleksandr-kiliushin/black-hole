@@ -1,7 +1,9 @@
 import { FC, useState } from 'react';
-import { MessagesTypes } from './types';
 import { Link } from 'react-router-dom';
-import { Header } from '../../components/Header';
+
+import { Header } from '@components/Header';
+
+import { IMessagesTypes } from './types';
 
 export const Topic: FC = () => {
   const testTopic = [
@@ -13,8 +15,7 @@ export const Topic: FC = () => {
     },
     {
       author: 'Техническая поддержка',
-      content:
-        'Добрый день, могли бы вы детальнее описать проблему с которой вы столкнулись?',
+      content: 'Добрый день, могли бы вы детальнее описать проблему с которой вы столкнулись?',
       time: '24 минут назад',
       id: '4llr2faznt',
     },
@@ -26,8 +27,7 @@ export const Topic: FC = () => {
     },
     {
       author: 'Техническая поддержка',
-      content:
-        'Управление персонажем, производится с помощью нажатия на стрелочки.',
+      content: 'Управление персонажем, производится с помощью нажатия на стрелочки.',
       time: '32 минут назад',
       id: 'vnqsvgfmce',
     },
@@ -45,7 +45,7 @@ export const Topic: FC = () => {
     },
   ];
 
-  const [messages, setMessages] = useState<MessagesTypes[]>(testTopic);
+  const [messages] = useState<IMessagesTypes[]>(testTopic);
   const [comment, setComment] = useState('');
 
   return (
@@ -54,16 +54,12 @@ export const Topic: FC = () => {
       <main className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
         <div className="flex justify-between">
           <Link to={'/forum/2wtqosme50/topics'}>
-            <div
-              className="hover:underline hover:cursor-pointer"
-              onClick={window.history.back}>
+            <div className="hover:underline hover:cursor-pointer" onClick={window.history.back}>
               &larr; Обратно к темам
             </div>
           </Link>
         </div>
-        <h1 className="text-xl py-2 border-b border-black">
-          Изначальное сообщение
-        </h1>
+        <h1 className="text-xl py-2 border-b border-black">Изначальное сообщение</h1>
         {messages.map(({ content, author, time, id }, index) => {
           return (
             <div className="py-2 px-2 border-b-2 border-black" key={id}>
@@ -74,9 +70,9 @@ export const Topic: FC = () => {
               <div className="flex">
                 <div className="flex flex-col items-center justify-center w-2/12">
                   <img
-                    src="https://api.mozambiquehe.re/assets/ranks/gold1.png"
                     alt="User_Avatar"
                     className="h-24"
+                    src="https://api.mozambiquehe.re/assets/ranks/gold1.png"
                   />
                   <div className="text-sm font-bold">{author}</div>
                 </div>
@@ -84,9 +80,10 @@ export const Topic: FC = () => {
               </div>
               <div className="flex justify-end">
                 <label
-                  htmlFor="comment"
                   className="btn-primary"
-                  onClick={() => setComment(`@${author}, `)}>
+                  htmlFor="comment"
+                  onClick={() => setComment(`@${author}, `)}
+                >
                   Ответить
                 </label>
               </div>
@@ -96,13 +93,14 @@ export const Topic: FC = () => {
         <form className="flex flex-col p-2">
           <div className="text-2xl mb-2">Добавить сообщение</div>
           <textarea
-            name="comment"
-            id="comment"
             className=" w-1/2 h-32 border border-slate-300 rounded indent-1 mb-3 resize-none"
+            id="comment"
+            name="comment"
+            onChange={(e) => setComment(e.target.value)}
             placeholder="Ваш комментарий"
             value={comment}
-            onChange={e => setComment(e.target.value)}></textarea>
-          <button className="btn-primary w-1/4" type="submit">
+          />
+          <button className="btn btn-primary w-1/4" type="submit">
             Отправить
           </button>
         </form>

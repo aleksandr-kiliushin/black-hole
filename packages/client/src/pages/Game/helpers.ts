@@ -1,20 +1,14 @@
-import {
-  CANVAS_HEIGHT,
-  CANVAS_WIDTH,
-  Color,
-  GAME_ENTITY_FONT,
-  MOVE_STEP,
-} from './constants';
+import { CANVAS_HEIGHT, CANVAS_WIDTH, Color, GAME_ENTITY_FONT, MOVE_STEP } from './constants';
 import { gameState } from './gameState';
 import { TDraw } from './types';
 
 const draw: TDraw = {
-  space: canvasContext => {
+  space: (canvasContext) => {
     canvasContext.fillStyle = 'gray';
     canvasContext.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   },
-  enemies: canvasContext => {
-    gameState.enemies.forEach(enemy => {
+  enemies: (canvasContext) => {
+    gameState.enemies.forEach((enemy) => {
       canvasContext.fillStyle = Color.ENEMY_ASTEROID_BODY;
       canvasContext.beginPath();
       canvasContext.arc(enemy.x, enemy.y, enemy.points, 0, 2 * Math.PI);
@@ -25,7 +19,7 @@ const draw: TDraw = {
       canvasContext.fillText(enemy.points.toString(), enemy.x, enemy.y);
     });
   },
-  hole: canvasContext => {
+  hole: (canvasContext) => {
     const { hole } = gameState;
 
     canvasContext.fillStyle = Color.HERO_BODY;
@@ -48,14 +42,8 @@ const swallowEnemiesNearby = () => {
     const distanceBetweenCentersByX = Math.abs(hole.x - enemy.x);
     const distanceBetweenCentersByY = Math.abs(hole.y - enemy.y);
 
-    const distanceByX = Math.max(
-      distanceBetweenCentersByX - hole.points - enemy.points,
-      0
-    );
-    const distanceByY = Math.max(
-      distanceBetweenCentersByY - hole.points - enemy.points,
-      0
-    );
+    const distanceByX = Math.max(distanceBetweenCentersByX - hole.points - enemy.points, 0);
+    const distanceByY = Math.max(distanceBetweenCentersByY - hole.points - enemy.points, 0);
 
     const haveOverlap = distanceByX === 0 && distanceByY === 0;
 

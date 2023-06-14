@@ -1,8 +1,6 @@
 import { FC } from 'react';
 
-import { Header } from '../../components/Header';
-
-import './LeaderBoard.css';
+import { Header } from '@components/Header';
 
 const people = [
   {
@@ -35,9 +33,12 @@ export const Leaderboard: FC = () => {
       <h1 className="font-extrabold text-4xl">Leaderboard</h1>
       <ul className="divide-y divide-gray-200">
         {people.map((person, i) => (
-          <li key={person.email} className="leader-board-item">
+          <li
+            className="py-4 px-5 w-full flex flex-col sm:grid sm:grid-cols-[min-content_40px_30%_1fr_1fr] items-center gap-x-5"
+            key={person.email}
+          >
             <p>{i + 1}.&nbsp;</p>
-            <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
+            <img alt="" className="h-10 w-10 rounded-full" src={person.image} />
             <div>
               <p className="text-sm mx-auto sm:m-0 w-fit font-medium text-gray-900">
                 {person.name}
@@ -45,9 +46,7 @@ export const Leaderboard: FC = () => {
               <p className="text-sm text-gray-500">{person.email}</p>
             </div>
             <p className="mx-auto">Очки: {person.score}</p>
-            <button className="w-1/2 sm:w-full sm:ml-auto btn-primary">
-              Like
-            </button>
+            <button className="btn btn-primary w-1/2 sm:w-full sm:ml-auto">Like</button>
           </li>
         ))}
       </ul>

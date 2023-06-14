@@ -1,9 +1,10 @@
 import { FC } from 'react';
-import { ModalProps } from './types';
 import { createPortal } from 'react-dom';
 import { FiX } from 'react-icons/fi';
 
-const Modal: FC<ModalProps> = ({ isOpen, title, children, onClose }) => {
+import { TModalProps } from './types';
+
+export const Modal: FC<TModalProps> = ({ isOpen, title, children, onClose }) => {
   if (!isOpen) return null;
 
   return createPortal(
@@ -19,5 +20,3 @@ const Modal: FC<ModalProps> = ({ isOpen, title, children, onClose }) => {
     document.body
   );
 };
-
-export default Modal;

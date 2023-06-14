@@ -1,22 +1,24 @@
-import { memo, useCallback } from 'react';
+import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { RequireAuth } from './RequireAuth';
-import { Home } from '../../../pages/Home';
-import { Game } from '../../../pages/Game';
-import { ForumList } from '../../../pages/Forum/ForumList';
-import { TopicList } from '../../../pages/Forum/TopicList';
-import { Topic } from '../../../pages/Forum/Topic';
-import { Leaderboard } from '../../../pages/Leaderboard/Leaderboard';
-import { SignIn } from '../../../pages/SignIn/SignIn';
-import { SignUp } from '../../../pages/Signup/SignUp';
-import { GameStart } from '../../../pages/GameStart';
-import { GameEnd } from '../../../pages/GameEnd';
-import { AppRouteProps, AppRoutes } from './types';
-import { RoutePaths } from './constants';
-import { Profile } from '../../../pages/Profile';
-import { ChangePassword } from '../../../pages/Profile/ChangePassword';
 
-const routeConfig: Record<AppRoutes, AppRouteProps> = {
+import { ChangePassword } from '@pages/ChangePassword';
+import { ForumList } from '@pages/Forum/ForumList';
+import { Topic } from '@pages/Forum/Topic';
+import { TopicList } from '@pages/Forum/TopicList';
+import { Game } from '@pages/Game';
+import { GameEnd } from '@pages/GameEnd';
+import { GameStart } from '@pages/GameStart';
+import { Home } from '@pages/Home';
+import { Leaderboard } from '@pages/Leaderboard';
+import { Profile } from '@pages/Profile';
+import { SignIn } from '@pages/SignIn';
+import { SignUp } from '@pages/SignUp';
+
+import { RequireAuth } from './RequireAuth';
+import { RoutePaths } from './constants';
+import { AppRoutes, TAppRouteProps } from './types';
+
+const routeConfig: Record<AppRoutes, TAppRouteProps> = {
   [AppRoutes.HOME]: {
     path: RoutePaths.HOME,
     element: <Home />,
@@ -81,20 +83,18 @@ const routeConfig: Record<AppRoutes, AppRouteProps> = {
   },
 };
 
-export const AppRouter = memo(() => {
-  const renderWithWrapper = useCallback((route: AppRouteProps) => {
-    const element = <>{route.element}</>;
+const renderWithWrapper = (route: TAppRouteProps) => {
+  const element = <>{route.element}</>;
 
-    return (
-      <Route
-        key={route.path}
-        path={route.path}
-        element={
-          route.authOnly ? <RequireAuth>{element}</RequireAuth> : element
-        }
-      />
-    );
-  }, []);
+  return (
+    <Route
+      element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+      key={route.path}
+      path={route.path}
+    />
+  );
+};
 
+export const AppRouter: FC = () => {
   return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>;
-});
+};

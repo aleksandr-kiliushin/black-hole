@@ -1,1 +1,1 @@
-export { FormButton as default } from './FormButton';
+export { FormButton } from './FormButton';
