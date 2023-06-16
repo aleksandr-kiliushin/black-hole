@@ -3,7 +3,7 @@ import { FiX } from 'react-icons/fi';
 
 import { useIsOnline } from '@utils/isOnline';
 
-export const UnstableConnectionNotification: FC = () => {
+export const NoInternetConnectionNotification: FC = () => {
   const [isNotificationDismissed, setIsNotificationDismissed] = useState(false);
   const { isOnline } = useIsOnline();
 

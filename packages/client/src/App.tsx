@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react';
 
 import { authActions, getAuthUserInfo } from '@store/slices/auth/authSlice';
 
-import { UnstableConnectionNotification } from '@components/UnstableConnectionNotification';
+import { NoInternetConnectionNotification } from '@components/NoInternetConnectionNotification';
 
 import { useIsOnline } from '@utils/isOnline';
 import { useAppDispatch } from '@utils/useAppDispatch';
@@ -28,7 +28,7 @@ export const App: FC = () => {
 
   return (
     <>
-      <UnstableConnectionNotification />
+      <NoInternetConnectionNotification />
       <div className={clsx(!isOnline && 'grayscale')}>
         <AppRouter />
       </div>
