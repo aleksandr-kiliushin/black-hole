@@ -5,7 +5,6 @@ export const useIsOnline = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      console.log('setIsOnline(window.navigator.onLine)', window.navigator.onLine);
       setIsOnline(window.navigator.onLine);
     }, 5000);
 
