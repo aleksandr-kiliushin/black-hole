@@ -35,7 +35,7 @@
     "./src",
     "./public/serviceworker.js",
     "./.eslintrc.js",
-    "./jest.config.js",
+    "./jest.config.ts",
     "./postcss.config.js",
     "./tailwind.config.js",
     "./vite.config.ts"

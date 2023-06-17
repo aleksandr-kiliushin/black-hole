@@ -39,7 +39,7 @@ const draw: TDraw = {
   },
 };
 
-const swallowEnemiesNearby = () => {
+export const swallowEnemiesNearby = () => {
   const { enemies, hole } = gameState;
 
   const enemiesIndicesToSwallow: number[] = [];
