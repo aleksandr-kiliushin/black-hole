@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { FC, useRef } from 'react';
 
 import { useFullscreenStatus } from '@utils/useFullscreenStatus';
@@ -9,51 +10,48 @@ export const MaximizableView: FC<TMaximizableViewProps> = ({ children, backgroun
 
   let isFullscreen, setIsFullscreen;
   let errorMessage;
+
   try {
     const fullscreen = useFullscreenStatus(maximizableElement);
     setIsFullscreen = fullscreen.setFullscreen;
     isFullscreen = fullscreen.isFullscreen;
   } catch (e) {
-    errorMessage = 'Полноэкранный режим не поддерживается';
+    errorMessage = '⛶';
     isFullscreen = false;
     setIsFullscreen = undefined;
   }
 
-  const handleExitFullscreen = () => document.exitFullscreen();
-
-  const fullscreenButton = isFullscreen ? (
-    <button
-      className="btn btn-primary my-6 text-2xl absolute right-12"
-      onClick={handleExitFullscreen}
-    >
-      ⛶
-    </button>
-  ) : (
-    <button className="btn btn-primary my-6 text-2xl" onClick={setIsFullscreen}>
-      ⛶
-    </button>
-  );
-
   return (
     <div
       ref={maximizableElement}
-      className={`flex flex-row ${
-        isFullscreen ? 'flex-col-reverse content-end items-center pt-4 pl-4' : ''
-      }`}
+      className={clsx(
+        'flex flex-row',
+        isFullscreen && 'flex-col-reverse content-end items-center pt-4 pl-4'
+      )}
       style={{ backgroundColor: isFullscreen ? backgroundColor : '' }}
     >
       <div className="w-full overflow-auto">{children}</div>
       <div className="w-20 -ml-24 -mt-4">
         {errorMessage ? (
           <button
+            className="btn btn-primary my-6 text-2xl"
             onClick={() =>
               alert('Полноэкранный режим не поддерживается браузером, попробуйте другой браузер.')
             }
           >
             {errorMessage}
           </button>
+        ) : isFullscreen ? (
+          <button
+            className="btn btn-primary my-6 text-2xl absolute right-12"
+            onClick={() => document.exitFullscreen()}
+          >
+            ⛶
+          </button>
         ) : (
-          fullscreenButton
+          <button className="btn btn-primary my-6 text-2xl" onClick={setIsFullscreen}>
+            ⛶
+          </button>
         )}
       </div>
     </div>

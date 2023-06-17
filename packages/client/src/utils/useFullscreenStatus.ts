@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { TFsDocument, TFullScreenElementProp } from '@components/MaximizableView/types';
 
-const fsDoc: TFsDocument = document;
+const doc: TFsDocument = document;
 
-export const useFullscreenStatus = (elRef: React.RefObject<HTMLElement>) => {
-  const [isFullscreen, setIsFullscreen] = useState(
-    fsDoc[getBrowserFullscreenElementProp()] !== null
-  );
+export const useFullscreenStatus = (ref: React.RefObject<HTMLElement>) => {
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
 
   const setFullscreen = () => {
-    if (elRef.current === null) return;
+    if (ref.current === null) return;
 
-    elRef.current
+    ref.current
       .requestFullscreen()
       .then(() => {
-        setIsFullscreen(fsDoc[getBrowserFullscreenElementProp()] !== null);
+        setIsFullscreen(doc[getBrowserFullscreenElementProp()] !== null);
       })
       .catch(() => {
         setIsFullscreen(false);
@@ -24,7 +22,7 @@ export const useFullscreenStatus = (elRef: React.RefObject<HTMLElement>) => {
 
   React.useLayoutEffect(() => {
     document.onfullscreenchange = () =>
-      setIsFullscreen(fsDoc[getBrowserFullscreenElementProp()] !== null);
+      setIsFullscreen(doc[getBrowserFullscreenElementProp()] !== null);
 
     return () => {
       document.onfullscreenchange = null;
@@ -35,13 +33,13 @@ export const useFullscreenStatus = (elRef: React.RefObject<HTMLElement>) => {
 };
 
 function getBrowserFullscreenElementProp(): TFullScreenElementProp {
-  if (typeof fsDoc.fullscreenElement !== 'undefined') {
+  if (typeof doc.fullscreenElement !== 'undefined') {
     return 'fullscreenElement';
-  } else if (typeof fsDoc.mozFullScreenElement !== 'undefined') {
+  } else if (typeof doc.mozFullScreenElement !== 'undefined') {
     return 'mozFullScreenElement';
-  } else if (typeof fsDoc.msFullscreenElement !== 'undefined') {
+  } else if (typeof doc.msFullscreenElement !== 'undefined') {
     return 'msFullscreenElement';
-  } else if (typeof fsDoc.webkitFullscreenElement !== 'undefined') {
+  } else if (typeof doc.webkitFullscreenElement !== 'undefined') {
     return 'webkitFullscreenElement';
   } else {
     throw new Error('fullscreenElement не поддерживается вашим браузером');
