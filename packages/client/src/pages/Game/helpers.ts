@@ -1,17 +1,24 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH, Color, GAME_ENTITY_FONT, MOVE_STEP } from './constants';
+import {
+  CANVAS_HEIGHT,
+  CANVAS_WIDTH,
+  Color,
+  GAME_ENTITY_FONT,
+  MOVE_STEP,
+  assets,
+} from './constants';
 import { gameState } from './gameState';
 import { TDraw } from './types';
 
 const draw: TDraw = {
   space: (canvasContext) => {
     const img = new Image();
-    img.src = Color.SPACE_BACKGROUND_IMG;
+    img.src = assets.background;
     canvasContext.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   },
   enemies: (canvasContext) => {
     gameState.enemies.forEach((enemy) => {
       const img = new Image();
-      img.src = Color.ENEMY_ASTEROID_BODY;
+      img.src = assets.enemy;
       canvasContext.drawImage(img, enemy.x, enemy.y, enemy.points * 2, enemy.points * 2);
 
       canvasContext.font = GAME_ENTITY_FONT;
@@ -23,7 +30,7 @@ const draw: TDraw = {
     const { hole } = gameState;
 
     const img = new Image();
-    img.src = Color.HERO_BODY;
+    img.src = assets.hole;
 
     canvasContext.drawImage(img, hole.x, hole.y, hole.points * 2, hole.points * 2);
     canvasContext.beginPath();
