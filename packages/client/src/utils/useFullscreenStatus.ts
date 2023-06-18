@@ -6,6 +6,15 @@ const doc: TFsDocument = document;
 
 export const useFullscreenStatus = (ref: React.RefObject<HTMLElement>) => {
   const [isFullscreen, setIsFullscreen] = React.useState(false);
+  const [isFullscreenApiSupported, setIsFullscreenApiSupported] = React.useState(true);
+
+  React.useEffect(() => {
+    try {
+      doc[getBrowserFullscreenElementProp()];
+    } catch (e) {
+      setIsFullscreenApiSupported(false);
+    }
+  }, []);
 
   const setFullscreen = () => {
     if (ref.current === null) return;
@@ -29,7 +38,7 @@ export const useFullscreenStatus = (ref: React.RefObject<HTMLElement>) => {
     };
   });
 
-  return { isFullscreen, setFullscreen };
+  return { isFullscreen, setFullscreen, isFullscreenApiSupported };
 };
 
 function getBrowserFullscreenElementProp(): TFullScreenElementProp {

@@ -7,41 +7,21 @@ import { TMaximizableViewProps } from './types';
 
 export const MaximizableView: FC<TMaximizableViewProps> = ({ children, backgroundColor }) => {
   const maximizableElement = useRef(null);
-
-  let isFullscreen, setIsFullscreen;
-  let errorMessage;
-
-  try {
-    const fullscreen = useFullscreenStatus(maximizableElement);
-    setIsFullscreen = fullscreen.setFullscreen;
-    isFullscreen = fullscreen.isFullscreen;
-  } catch (e) {
-    errorMessage = '⛶';
-    isFullscreen = false;
-    setIsFullscreen = undefined;
-  }
+  const { isFullscreen, setFullscreen, isFullscreenApiSupported } =
+    useFullscreenStatus(maximizableElement);
 
   return (
     <div
       ref={maximizableElement}
       className={clsx(
         'flex flex-row',
-        isFullscreen && 'flex-col-reverse content-end items-center pt-4 pl-4'
+        isFullscreen && 'flex-col-reverse content-end items-center pl-4'
       )}
       style={{ backgroundColor: isFullscreen ? backgroundColor : '' }}
     >
-      <div className="w-full overflow-auto">{children}</div>
+      <div className="w-full h-full overflow-auto">{children}</div>
       <div className="w-20 -ml-24 -mt-4">
-        {errorMessage ? (
-          <button
-            className="btn btn-primary my-6 text-2xl"
-            onClick={() =>
-              alert('Полноэкранный режим не поддерживается браузером, попробуйте другой браузер.')
-            }
-          >
-            {errorMessage}
-          </button>
-        ) : isFullscreen ? (
+        {!isFullscreenApiSupported ? null : isFullscreen ? (
           <button
             className="btn btn-primary my-6 text-2xl absolute right-12"
             onClick={() => document.exitFullscreen()}
@@ -49,7 +29,7 @@ export const MaximizableView: FC<TMaximizableViewProps> = ({ children, backgroun
             ⛶
           </button>
         ) : (
-          <button className="btn btn-primary my-6 text-2xl" onClick={setIsFullscreen}>
+          <button className="btn btn-primary my-6 text-2xl" onClick={setFullscreen}>
             ⛶
           </button>
         )}

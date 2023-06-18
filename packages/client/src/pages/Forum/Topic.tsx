@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Header } from '@components/Header';
-import { MaximizableView } from '@components/MaximizableView/MaximizableView';
+import { MaximizableView } from '@components/MaximizableView';
 
 import { IMessagesTypes } from './types';
 
