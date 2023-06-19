@@ -6,17 +6,9 @@ const doc: TFsDocument = document;
 
 export const useFullscreenStatus = (ref: React.RefObject<HTMLElement>) => {
   const [isFullscreen, setIsFullscreen] = React.useState(false);
-  const [isFullscreenApiSupported, setIsFullscreenApiSupported] = React.useState(true);
+  const isFullscreenApiSupported = createInitialIsFullscreenApiSupported();
 
-  React.useEffect(() => {
-    try {
-      doc[getBrowserFullscreenElementProp()];
-    } catch (e) {
-      setIsFullscreenApiSupported(false);
-    }
-  }, []);
-
-  const setFullscreen = () => {
+  const setFullscreen = React.useCallback(() => {
     if (ref.current === null) return;
 
     ref.current
@@ -27,7 +19,7 @@ export const useFullscreenStatus = (ref: React.RefObject<HTMLElement>) => {
       .catch(() => {
         setIsFullscreen(false);
       });
-  };
+  }, [ref]);
 
   React.useLayoutEffect(() => {
     document.onfullscreenchange = () =>
@@ -39,6 +31,16 @@ export const useFullscreenStatus = (ref: React.RefObject<HTMLElement>) => {
   });
 
   return { isFullscreen, setFullscreen, isFullscreenApiSupported };
+};
+
+const createInitialIsFullscreenApiSupported = () => {
+  let isInitialApiSupported = true;
+  try {
+    doc[getBrowserFullscreenElementProp()];
+  } catch (e) {
+    isInitialApiSupported = false;
+  }
+  return isInitialApiSupported;
 };
 
 function getBrowserFullscreenElementProp(): TFullScreenElementProp {
