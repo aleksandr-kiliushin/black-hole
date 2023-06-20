@@ -18,47 +18,37 @@ export const Navbar: FC<TNavbarProps> = ({ orientation }) => {
       >
         <li>
           <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.HOME}>
-            Home
+            Главная
           </Link>
         </li>
         <li>
           <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.GAME}>
-            Game
-          </Link>
-        </li>
-        <li>
-          <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.GAME_START}>
-            Start Game
-          </Link>
-        </li>
-        <li>
-          <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.GAME_END}>
-            End Game
+            Играть
           </Link>
         </li>
         <li>
           <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.LEADERBOARD}>
-            Leaderboard
+            Лидеры
           </Link>
         </li>
         <li>
           <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.FORUM}>
-            Forum
+            Форум
           </Link>
         </li>
         <li>
           <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.PROFILE}>
-            Profile
+            Профиль
           </Link>
         </li>
         <li>
           <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.SIGN_IN}>
-            Login
+            Войти
           </Link>
         </li>
         <li>
           <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.SIGN_UP}>
-            Sign-up
+            Зарегистрироваться
           </Link>
         </li>
       </ul>
