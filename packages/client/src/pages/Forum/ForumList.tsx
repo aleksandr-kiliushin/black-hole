@@ -35,7 +35,7 @@ export const ForumList: FC = () => {
   const [theme] = useState<IThemeTypes[]>(testList);
 
   return (
-    <main style={{ width: 1280, margin: '50px auto' }}>
+    <div style={{ width: 1280, margin: '50px auto' }}>
       <h1 className="text-4xl py-3 text-slate-700">Сообщество {GAME_NAME}</h1>
       <div className="border-y border-slate-700 ">
         <div className="flex text-sm font-bold uppercase py-2 px-2">
@@ -66,6 +66,6 @@ export const ForumList: FC = () => {
           })}
         </div>
       </div>
-    </main>
+    </div>
   );
 };

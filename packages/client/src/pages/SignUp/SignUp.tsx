@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authApi } from '@api/authApi';
 
 import { FormButton } from '@components/FormButton';
-import { Header } from '@components/Header';
 import { Input } from '@components/Input';
 
 import {
@@ -75,7 +74,7 @@ export const SignUp: FC = () => {
   };
 
   return (
-    <main className="flex flex-col justify-center items-center h-screen w-full">
+    <div className="flex flex-col justify-center items-center h-screen w-full">
       <h1 className="text-4xl mb-8">Регистрация</h1>
       <form
         action="submit"
@@ -135,6 +134,6 @@ export const SignUp: FC = () => {
       <Link className="btn btn-secondary text-center mt-3" title="Войти" to="/sign-in">
         Войти
       </Link>
-    </main>
+    </div>
   );
 };

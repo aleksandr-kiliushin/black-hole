@@ -7,7 +7,6 @@ import { authActions, getAuthUserInfo } from '@store/slices/auth/authSlice';
 import { authApi } from '@api/authApi';
 
 import { FormButton } from '@components/FormButton';
-import { Header } from '@components/Header';
 import { Input } from '@components/Input';
 
 import { validateLogin, validatePassword } from '@utils/authFormValidation';
@@ -65,7 +64,7 @@ export const SignIn: FC = () => {
   }
 
   return (
-    <main className="flex flex-col justify-center items-center h-screen w-full">
+    <div className="flex flex-col justify-center items-center h-screen w-full">
       <h1 className="text-4xl mb-8">Войти</h1>
       <form
         action="submit"
@@ -99,6 +98,6 @@ export const SignIn: FC = () => {
       <Link className="btn btn-secondary text-center mt-3" title="Регистрация" to="/sign-up">
         Регистрация
       </Link>
-    </main>
+    </div>
   );
 };

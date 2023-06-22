@@ -5,7 +5,7 @@ pre-commit:
       run: yarn check-types
     lint:
       glob: '*.{ts,tsx}'
-      run: yarn eslint {staged_files}
+      run: yarn eslint {staged_files} --max-warnings=0
     prettier:
       glob: '*.{ts,tsx,css}'
       run: yarn prettier -w {staged_files}

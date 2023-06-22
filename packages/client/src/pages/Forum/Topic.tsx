@@ -49,7 +49,7 @@ export const Topic: FC = () => {
   const [comment, setComment] = useState('');
 
   return (
-    <main className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
+    <div className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
       <div className="flex justify-between">
         <Link to={'/forum/2wtqosme50/topics'}>
           <div className="hover:underline hover:cursor-pointer" onClick={window.history.back}>
@@ -106,6 +106,6 @@ export const Topic: FC = () => {
           </button>
         </form>
       </MaximizableView>
-    </main>
+    </div>
   );
 };

@@ -54,7 +54,7 @@ export const ChangePassword = () => {
 
   return (
     <div className="min-h-[calc(100vh-5.75rem)] max-w-4xl my-0 mx-auto p-8 bg-white relative border border-gray-300">
-      <main className="flex flex-col justify-center items-center w-full">
+      <div className="flex flex-col justify-center items-center w-full">
         <h1 className="text-4xl font-bold pb-14">Изменить пароль</h1>
         <form
           action="submit"
@@ -86,7 +86,7 @@ export const ChangePassword = () => {
             Сохранить
           </FormButton>
         </form>
-      </main>
+      </div>
     </div>
   );
 };

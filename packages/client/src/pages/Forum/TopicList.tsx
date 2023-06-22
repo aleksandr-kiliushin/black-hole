@@ -64,7 +64,7 @@ export const TopicList: FC = () => {
 
   return (
     <>
-      <main className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
+      <div className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
         <div className="w-full py-2 flex">
           <h1 className="w-10/12 text-3xl text-slate-700">Раздел: (название раздела)</h1>
           <button className="w-2/12 btn-primary" onClick={() => setIsNewTopicOpen(true)}>
@@ -106,7 +106,7 @@ export const TopicList: FC = () => {
             </div>
           );
         })}
-      </main>
+      </div>
       {isNewTopicOpen === true && <NewTopic setIsNewTopicOpen={setIsNewTopicOpen} />}
     </>
   );

@@ -6,8 +6,6 @@ import { authActions } from '@store/slices/auth/authSlice';
 
 import { authApi } from '@api/authApi';
 
-import { Header } from '@components/Header';
-
 import { useAppDispatch } from '@utils/useAppDispatch';
 
 import { RoutePaths } from '@src/providers/AppRouter/constants';
@@ -41,7 +39,7 @@ export const Profile = () => {
 
   return (
     <div className="min-h-[calc(100vh-1.75rem)] max-w-4xl my-0 mx-auto p-8 bg-white relative border border-gray-300">
-      <main className="flex flex-col justify-center items-center w-full">
+      <div className="flex flex-col justify-center items-center w-full">
         <Avatar avatar={userInfo?.avatar} fetchUserInfo={fetchUserInfo} />
         <FormChangeUserData fetchUserInfo={fetchUserInfo} userInfo={userInfo} />
         <Link
@@ -56,7 +54,7 @@ export const Profile = () => {
         >
           Выйти из профиля
         </button>
-      </main>
+      </div>
     </div>
   );
 };
