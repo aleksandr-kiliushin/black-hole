@@ -4,11 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { gameStatsSlice } from '@store/slices/gameStats/gameStatsSlice';
 import { TSetGameStatsPayload } from '@store/slices/gameStats/types';
 
-import { Header } from '@components/Header';
-
 import { useAppDispatch } from '@utils/useAppDispatch';
 
-import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
+import { RoutePaths } from '@src/providers/AppRouter/constants';
 
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from './constants';
 import { handleKeyDown } from './eventListeners';
@@ -59,10 +57,5 @@ export const Game: FC = () => {
     };
   }, []);
 
-  return (
-    <>
-      <Header />
-      <canvas height={CANVAS_HEIGHT} ref={canvasRef} width={CANVAS_WIDTH} />
-    </>
-  );
+  return <canvas height={CANVAS_HEIGHT} ref={canvasRef} width={CANVAS_WIDTH} />;
 };

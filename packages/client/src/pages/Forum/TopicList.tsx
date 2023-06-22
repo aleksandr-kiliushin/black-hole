@@ -1,8 +1,6 @@
 import { FC, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { Header } from '@components/Header';
-
 import { NewTopic } from './components/NewTopic';
 import { ITopicTypes } from './types';
 
@@ -66,7 +64,6 @@ export const TopicList: FC = () => {
 
   return (
     <>
-      <Header />
       <main className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
         <div className="w-full py-2 flex">
           <h1 className="w-10/12 text-3xl text-slate-700">Раздел: (название раздела)</h1>

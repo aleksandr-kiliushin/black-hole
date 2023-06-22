@@ -17,7 +17,7 @@ import {
 } from '@utils/authFormValidation';
 import { isNetworkError } from '@utils/isNetworkError';
 
-import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
+import { RoutePaths } from '@src/providers/AppRouter/constants';
 
 import { TFormValues } from './types';
 
@@ -75,69 +75,66 @@ export const SignUp: FC = () => {
   };
 
   return (
-    <>
-      <Header />
-      <main className="flex flex-col justify-center items-center h-screen w-full">
-        <h1 className="text-4xl mb-8">Регистрация</h1>
-        <form
-          action="submit"
-          className="flex flex-col items-center justify-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2"
-          noValidate
-          onSubmit={handleSubmit(onSubmit)}
+    <main className="flex flex-col justify-center items-center h-screen w-full">
+      <h1 className="text-4xl mb-8">Регистрация</h1>
+      <form
+        action="submit"
+        className="flex flex-col items-center justify-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2"
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Input
+          className="text-xs p-0.5 text-xs"
+          label="Имя"
+          validationError={nameError?.message}
+          {...register('first_name', { validate: validateNames })}
+        />
+        <Input
+          className="text-xs p-0.5 text-xs"
+          label="Фамилия"
+          validationError={surnameError?.message}
+          {...register('second_name', { validate: validateNames })}
+        />
+        <Input
+          className="text-xs p-0.5 text-xs"
+          label="Логин"
+          validationError={loginError?.message}
+          {...register('login', { validate: validateLogin })}
+        />
+        <Input
+          className="text-xs p-0.5 text-xs"
+          label="Email"
+          type="email"
+          validationError={emailError?.message}
+          {...register('email', { validate: validateEmail })}
+        />
+        <Input
+          className="text-xs p-0.5 text-xs"
+          label="Пароль"
+          type="password"
+          validationError={passwordError?.message}
+          {...register('password', { validate: validatePassword })}
+        />
+        <Input
+          className="text-xs p-0.5 text-xs"
+          label="Телефон"
+          type="phone"
+          validationError={phoneError?.message}
+          {...register('phone', { validate: validatePhone })}
+        />
+        <FormButton
+          className="w-full px-3 py-2 mt-3"
+          containerClassName="w-full mt-5"
+          disabled={isSubmitting}
+          error={root?.message}
+          type="submit"
         >
-          <Input
-            className="text-xs p-0.5 text-xs"
-            label="Имя"
-            validationError={nameError?.message}
-            {...register('first_name', { validate: validateNames })}
-          />
-          <Input
-            className="text-xs p-0.5 text-xs"
-            label="Фамилия"
-            validationError={surnameError?.message}
-            {...register('second_name', { validate: validateNames })}
-          />
-          <Input
-            className="text-xs p-0.5 text-xs"
-            label="Логин"
-            validationError={loginError?.message}
-            {...register('login', { validate: validateLogin })}
-          />
-          <Input
-            className="text-xs p-0.5 text-xs"
-            label="Email"
-            type="email"
-            validationError={emailError?.message}
-            {...register('email', { validate: validateEmail })}
-          />
-          <Input
-            className="text-xs p-0.5 text-xs"
-            label="Пароль"
-            type="password"
-            validationError={passwordError?.message}
-            {...register('password', { validate: validatePassword })}
-          />
-          <Input
-            className="text-xs p-0.5 text-xs"
-            label="Телефон"
-            type="phone"
-            validationError={phoneError?.message}
-            {...register('phone', { validate: validatePhone })}
-          />
-          <FormButton
-            className="w-full px-3 py-2 mt-3"
-            containerClassName="w-full mt-5"
-            disabled={isSubmitting}
-            error={root?.message}
-            type="submit"
-          >
-            Зарегистрироваться
-          </FormButton>
-        </form>
-        <Link className="btn btn-secondary text-center mt-3" title="Войти" to="/sign-in">
-          Войти
-        </Link>
-      </main>
-    </>
+          Зарегистрироваться
+        </FormButton>
+      </form>
+      <Link className="btn btn-secondary text-center mt-3" title="Войти" to="/sign-in">
+        Войти
+      </Link>
+    </main>
   );
 };

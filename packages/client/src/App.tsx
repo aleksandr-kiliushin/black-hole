@@ -9,7 +9,7 @@ import { useIsOnline } from '@utils/isOnline';
 import { useAppDispatch } from '@utils/useAppDispatch';
 import { useAppSelector } from '@utils/useAppSelector';
 
-import { AppRouter } from './providers/Router';
+import { AppRouter } from './providers/AppRouter';
 
 export const App: FC = () => {
   const isInitiated = useAppSelector((state) => state.auth.isInitiated);
