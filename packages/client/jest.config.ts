@@ -10,5 +10,6 @@ module.exports = {
   },
   moduleNameMapper: {
     '^@pages/(.*)$': '<rootDir>/src/pages/$1',
+    '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/src/__mocks__/fileMocks.ts',
   },
 };

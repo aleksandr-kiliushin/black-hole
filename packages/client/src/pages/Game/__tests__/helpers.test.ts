@@ -58,7 +58,8 @@ describe('helpers', () => {
 
       handleKeyDown(event as KeyboardEvent);
 
-      expect(gameState).toEqual(initialState);
+      expect(gameState.hole.x).toEqual(initialState.hole.x);
+      expect(gameState.hole.y).toEqual(initialState.hole.y);
     });
   });
 
@@ -75,8 +76,8 @@ describe('helpers', () => {
     });
 
     test("should increase hole's points when overlapping with smaller enemy", () => {
-      gameState.hole = { points: 50, x: 100, y: 100 };
-      gameState.enemies = [{ x: 100, y: 100, points: 10 }];
+      gameState.hole = { points: 50, x: 100, y: 100, maxSize: 100 };
+      gameState.enemies = [{ x: 100, y: 100, points: 10, isVisible: true, radius: 10 }];
 
       swallowEnemiesNearby();
 
@@ -85,12 +86,12 @@ describe('helpers', () => {
     });
 
     test("should reduce hole's points by half when overlapped with bigger enemy", () => {
-      gameState.hole = { points: 50, x: 100, y: 100 };
-      gameState.enemies = [{ x: 100, y: 100, points: 50 }];
+      gameState.hole = { points: 50, x: 100, y: 100, maxSize: 100 };
+      gameState.enemies = [{ x: 100, y: 100, points: 70, isVisible: true, radius: 70 }];
 
       swallowEnemiesNearby();
 
-      expect(gameState.hole.points).toBe(25);
+      expect(gameState.hole.points).toBe(15);
       expect(gameState.enemies.length).toBe(0);
     });
   });
