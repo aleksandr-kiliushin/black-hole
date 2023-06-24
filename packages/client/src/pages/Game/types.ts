@@ -11,6 +11,7 @@ export type TGameEntity = {
   angle: number;
   rotationSpeed: number;
   rotationDirection: number;
+  backgroundPath: string;
 };
 
 type TGameBackgrounds = {

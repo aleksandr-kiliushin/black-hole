@@ -40,7 +40,7 @@ const draw: TDraw = {
     ctx.fill();
 
     const img = new Image();
-    img.src = assets.hole;
+    img.src = hole.backgroundPath;
     ctx.drawImage(
       img,
       hole.x - HOLE_RADIUS,
@@ -101,7 +101,7 @@ const draw: TDraw = {
       ctx.fill();
 
       const img = new Image();
-      img.src = assets.enemy;
+      img.src = enemy.backgroundPath;
       ctx.drawImage(
         img,
         enemy.x - enemy.radius,

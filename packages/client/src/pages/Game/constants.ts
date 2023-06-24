@@ -1,9 +1,11 @@
-import { getRandomArrayItem } from '@utils/getRandomArrayItem';
-
 import enemy1 from '../../assets/images/enemy/enemy-1.png';
+import enemy2 from '../../assets/images/enemy/enemy-2.png';
+import enemy3 from '../../assets/images/enemy/enemy-3.png';
+import enemy4 from '../../assets/images/enemy/enemy-4.png';
+import enemy5 from '../../assets/images/enemy/enemy-5.png';
+import enemy6 from '../../assets/images/enemy/enemy-6.png';
+import enemy7 from '../../assets/images/enemy/enemy-7.png';
 import background from '../../assets/images/game-backgrounds/background.jpg';
-import hero1 from '../../assets/images/hero/hero-1.png';
-import hero2 from '../../assets/images/hero/hero-2.png';
 
 export const NAVBAR_HEIGHT = 80;
 export const CANVAS_WIDTH = window.innerWidth;
@@ -21,12 +23,9 @@ export const HOLE_RADIUSES_PADDING = 4;
 export const MOVE_STEP = 10;
 export const GAME_ENTITY_FONT = '16px Comic Sans MS';
 
-const heroAssets = [hero1, hero2];
-
 export const assets = {
-  hole: getRandomArrayItem(heroAssets) as string,
   background,
-  enemy: enemy1,
+  enemy: [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7],
 };
 
 export enum Color {

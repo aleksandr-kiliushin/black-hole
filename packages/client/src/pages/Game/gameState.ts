@@ -1,5 +1,6 @@
 import { CANVAS_WIDTH } from '@pages/Game/constants';
 
+import hole from '../../assets/images/hero/blackhole.png';
 import { TGameState } from './types';
 
 const initialState: TGameState = {
@@ -11,6 +12,7 @@ const initialState: TGameState = {
     angle: 0,
     rotationDirection: Math.random() < 0.5 ? 1 : -1,
     rotationSpeed: Math.random() * 0.01,
+    backgroundPath: hole,
   },
   background: {
     backgroundX1: -CANVAS_WIDTH,

@@ -1,3 +1,4 @@
+import { getRandomArrayItem } from '@utils/getRandomArrayItem';
 import { getRandomInt } from '@utils/getRandomInt';
 
 import {
@@ -7,6 +8,7 @@ import {
   MAX_RATIO_TO_HOLE,
   MIN_NUMBER_OF_ENEMIES,
   MIN_RATIO_TO_HOLE,
+  assets,
 } from './constants';
 import { gameState } from './gameState';
 import { TEnemy } from './types';
@@ -49,6 +51,7 @@ function generateRandomEnemy(): TEnemy {
     angle: 0,
     rotationDirection: getRandomInt(0, 100) < 50 ? 1 : -1,
     rotationSpeed: Math.random() * 0.01,
+    backgroundPath: getRandomArrayItem(assets.enemy) as string,
   };
 
   let hasOverlap = doOverlap({

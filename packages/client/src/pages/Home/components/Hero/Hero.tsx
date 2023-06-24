@@ -1,13 +1,8 @@
 import { FC } from 'react';
 
-import { getRandomArrayItem } from '@utils/getRandomArrayItem';
-
 import { GAME_NAME } from '@constants';
 
-import blackHole1 from '@assets/images/hero/hero-1.png';
-import blackHole2 from '@assets/images/hero/hero-2.png';
-
-const blackHoleAssets = [blackHole1, blackHole2];
+import hero from '@assets/images/hero/blackhole.png';
 
 export const Hero: FC = () => {
   return (
@@ -21,11 +16,7 @@ export const Hero: FC = () => {
           больше. Ваше космическое путешествие начинается прямо сейчас!
         </p>
       </div>
-      <img
-        alt={GAME_NAME}
-        className="w-full md:w-60 max-w-xs animate-spin"
-        src={getRandomArrayItem(blackHoleAssets) as string}
-      />
+      <img alt={GAME_NAME} className="w-full md:w-60 max-w-xs animate-spin" src={hero} />
     </section>
   );
 };
