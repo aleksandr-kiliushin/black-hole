@@ -29,7 +29,6 @@ const people = [
 export const Leaderboard: FC = () => {
   return (
     <>
-      <Header />
       <h1 className="font-extrabold text-4xl">Leaderboard</h1>
       <ul className="divide-y divide-gray-200">
         {people.map((person, i) => (

@@ -1,22 +1,25 @@
 import clsx from 'clsx';
-import { FC, useRef } from 'react';
+import { FC, PropsWithChildren, useRef } from 'react';
 
 import { useFullscreenStatus } from '@utils/useFullscreenStatus';
 
 import { TMaximizableViewProps } from './types';
 
-export const MaximizableView: FC<TMaximizableViewProps> = ({ children, backgroundColor }) => {
+export const MaximizableView: FC<PropsWithChildren<TMaximizableViewProps>> = ({
+  children,
+  backgroundColor,
+}) => {
   const maximizableElement = useRef(null);
   const { isFullscreen, setFullscreen, isFullscreenApiSupported } =
     useFullscreenStatus(maximizableElement);
 
   return (
     <div
-      ref={maximizableElement}
       className={clsx(
         'flex flex-row',
         isFullscreen && 'flex-col-reverse content-end items-center pl-4'
       )}
+      ref={maximizableElement}
       style={{ backgroundColor: isFullscreen ? backgroundColor : '' }}
     >
       <div className="w-full h-full overflow-auto">{children}</div>

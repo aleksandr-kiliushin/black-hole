@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { FormButton } from '@components/FormButton';
-import { Header } from '@components/Header';
 import { Input } from '@components/Input';
 
 import { validatePassword } from '@utils/authFormValidation';
@@ -54,43 +53,40 @@ export const ChangePassword = () => {
   };
 
   return (
-    <>
-      <Header />
-      <div className="min-h-[calc(100vh-5.75rem)] max-w-4xl my-0 mx-auto p-8 bg-white relative border border-gray-300">
-        <main className="flex flex-col justify-center items-center w-full">
-          <h1 className="text-4xl font-bold pb-14">Изменить пароль</h1>
-          <form
-            action="submit"
-            className="flex flex-col items-center justify-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2"
-            noValidate
-            onSubmit={handleSubmit(onSubmit)}
+    <div className="min-h-[calc(100vh-5.75rem)] max-w-4xl my-0 mx-auto p-8 bg-white relative border border-gray-300">
+      <div className="flex flex-col justify-center items-center w-full">
+        <h1 className="text-4xl font-bold pb-14">Изменить пароль</h1>
+        <form
+          action="submit"
+          className="flex flex-col items-center justify-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2"
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <Input
+            className="text-xs p-0.5"
+            label="Старый пароль"
+            type="password"
+            validationError={oldPasswordError?.message}
+            {...register('oldPassword', { validate: validatePassword })}
+          />
+          <Input
+            className="text-xs p-0.5"
+            label="Новый пароль"
+            type="password"
+            validationError={newPasswordError?.message}
+            {...register('newPassword', { validate: validatePassword })}
+          />
+          <FormButton
+            className="w-full"
+            containerClassName="w-full mt-5"
+            disabled={isSubmitting}
+            error={root?.message}
+            type="submit"
           >
-            <Input
-              className="text-xs p-0.5"
-              label="Старый пароль"
-              type="password"
-              validationError={oldPasswordError?.message}
-              {...register('oldPassword', { validate: validatePassword })}
-            />
-            <Input
-              className="text-xs p-0.5"
-              label="Новый пароль"
-              type="password"
-              validationError={newPasswordError?.message}
-              {...register('newPassword', { validate: validatePassword })}
-            />
-            <FormButton
-              className="w-full"
-              containerClassName="w-full mt-5"
-              disabled={isSubmitting}
-              error={root?.message}
-              type="submit"
-            >
-              Сохранить
-            </FormButton>
-          </form>
-        </main>
+            Сохранить
+          </FormButton>
+        </form>
       </div>
-    </>
+    </div>
   );
 };

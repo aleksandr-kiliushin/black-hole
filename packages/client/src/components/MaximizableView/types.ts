@@ -1,7 +1,4 @@
-import { ReactNode } from 'react';
-
 export type TMaximizableViewProps = {
-  children: ReactNode;
   backgroundColor: string;
 };
 

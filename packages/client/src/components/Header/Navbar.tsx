@@ -2,11 +2,18 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
+import { useAppSelector } from '@utils/useAppSelector';
 
+import { navigationItems } from './navigationItems';
 import { TNavbarProps } from './types';
 
 export const Navbar: FC<TNavbarProps> = ({ orientation }) => {
+  const authorizedUser = useAppSelector((state) => state.auth.authorizedUser);
+
+  const _navigationItems = authorizedUser
+    ? navigationItems.forAuthenticatedUsers
+    : navigationItems.forNotAuthenticatedUsers;
+
   return (
     <nav>
       <ul
@@ -16,41 +23,13 @@ export const Navbar: FC<TNavbarProps> = ({ orientation }) => {
           orientation === 'horizontal' && 'hidden sm:flex'
         )}
       >
-        <li>
-          <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.HOME}>
-            Главная
-          </Link>
-        </li>
-        <li>
-          <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.GAME}>
-            Играть
-          </Link>
-        </li>
-        <li>
-          <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.LEADERBOARD}>
-            Лидеры
-          </Link>
-        </li>
-        <li>
-          <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.FORUM}>
-            Форум
-          </Link>
-        </li>
-        <li>
-          <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.PROFILE}>
-            Профиль
-          </Link>
-        </li>
-        <li>
-          <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.SIGN_IN}>
-            Войти
-          </Link>
-        </li>
-        <li>
-          <Link className="text-blue-600 hover:text-blue-400" to={RoutePaths.SIGN_UP}>
-            Зарегистрироваться
-          </Link>
-        </li>
+        {_navigationItems.map((navigationItem) => (
+          <li key={navigationItem.url}>
+            <Link className="text-blue-600 hover:text-blue-400" to={navigationItem.url}>
+              {navigationItem.text}
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );

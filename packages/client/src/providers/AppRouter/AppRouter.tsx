@@ -14,6 +14,8 @@ import { Profile } from '@pages/Profile';
 import { SignIn } from '@pages/SignIn';
 import { SignUp } from '@pages/SignUp';
 
+import { Header } from '@components/Header';
+
 import { RequireAuth } from './RequireAuth';
 import { RoutePaths } from './constants';
 import { AppRoutes, TAppRouteProps } from './types';
@@ -84,7 +86,12 @@ const routeConfig: Record<AppRoutes, TAppRouteProps> = {
 };
 
 const renderWithWrapper = (route: TAppRouteProps) => {
-  const element = <>{route.element}</>;
+  const element = (
+    <>
+      <Header />
+      <main className="mt-20 overflow-y-scroll">{route.element}</main>
+    </>
+  );
 
   return (
     <Route
