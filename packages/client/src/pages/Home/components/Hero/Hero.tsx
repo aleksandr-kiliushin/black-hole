@@ -23,7 +23,7 @@ export const Hero: FC = () => {
       </div>
       <img
         alt={GAME_NAME}
-        className="w-full md:w-60 max-w-xs"
+        className="w-full md:w-60 max-w-xs animate-spin"
         src={getRandomArrayItem(blackHoleAssets) as string}
       />
     </section>
