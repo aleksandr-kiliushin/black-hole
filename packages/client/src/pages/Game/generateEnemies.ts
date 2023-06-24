@@ -1,3 +1,5 @@
+import { getRandomInt } from '@utils/getRandomInt';
+
 import {
   CANVAS_HEIGHT,
   CANVAS_WIDTH,
@@ -8,7 +10,7 @@ import {
 } from './constants';
 import { gameState } from './gameState';
 import { TEnemy } from './types';
-import { doOverlap, getRandomInt } from './utils';
+import { doOverlap } from './utils';
 
 export function generateEnemies() {
   const numberOfVisibleEnemies = gameState.enemies.reduce((prev, curr) => {
