@@ -1,6 +1,3 @@
-import { getRandomArrayItem } from '@utils/getRandomArrayItem';
-import { getRandomInt } from '@utils/getRandomInt';
-
 import {
   CANVAS_HEIGHT,
   CANVAS_WIDTH,
@@ -9,10 +6,13 @@ import {
   MIN_NUMBER_OF_ENEMIES,
   MIN_RATIO_TO_HOLE,
   assets,
-} from './constants';
-import { gameState } from './gameState';
-import { TEnemy } from './types';
-import { doOverlap } from './utils';
+} from '@pages/Game/constants';
+import { doOverlap } from '@pages/Game/helpers/utils';
+import { gameState } from '@pages/Game/state/gameState';
+import { TEnemy } from '@pages/Game/types';
+
+import { getRandomArrayItem } from '@utils/getRandomArrayItem';
+import { getRandomInt } from '@utils/getRandomInt';
 
 export function generateEnemies() {
   const numberOfVisibleEnemies = gameState.enemies.reduce((prev, curr) => {

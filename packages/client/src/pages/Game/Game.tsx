@@ -9,9 +9,9 @@ import { useAppDispatch } from '@utils/useAppDispatch';
 import { RoutePaths } from '@src/providers/AppRouter/constants';
 
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from './constants';
-import { handleKeyDown } from './eventListeners';
-import { gameState, resetGameState } from './gameState';
-import { requestAnimation } from './mainEntry';
+import { handleKeyDown } from './helpers/eventListeners';
+import { requestAnimation } from './helpers/mainEntry';
+import { gameState, resetGameState } from './state/gameState';
 import { TOnGameEnd } from './types';
 
 export const Game: FC = () => {

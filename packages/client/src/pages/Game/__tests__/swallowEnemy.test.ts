@@ -1,13 +1,33 @@
-import { gameState, resetGameState } from '@pages/Game/gameState';
-import { swallowEnemy } from '@pages/Game/swallowEnemy';
+import { swallowEnemy } from '@pages/Game/helpers/swallowEnemy';
+import { gameState, resetGameState } from '@pages/Game/state/gameState';
 
 describe('swallowEnemy', () => {
   describe('swallowEnemy', () => {
     beforeEach(() => {
       resetGameState();
       gameState.enemies = [
-        { x: 0, y: 0, points: 0, isVisible: true, radius: 0 },
-        { x: 0, y: 0, points: 0, isVisible: true, radius: 0 },
+        {
+          x: 0,
+          y: 0,
+          points: 0,
+          isVisible: true,
+          radius: 0,
+          angle: 0,
+          rotationSpeed: 1,
+          rotationDirection: 1,
+          backgroundPath: '',
+        },
+        {
+          x: 0,
+          y: 0,
+          points: 0,
+          isVisible: true,
+          radius: 0,
+          angle: 0,
+          rotationSpeed: 1,
+          rotationDirection: 1,
+          backgroundPath: '',
+        },
       ];
     });
 

@@ -1,4 +1,4 @@
-import { TGameEntity } from './types';
+import { TGameEntity } from '../types';
 
 export function doOverlap({
   en1,

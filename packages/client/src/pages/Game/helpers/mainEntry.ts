@@ -5,10 +5,10 @@ import {
   GAME_ENTITY_FONT,
   HOLE_RADIUS,
   assets,
-} from './constants';
-import { gameState } from './gameState';
+} from '../constants';
+import { gameState } from '../state/gameState';
+import { TDraw } from '../types';
 import { generateEnemies } from './generateEnemies';
-import { TDraw } from './types';
 
 const draw: TDraw = {
   space: (ctx) => {

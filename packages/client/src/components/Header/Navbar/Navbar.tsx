@@ -2,9 +2,10 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
+import { navigationItems } from '@components/Header/navigationItems';
+
 import { useAppSelector } from '@utils/useAppSelector';
 
-import { navigationItems } from './navigationItems';
 import { TNavbarProps } from './types';
 
 export const Navbar: FC<TNavbarProps> = ({ orientation }) => {

@@ -1,5 +1,7 @@
+import { doOverlap } from '@pages/Game/helpers/utils';
 import { TGameEntity } from '@pages/Game/types';
-import { doOverlap, getRandomInt } from '@pages/Game/utils';
+
+import { getRandomInt } from '@utils/getRandomInt';
 
 describe('utils', () => {
   describe('getRandomInt', () => {
@@ -45,8 +47,24 @@ describe('utils', () => {
 
   describe('doOverlap', () => {
     test('should return true when the two entities overlap', () => {
-      const entity1: TGameEntity = { x: 0, y: 0, points: 0 };
-      const entity2: TGameEntity = { x: 5, y: 5, points: 0 };
+      const entity1: TGameEntity = {
+        x: 0,
+        y: 0,
+        points: 0,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
+      const entity2: TGameEntity = {
+        x: 5,
+        y: 5,
+        points: 0,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
       const radius1 = 5;
       const radius2 = 5;
 
@@ -56,8 +74,24 @@ describe('utils', () => {
     });
 
     test('should return false when the two entities do not overlap', () => {
-      const entity1: TGameEntity = { x: 0, y: 0, points: 0 };
-      const entity2: TGameEntity = { x: 10, y: 10, points: 0 };
+      const entity1: TGameEntity = {
+        x: 0,
+        y: 0,
+        points: 0,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
+      const entity2: TGameEntity = {
+        x: 10,
+        y: 10,
+        points: 0,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
       const radius1 = 5;
       const radius2 = 5;
 
@@ -67,8 +101,24 @@ describe('utils', () => {
     });
 
     test('should return true when one entity is completely inside the other', () => {
-      const entity1: TGameEntity = { x: 0, y: 0, points: 0 };
-      const entity2: TGameEntity = { x: 2, y: 2, points: 0 };
+      const entity1: TGameEntity = {
+        x: 0,
+        y: 0,
+        points: 0,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
+      const entity2: TGameEntity = {
+        x: 2,
+        y: 2,
+        points: 0,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
       const radius1 = 5;
       const radius2 = 1;
 
@@ -78,8 +128,24 @@ describe('utils', () => {
     });
 
     test('should return true when the entities are exactly on top of each other', () => {
-      const entity1: TGameEntity = { x: 0, y: 0, points: 0 };
-      const entity2: TGameEntity = { x: 0, y: 0, points: 0 };
+      const entity1: TGameEntity = {
+        x: 0,
+        y: 0,
+        points: 0,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
+      const entity2: TGameEntity = {
+        x: 0,
+        y: 0,
+        points: 0,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
       const radius1 = 5;
       const radius2 = 5;
 
@@ -89,8 +155,24 @@ describe('utils', () => {
     });
 
     test('should return false when the entities are not overlapping but their radii touch', () => {
-      const entity1: TGameEntity = { x: 0, y: 0, points: 0 };
-      const entity2: TGameEntity = { x: 10, y: 10, points: 0 };
+      const entity1: TGameEntity = {
+        x: 0,
+        y: 0,
+        points: 0,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
+      const entity2: TGameEntity = {
+        x: 10,
+        y: 10,
+        points: 0,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
       const radius1 = 5;
       const radius2 = 5;
 

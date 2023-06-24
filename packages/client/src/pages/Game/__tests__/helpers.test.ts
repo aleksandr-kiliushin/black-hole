@@ -1,6 +1,6 @@
 import { MOVE_STEP } from '@pages/Game/constants';
-import { gameState } from '@pages/Game/gameState';
-import { handleKeyDown, swallowEnemiesNearby } from '@pages/Game/helpers';
+import { handleKeyDown, swallowEnemiesNearby } from '@pages/Game/helpers/helpers';
+import { gameState } from '@pages/Game/state/gameState';
 import { TGameState } from '@pages/Game/types';
 
 describe('helpers', () => {
@@ -76,8 +76,29 @@ describe('helpers', () => {
     });
 
     test("should increase hole's points when overlapping with smaller enemy", () => {
-      gameState.hole = { points: 50, x: 100, y: 100, maxSize: 100 };
-      gameState.enemies = [{ x: 100, y: 100, points: 10, isVisible: true, radius: 10 }];
+      gameState.hole = {
+        points: 50,
+        x: 100,
+        y: 100,
+        maxSize: 100,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
+      gameState.enemies = [
+        {
+          x: 100,
+          y: 100,
+          points: 10,
+          isVisible: true,
+          radius: 10,
+          angle: 0,
+          rotationSpeed: 1,
+          rotationDirection: 1,
+          backgroundPath: '',
+        },
+      ];
 
       swallowEnemiesNearby();
 
@@ -86,8 +107,29 @@ describe('helpers', () => {
     });
 
     test("should reduce hole's points by half when overlapped with bigger enemy", () => {
-      gameState.hole = { points: 50, x: 100, y: 100, maxSize: 100 };
-      gameState.enemies = [{ x: 100, y: 100, points: 70, isVisible: true, radius: 70 }];
+      gameState.hole = {
+        points: 50,
+        x: 100,
+        y: 100,
+        maxSize: 100,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      };
+      gameState.enemies = [
+        {
+          x: 100,
+          y: 100,
+          points: 70,
+          isVisible: true,
+          radius: 70,
+          angle: 0,
+          rotationSpeed: 1,
+          rotationDirection: 1,
+          backgroundPath: '',
+        },
+      ];
 
       swallowEnemiesNearby();
 

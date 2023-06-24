@@ -7,9 +7,9 @@ import {
   GAME_ENTITY_FONT,
   MOVE_STEP,
   assets,
-} from './constants';
-import { gameState } from './gameState';
-import { TDraw } from './types';
+} from '../constants';
+import { gameState } from '../state/gameState';
+import { TDraw } from '../types';
 
 const draw: TDraw = {
   space: (canvasContext) => {

@@ -1,21 +1,42 @@
-import { moveEnemiesX, switchEnemyVisibility } from '@pages/Game/enemiesHandlers';
-import { gameState } from '@pages/Game/gameState';
+import { moveEnemiesX, switchEnemyVisibility } from '@pages/Game/helpers/enemiesHandlers';
+import { gameState } from '@pages/Game/state/gameState';
+import { TEnemy } from '@pages/Game/types';
 
 describe('moveEnemiesX', () => {
   beforeEach(() => {
     gameState.enemies = [
-      { x: 0, y: 0, points: 100, isVisible: true, radius: 15 },
-      { x: 10, y: 10, points: 75, isVisible: true, radius: 10 },
+      {
+        x: 0,
+        y: 0,
+        points: 100,
+        isVisible: true,
+        radius: 15,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      },
+      {
+        x: 10,
+        y: 10,
+        points: 75,
+        isVisible: true,
+        radius: 10,
+        angle: 0,
+        rotationSpeed: 1,
+        rotationDirection: 1,
+        backgroundPath: '',
+      },
     ];
   });
 
   test('should move enemies along the X-axis', () => {
     const step = 5;
-    const initialXCoordinates = gameState.enemies.map((enemy) => enemy.x);
+    const initialXCoordinates = gameState.enemies.map((enemy: TEnemy) => enemy.x);
 
     moveEnemiesX(step);
 
-    gameState.enemies.forEach((enemy, index) => {
+    gameState.enemies.forEach((enemy: TEnemy, index: number) => {
       expect(enemy.x).toBe(initialXCoordinates[index] + step);
     });
   });
@@ -31,6 +52,10 @@ describe('switchEnemyVisibility', () => {
       points: 0,
       isVisible: true,
       radius: 10,
+      angle: 0,
+      rotationSpeed: 1,
+      rotationDirection: 1,
+      backgroundPath: '',
     };
 
     switchEnemyVisibility(enemy);
@@ -45,6 +70,10 @@ describe('switchEnemyVisibility', () => {
       points: 0,
       isVisible: true,
       radius: 10,
+      angle: 0,
+      rotationSpeed: 1,
+      rotationDirection: 1,
+      backgroundPath: '',
     };
 
     switchEnemyVisibility(enemy);
@@ -59,6 +88,10 @@ describe('switchEnemyVisibility', () => {
       points: 0,
       isVisible: false,
       radius: 10,
+      angle: 0,
+      rotationSpeed: 1,
+      rotationDirection: 1,
+      backgroundPath: '',
     };
 
     switchEnemyVisibility(enemy);
