@@ -3,6 +3,7 @@ import { FC, useEffect } from 'react';
 
 import { authActions, getAuthUserInfo } from '@store/slices/auth/authSlice';
 
+import { Background } from '@components/Background';
 import { NoInternetConnectionNotification } from '@components/NoInternetConnectionNotification';
 
 import { useIsOnline } from '@utils/isOnline';
@@ -29,8 +30,15 @@ export const App: FC = () => {
   return (
     <>
       <NoInternetConnectionNotification />
-      <div className={clsx(!isOnline && 'grayscale')}>
-        <AppRouter />
+      <div
+        className={clsx({
+          grayscale: !isOnline,
+        })}
+      >
+        <Background />
+        <div className="relative z-1">
+          <AppRouter />
+        </div>
       </div>
     </>
   );

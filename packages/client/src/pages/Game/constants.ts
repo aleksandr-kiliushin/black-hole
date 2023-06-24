@@ -1,6 +1,9 @@
-import Enemy_sprite from '../../assets/images/enemy_1.png';
-import Background from '../../assets/images/game_bg.jpg';
-import Hole_sprite from '../../assets/images/hole.webp';
+import { getRandomArrayItem } from '@utils/getRandomArrayItem';
+
+import enemy1 from '../../assets/images/enemy/enemy-1.png';
+import background from '../../assets/images/game-backgrounds/background.jpg';
+import hero1 from '../../assets/images/hero/hero-1.png';
+import hero2 from '../../assets/images/hero/hero-2.png';
 
 export const NAVBAR_HEIGHT = 80;
 export const CANVAS_WIDTH = window.innerWidth;
@@ -18,13 +21,15 @@ export const HOLE_RADIUSES_PADDING = 4;
 export const MOVE_STEP = 10;
 export const GAME_ENTITY_FONT = '16px Comic Sans MS';
 
+const heroAssets = [hero1, hero2];
+
 export const assets = {
-  hole: Hole_sprite,
-  background: Background,
-  enemy: Enemy_sprite,
+  hole: getRandomArrayItem(heroAssets) as string,
+  background,
+  enemy: enemy1,
 };
 
 export enum Color {
-  ENEMY_POINTS_TEXT = 'red',
+  ENEMY_POINTS_TEXT = 'yellow',
   HERO_POINTS_TEXT = 'white',
 }

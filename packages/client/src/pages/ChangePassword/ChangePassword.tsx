@@ -53,12 +53,12 @@ export const ChangePassword = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-5.75rem)] max-w-4xl my-0 mx-auto p-8 bg-white relative border border-gray-300">
+    <div className="p-8 relative overlay my-6 page-container">
       <div className="flex flex-col justify-center items-center w-full">
         <h1 className="text-4xl font-bold pb-14">Изменить пароль</h1>
         <form
           action="submit"
-          className="flex flex-col items-center justify-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2"
+          className="flex flex-col items-center justify-center w-full max-w-md gap-y-2"
           noValidate
           onSubmit={handleSubmit(onSubmit)}
         >

@@ -49,7 +49,7 @@ export const Topic: FC = () => {
   const [comment, setComment] = useState('');
 
   return (
-    <div className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
+    <div className="font-mono overlay page-container my-6">
       <div className="flex justify-between">
         <Link to={'/forum/2wtqosme50/topics'}>
           <div className="hover:underline hover:cursor-pointer" onClick={window.history.back}>
@@ -64,8 +64,8 @@ export const Topic: FC = () => {
             return (
               <div className="py-2 px-2 border-b-2 border-black" key={id}>
                 <div className="flex justify-between">
-                  <div className="text-indigo-500">#{index + 1}</div>
-                  <div className="text-gray-700">{time}</div>
+                  <div className="text-blue-400">#{index + 1}</div>
+                  <div>{time}</div>
                 </div>
                 <div className="flex">
                   <div className="flex flex-col items-center justify-center w-2/12">

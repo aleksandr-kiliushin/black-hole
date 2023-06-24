@@ -44,6 +44,9 @@ function generateRandomEnemy(): TEnemy {
     radius,
     x,
     y,
+    angle: 0,
+    rotationDirection: getRandomInt(0, 100) < 50 ? 1 : -1,
+    rotationSpeed: Math.random() * 0.01,
   };
 
   let hasOverlap = doOverlap({

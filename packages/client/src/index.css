@@ -22,4 +22,8 @@
   .page-container {
     @apply container m-auto max-w-screen-xl w-11/12;
   }
+
+  .overlay {
+    @apply p-8 rounded-xl bg-black/50 text-white;
+  }
 }

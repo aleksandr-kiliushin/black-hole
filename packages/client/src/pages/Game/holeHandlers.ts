@@ -30,3 +30,21 @@ export function moveHoleY(step: number) {
 
   hole.y += step;
 }
+
+export function moveBackgroundX(step: number) {
+  gameState.background.backgroundX1 -= step;
+  gameState.background.backgroundX2 -= step;
+  gameState.background.backgroundX3 -= step;
+
+  if (gameState.background.backgroundX1 + CANVAS_WIDTH <= 0) {
+    gameState.background.backgroundX1 = gameState.background.backgroundX2 + CANVAS_WIDTH;
+  }
+
+  if (gameState.background.backgroundX2 + CANVAS_WIDTH <= 0) {
+    gameState.background.backgroundX2 = gameState.background.backgroundX3 + CANVAS_WIDTH;
+  }
+
+  if (gameState.background.backgroundX3 + CANVAS_WIDTH <= 0) {
+    gameState.background.backgroundX3 = gameState.background.backgroundX1 + CANVAS_WIDTH;
+  }
+}

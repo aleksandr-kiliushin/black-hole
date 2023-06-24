@@ -25,7 +25,7 @@ export const Navbar: FC<TNavbarProps> = ({ orientation }) => {
       >
         {_navigationItems.map((navigationItem) => (
           <li key={navigationItem.url}>
-            <Link className="text-blue-600 hover:text-blue-400" to={navigationItem.url}>
+            <Link className="text-white hover:text-blue-200" to={navigationItem.url}>
               {navigationItem.text}
             </Link>
           </li>
