@@ -1,5 +1,5 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH, HOLE_RADIUS, HOLE_RADIUSES_PADDING } from './constants';
-import { gameState } from './gameState';
+import { CANVAS_HEIGHT, CANVAS_WIDTH, HOLE_RADIUS, HOLE_RADIUSES_PADDING } from '../constants';
+import { gameState } from '../state/gameState';
 
 export function moveHoleX(step: number) {
   const hole = gameState.hole;

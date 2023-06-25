@@ -1,9 +1,9 @@
-import { CANVAS_WIDTH } from './constants';
-import { gameState } from './gameState';
-import { TEnemy } from './types';
+import { CANVAS_WIDTH } from '../constants';
+import { gameState } from '../state/gameState';
+import { TEnemy } from '../types';
 
 export function moveEnemiesX(step: number) {
-  gameState.enemies.forEach((enemy) => {
+  gameState.enemies.forEach((enemy: TEnemy) => {
     enemy.x += step;
     switchEnemyVisibility(enemy);
   });

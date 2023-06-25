@@ -1,7 +1,7 @@
 import { CANVAS_WIDTH } from '@pages/Game/constants';
+import { TGameState } from '@pages/Game/types';
 
-import hole from '../../assets/images/hero/blackhole.png';
-import { TGameState } from './types';
+import hole from '@assets/images/hero/blackhole.png';
 
 const initialState: TGameState = {
   hole: {

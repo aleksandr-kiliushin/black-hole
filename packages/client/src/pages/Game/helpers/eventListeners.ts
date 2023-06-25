@@ -1,8 +1,8 @@
-import { MOVE_STEP } from './constants';
+import { MOVE_STEP } from '../constants';
+import { TOnGameEnd } from '../types';
 import { moveEnemiesX } from './enemiesHandlers';
 import { moveBackgroundX, moveHoleX, moveHoleY } from './holeHandlers';
 import { swallowEnemiesNearby } from './swallowEnemy';
-import { TOnGameEnd } from './types';
 
 export const handleKeyDown = (event: KeyboardEvent, onGameOver: (results: TOnGameEnd) => void) => {
   switch (event.key) {

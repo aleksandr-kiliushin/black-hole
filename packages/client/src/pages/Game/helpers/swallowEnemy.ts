@@ -1,6 +1,6 @@
-import { HOLE_RADIUS } from './constants';
-import { gameState } from './gameState';
-import { TOnGameEnd } from './types';
+import { HOLE_RADIUS } from '../constants';
+import { gameState } from '../state/gameState';
+import { TOnGameEnd } from '../types';
 import { doOverlap } from './utils';
 
 export function swallowEnemy(points: number) {
