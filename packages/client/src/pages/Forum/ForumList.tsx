@@ -35,9 +35,9 @@ export const ForumList: FC = () => {
   const [theme] = useState<IThemeTypes[]>(testList);
 
   return (
-    <div style={{ width: 1280, margin: '50px auto' }}>
-      <h1 className="text-4xl py-3 text-slate-700">Сообщество {GAME_NAME}</h1>
-      <div className="border-y border-slate-700 ">
+    <main className="page-container overlay my-6">
+      <h1 className="text-4xl py-3 font-black">Сообщество {GAME_NAME}</h1>
+      <div className="border-y border-blue-200 py-4">
         <div className="flex text-sm font-bold uppercase py-2 px-2">
           <div className="w-10/12">Название и описание форума</div>
           <div className="w-1/12 text-center">темы</div>
@@ -46,11 +46,13 @@ export const ForumList: FC = () => {
         <div>
           {theme.map(({ title, description, countOfTopics, countOfAnswers, id }) => {
             return (
-              <div className="odd:bg-slate-200 px-2" key={id}>
+              <div className="odd:bg-white/20 text-white rounded-xl px-2" key={id}>
                 <Link to={`/forum/${id}/topics`}>
-                  <div className="py-3 flex cursor-pointer text-black">
+                  <div className="py-3 flex cursor-pointer">
                     <div className="w-10/12">
-                      <div className="text-indigo-600 text-2xl hover:underline">{title}</div>
+                      <div className="text-blue-500 font-black text-2xl hover:underline">
+                        {title}
+                      </div>
                       <div className="forum-item-discribe h-12">{description}</div>
                     </div>
                     <div className="w-1/12 flex justify-center items-center font-bold">
@@ -66,6 +68,6 @@ export const ForumList: FC = () => {
           })}
         </div>
       </div>
-    </div>
+    </main>
   );
 };

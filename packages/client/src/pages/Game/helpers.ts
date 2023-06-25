@@ -1,3 +1,5 @@
+import { getRandomArrayItem } from '@utils/getRandomArrayItem';
+
 import {
   CANVAS_HEIGHT,
   CANVAS_WIDTH,
@@ -18,7 +20,7 @@ const draw: TDraw = {
   enemies: (canvasContext) => {
     gameState.enemies.forEach((enemy) => {
       const img = new Image();
-      img.src = assets.enemy;
+      img.src = getRandomArrayItem(assets.enemy) as string;
       canvasContext.drawImage(img, enemy.x, enemy.y, enemy.points * 2, enemy.points * 2);
 
       canvasContext.font = GAME_ENTITY_FONT;
@@ -30,7 +32,7 @@ const draw: TDraw = {
     const { hole } = gameState;
 
     const img = new Image();
-    img.src = assets.hole;
+    img.src = hole.backgroundPath;
 
     canvasContext.drawImage(img, hole.x, hole.y, hole.points * 2, hole.points * 2);
     canvasContext.beginPath();

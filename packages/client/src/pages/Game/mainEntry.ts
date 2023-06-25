@@ -13,15 +13,20 @@ import { TDraw } from './types';
 const draw: TDraw = {
   space: (ctx) => {
     if (ctx.fillStyle !== 'gray') {
-      // ctx.fillStyle = 'gray';
-      // ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
       const img = new Image();
       img.src = assets.background;
-      ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      ctx.drawImage(img, gameState.background.backgroundX1, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      ctx.drawImage(img, gameState.background.backgroundX2, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     }
   },
   hole: (ctx) => {
     const { hole } = gameState;
+
+    ctx.save();
+    ctx.translate(hole.x, hole.y);
+    hole.angle += hole.rotationSpeed * hole.rotationDirection;
+    ctx.rotate(hole.angle);
+    ctx.translate(-hole.x, -hole.y);
 
     const gradient = ctx.createRadialGradient(hole.x, hole.y, 0, hole.x, hole.y, HOLE_RADIUS);
     gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
@@ -34,12 +39,8 @@ const draw: TDraw = {
     ctx.arc(hole.x, hole.y, HOLE_RADIUS, 0, 2 * Math.PI);
     ctx.fill();
 
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
     const img = new Image();
-    img.src = assets.hole;
+    img.src = hole.backgroundPath;
     ctx.drawImage(
       img,
       hole.x - HOLE_RADIUS,
@@ -48,9 +49,31 @@ const draw: TDraw = {
       HOLE_RADIUS * 2
     );
 
+    ctx.restore();
+
+    const text = hole.points.toString();
+
     ctx.font = GAME_ENTITY_FONT;
     ctx.fillStyle = Color.HERO_POINTS_TEXT;
-    ctx.fillText(hole.points.toString(), hole.x, hole.y);
+
+    const textMetrics = ctx.measureText(text);
+    const textWidth = textMetrics.width;
+    const textHeight = parseInt(ctx.font);
+
+    const textX = hole.x - textWidth / 2;
+    const textY = hole.y - textHeight / 2;
+
+    const padding = 5;
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(
+      textX - padding,
+      textY - padding,
+      textWidth + 2 * padding,
+      textHeight + 2 * padding
+    );
+
+    ctx.fillStyle = Color.HERO_POINTS_TEXT;
+    ctx.fillText(text, textX, textY + textHeight);
   },
   enemies: (ctx) => {
     generateEnemies();
@@ -59,6 +82,12 @@ const draw: TDraw = {
       if (!enemy.isVisible) {
         return;
       }
+
+      ctx.save();
+      ctx.translate(enemy.x, enemy.y);
+      enemy.angle += enemy.rotationSpeed * enemy.rotationDirection;
+      ctx.rotate(enemy.angle);
+      ctx.translate(-enemy.x, -enemy.y);
 
       const gradient = ctx.createRadialGradient(enemy.x, enemy.y, 0, enemy.x, enemy.y, HOLE_RADIUS);
       gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
@@ -71,12 +100,8 @@ const draw: TDraw = {
       ctx.arc(enemy.x, enemy.y, enemy.radius, 0, 2 * Math.PI);
       ctx.fill();
 
-      ctx.strokeStyle = 'white';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
       const img = new Image();
-      img.src = assets.enemy;
+      img.src = enemy.backgroundPath;
       ctx.drawImage(
         img,
         enemy.x - enemy.radius,
@@ -85,9 +110,31 @@ const draw: TDraw = {
         enemy.radius * 2
       );
 
+      ctx.restore();
+
+      const text = enemy.points.toString();
+
       ctx.font = GAME_ENTITY_FONT;
       ctx.fillStyle = Color.ENEMY_POINTS_TEXT;
-      ctx.fillText(enemy.points.toString(), enemy.x, enemy.y);
+
+      const textMetrics = ctx.measureText(text);
+      const textWidth = textMetrics.width;
+      const textHeight = parseInt(ctx.font);
+
+      const textX = enemy.x - textWidth / 2;
+      const textY = enemy.y - textHeight / 2;
+
+      const padding = 5;
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+      ctx.fillRect(
+        textX - padding,
+        textY - padding,
+        textWidth + 2 * padding,
+        textHeight + 2 * padding
+      );
+
+      ctx.fillStyle = Color.ENEMY_POINTS_TEXT;
+      ctx.fillText(text, textX, textY + textHeight);
     });
   },
 };

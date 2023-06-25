@@ -64,9 +64,9 @@ export const TopicList: FC = () => {
 
   return (
     <>
-      <div className="font-mono" style={{ width: 1280, margin: '50px auto' }}>
+      <div className="font-mono overlay page-container my-6">
         <div className="w-full py-2 flex">
-          <h1 className="w-10/12 text-3xl text-slate-700">Раздел: (название раздела)</h1>
+          <h1 className="w-10/12 text-3xl">Раздел: (название раздела)</h1>
           <button className="w-2/12 btn-primary" onClick={() => setIsNewTopicOpen(true)}>
             Создать новую тему
           </button>
@@ -78,7 +78,10 @@ export const TopicList: FC = () => {
         </nav>
         {topic.map(({ title, answers, author, lastPublic, id }) => {
           return (
-            <div className="flex cursor-pointer px-2 odd:bg-slate-200" key={id}>
+            <div
+              className="flex cursor-pointer odd:bg-white/20 text-white rounded-xl px-2"
+              key={id}
+            >
               <div className="w-1/12">
                 <img
                   alt="Author_Icon"
@@ -88,19 +91,19 @@ export const TopicList: FC = () => {
               </div>
               <div className="w-5/12">
                 <Link to={`/forum/${idTopicList}/topics/${id}`}>
-                  <div className=" text-lg text-black font-bold hover:underline">{title}</div>
+                  <div className="text-lg font-bold hover:underline">{title}</div>
                 </Link>
                 <div className="text-xs mt-4 flex ">
-                  <div className="text-black">Автор:</div>
-                  <div className="font-bold text-indigo-600">{author}</div>
+                  <div>Автор:</div>
+                  <div className="font-bold text-blue-400">{author}</div>
                 </div>
               </div>
-              <div className="w-4/12 flex items-center justify-center text-2xl font-bold text-black">
+              <div className="w-4/12 flex items-center justify-center text-2xl font-bold">
                 {answers}
               </div>
               <div className="w-2/12 flex flex-col justify-center">
-                <div className="text-black">Новое:</div>
-                <div className="text-slate-500">{lastPublic.time}</div>
+                <div>Новое:</div>
+                <div className="text-blue-400">{lastPublic.time}</div>
                 <div>{lastPublic.author}</div>
               </div>
             </div>

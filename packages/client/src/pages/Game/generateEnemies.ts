@@ -1,3 +1,6 @@
+import { getRandomArrayItem } from '@utils/getRandomArrayItem';
+import { getRandomInt } from '@utils/getRandomInt';
+
 import {
   CANVAS_HEIGHT,
   CANVAS_WIDTH,
@@ -5,10 +8,11 @@ import {
   MAX_RATIO_TO_HOLE,
   MIN_NUMBER_OF_ENEMIES,
   MIN_RATIO_TO_HOLE,
+  assets,
 } from './constants';
 import { gameState } from './gameState';
 import { TEnemy } from './types';
-import { doOverlap, getRandomInt } from './utils';
+import { doOverlap } from './utils';
 
 export function generateEnemies() {
   const numberOfVisibleEnemies = gameState.enemies.reduce((prev, curr) => {
@@ -44,6 +48,10 @@ function generateRandomEnemy(): TEnemy {
     radius,
     x,
     y,
+    angle: 0,
+    rotationDirection: getRandomInt(0, 100) < 50 ? 1 : -1,
+    rotationSpeed: Math.random() * 0.01,
+    backgroundPath: getRandomArrayItem(assets.enemy) as string,
   };
 
   let hasOverlap = doOverlap({

@@ -8,6 +8,16 @@ export type TGameEntity = {
   points: number;
   x: number;
   y: number;
+  angle: number;
+  rotationSpeed: number;
+  rotationDirection: number;
+  backgroundPath: string;
+};
+
+type TGameBackgrounds = {
+  backgroundX1: number;
+  backgroundX2: number;
+  backgroundX3: number;
 };
 
 type TEnemyProperties = {
@@ -21,6 +31,7 @@ export type THole = TGameEntity & { maxSize: number };
 
 export type TGameState = {
   hole: THole;
+  background: TGameBackgrounds;
   enemies: TEnemy[];
   consumedEnemies: number;
   isGameInProcess: boolean;

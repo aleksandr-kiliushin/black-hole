@@ -1,6 +1,11 @@
-import Enemy_sprite from '../../assets/images/enemy_1.png';
-import Background from '../../assets/images/game_bg.jpg';
-import Hole_sprite from '../../assets/images/hole.webp';
+import enemy1 from '../../assets/images/enemy/enemy-1.png';
+import enemy2 from '../../assets/images/enemy/enemy-2.png';
+import enemy3 from '../../assets/images/enemy/enemy-3.png';
+import enemy4 from '../../assets/images/enemy/enemy-4.png';
+import enemy5 from '../../assets/images/enemy/enemy-5.png';
+import enemy6 from '../../assets/images/enemy/enemy-6.png';
+import enemy7 from '../../assets/images/enemy/enemy-7.png';
+import background from '../../assets/images/game-backgrounds/background.jpg';
 
 export const NAVBAR_HEIGHT = 80;
 export const CANVAS_WIDTH = window.innerWidth;
@@ -19,12 +24,11 @@ export const MOVE_STEP = 10;
 export const GAME_ENTITY_FONT = '16px Comic Sans MS';
 
 export const assets = {
-  hole: Hole_sprite,
-  background: Background,
-  enemy: Enemy_sprite,
+  background,
+  enemy: [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7],
 };
 
 export enum Color {
-  ENEMY_POINTS_TEXT = 'red',
+  ENEMY_POINTS_TEXT = 'yellow',
   HERO_POINTS_TEXT = 'white',
 }
