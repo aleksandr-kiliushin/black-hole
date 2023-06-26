@@ -28,8 +28,7 @@ const people = [
 
 export const Leaderboard: FC = () => {
   return (
-    <>
-      <Header />
+    <section className="overlay page-container my-6">
       <h1 className="font-extrabold text-4xl">Leaderboard</h1>
       <ul className="divide-y divide-gray-200">
         {people.map((person, i) => (
@@ -40,16 +39,16 @@ export const Leaderboard: FC = () => {
             <p>{i + 1}.&nbsp;</p>
             <img alt="" className="h-10 w-10 rounded-full" src={person.image} />
             <div>
-              <p className="text-sm mx-auto sm:m-0 w-fit font-medium text-gray-900">
+              <p className="text-sm mx-auto sm:m-0 w-fit font-medium text-blue-200">
                 {person.name}
               </p>
-              <p className="text-sm text-gray-500">{person.email}</p>
+              <p className="text-sm text-blue-400">{person.email}</p>
             </div>
             <p className="mx-auto">Очки: {person.score}</p>
             <button className="btn btn-primary w-1/2 sm:w-full sm:ml-auto">Like</button>
           </li>
         ))}
       </ul>
-    </>
+    </section>
   );
 };

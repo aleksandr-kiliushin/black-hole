@@ -7,7 +7,6 @@ import { authActions, getAuthUserInfo } from '@store/slices/auth/authSlice';
 import { authApi } from '@api/authApi';
 
 import { FormButton } from '@components/FormButton';
-import { Header } from '@components/Header';
 import { Input } from '@components/Input';
 
 import { validateLogin, validatePassword } from '@utils/authFormValidation';
@@ -15,7 +14,7 @@ import { isNetworkError } from '@utils/isNetworkError';
 import { useAppDispatch } from '@utils/useAppDispatch';
 import { useAppSelector } from '@utils/useAppSelector';
 
-import { RoutePaths } from '@src/providers/Router/AppRouter/constants';
+import { RoutePaths } from '@src/providers/AppRouter/constants';
 
 import { TFormValues } from './types';
 
@@ -65,13 +64,11 @@ export const SignIn: FC = () => {
   }
 
   return (
-    <>
-      <Header />
-      <main className="flex flex-col justify-center items-center h-screen w-full">
-        <h1 className="text-4xl mb-8">Войти</h1>
-        <form
-          action="submit"
-          className="flex flex-col items-center justify-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2"
+    <div className="flex flex-col justify-center items-center overlay page-container my-6">
+      <h1 className="text-4xl mb-4">Вход</h1>
+      <form
+        action="submit"
+        className="flex flex-col items-center justify-center w-full max-w-md gap-y-2"
           noValidate
           onSubmit={handleSubmit(onSubmit)}
         >
@@ -89,19 +86,18 @@ export const SignIn: FC = () => {
             {...register('password', { validate: validatePassword })}
           />
           <FormButton
-            className="w-full px-3 py-2 mt-3"
-            containerClassName="w-full mt-5"
+            className="w-full px-3 py-2"
+            containerClassName="w-full"
             disabled={isSubmitting}
             error={errors.root?.message}
             type="submit"
           >
             Войти
           </FormButton>
+          <Link className="btn btn-secondary text-center w-full" title="Регистрация" to="/sign-up">
+            Регистрация
+          </Link>
         </form>
-        <Link className="btn btn-secondary text-center mt-3" title="Регистрация" to="/sign-up">
-          Регистрация
-        </Link>
-      </main>
-    </>
+    </div>
   );
 };

@@ -1,18 +1,27 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH, Color, GAME_ENTITY_FONT, MOVE_STEP } from './constants';
-import { gameState } from './gameState';
-import { TDraw } from './types';
+import { getRandomArrayItem } from '@utils/getRandomArrayItem';
+
+import {
+  CANVAS_HEIGHT,
+  CANVAS_WIDTH,
+  Color,
+  GAME_ENTITY_FONT,
+  MOVE_STEP,
+  assets,
+} from '../constants';
+import { gameState } from '../state/gameState';
+import { TDraw } from '../types';
 
 const draw: TDraw = {
   space: (canvasContext) => {
-    canvasContext.fillStyle = 'gray';
-    canvasContext.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    const img = new Image();
+    img.src = assets.background;
+    canvasContext.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   },
   enemies: (canvasContext) => {
     gameState.enemies.forEach((enemy) => {
-      canvasContext.fillStyle = Color.ENEMY_ASTEROID_BODY;
-      canvasContext.beginPath();
-      canvasContext.arc(enemy.x, enemy.y, enemy.points, 0, 2 * Math.PI);
-      canvasContext.fill();
+      const img = new Image();
+      img.src = getRandomArrayItem(assets.enemy) as string;
+      canvasContext.drawImage(img, enemy.x, enemy.y, enemy.points * 2, enemy.points * 2);
 
       canvasContext.font = GAME_ENTITY_FONT;
       canvasContext.fillStyle = Color.ENEMY_POINTS_TEXT;
@@ -22,18 +31,15 @@ const draw: TDraw = {
   hole: (canvasContext) => {
     const { hole } = gameState;
 
-    canvasContext.fillStyle = Color.HERO_BODY;
-    canvasContext.beginPath();
-    canvasContext.arc(hole.x, hole.y, hole.points, 0, 2 * Math.PI);
-    canvasContext.fill();
+    const img = new Image();
+    img.src = hole.backgroundPath;
 
-    canvasContext.font = GAME_ENTITY_FONT;
-    canvasContext.fillStyle = Color.HERO_POINTS_TEXT;
-    canvasContext.fillText(hole.points.toString(), hole.x, hole.y);
+    canvasContext.drawImage(img, hole.x, hole.y, hole.points * 2, hole.points * 2);
+    canvasContext.beginPath();
   },
 };
 
-const swallowEnemiesNearby = () => {
+export const swallowEnemiesNearby = () => {
   const { enemies, hole } = gameState;
 
   const enemiesIndicesToSwallow: number[] = [];
