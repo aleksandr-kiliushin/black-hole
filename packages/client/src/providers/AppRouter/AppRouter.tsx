@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { ChangePassword } from '@pages/ChangePassword';
+import { Error400, Error500 } from '@pages/Error';
 import { ForumList } from '@pages/Forum/ForumList';
 import { Topic } from '@pages/Forum/Topic';
 import { TopicList } from '@pages/Forum/TopicList';
@@ -81,7 +82,11 @@ const routeConfig: Record<AppRoutes, TAppRouteProps> = {
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePaths.NOT_FOUND,
-    element: <div>Страница не найдена</div>,
+    element: <Error400 />,
+  },
+  [AppRoutes.SERVER_ERROR]: {
+    path: RoutePaths.SERVER_ERROR,
+    element: <Error500 />,
   },
 };
 
