@@ -8,8 +8,8 @@ const app = express();
 app.use(cors());
 const port = Number(process.env.SERVER_PORT) || 3001;
 
-app.get('/', (_, res) => {
-  res.json('👋 Howdy from the server :)');
+app.get('/', (request, response) => {
+  response.json('👋 Howdy from the server :)');
 });
 
 app.listen(port, () => {

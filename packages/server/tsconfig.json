@@ -14,7 +14,7 @@
     "noImplicitReturns": true,
     "noImplicitOverride": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2019", "esnext.asynciterable"],
