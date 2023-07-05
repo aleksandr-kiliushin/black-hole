@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import { hydrateRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -13,7 +13,14 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/serviceworker.js');
 }
 
-createRoot(document.getElementById('root') as HTMLElement).render(
+const rootNode = document.querySelector('#root');
+
+if (rootNode === null) {
+  throw new Error();
+}
+
+hydrateRoot(
+  rootNode,
   <StrictMode>
     <ErrorBoundary>
       <BrowserRouter>

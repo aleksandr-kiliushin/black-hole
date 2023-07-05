@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 
 export const useIsOnline = () => {
-  const [isOnline, setIsOnline] = useState(() => window.navigator.onLine);
+  return { isOnline: true };
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsOnline(window.navigator.onLine);
-    }, 5000);
+  // const [isOnline, setIsOnline] = useState(() => window.navigator.onLine);
 
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     setIsOnline(window.navigator.onLine);
+  //   }, 5000);
 
-  return { isOnline };
+  //   return () => {
+  //     clearInterval(intervalId);
+  //   };
+  // }, []);
+
+  // return { isOnline };
 };
