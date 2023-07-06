@@ -15,6 +15,10 @@ if (rootNode === null) {
   throw new Error();
 }
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/serviceworker.js');
+}
+
 hydrateRoot(
   rootNode,
   <StrictMode>

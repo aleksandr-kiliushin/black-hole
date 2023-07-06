@@ -1,3 +1,5 @@
+import { isServer } from '@utils/isServer';
+
 import enemy1 from '../../assets/images/enemy/enemy-1.png';
 import enemy2 from '../../assets/images/enemy/enemy-2.png';
 import enemy3 from '../../assets/images/enemy/enemy-3.png';
@@ -8,8 +10,8 @@ import enemy7 from '../../assets/images/enemy/enemy-7.png';
 import background from '../../assets/images/game-backgrounds/background.jpg';
 
 export const NAVBAR_HEIGHT = 80;
-export const CANVAS_WIDTH = 500; // window.innerWidth;
-export const CANVAS_HEIGHT = 400 - NAVBAR_HEIGHT; // window.innerHeight - NAVBAR_HEIGHT;
+export const CANVAS_WIDTH = isServer() ? 0 : window.innerWidth;
+export const CANVAS_HEIGHT = isServer() ? 0 : window.innerHeight - NAVBAR_HEIGHT;
 export const MAX_RATIO = 0.33;
 export const MIN_RATIO = 0.2;
 export const MAX_RADIUS = CANVAS_HEIGHT * MAX_RATIO;

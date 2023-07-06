@@ -12,10 +12,6 @@ import { useAppSelector } from '@utils/useAppSelector';
 
 import { AppRouter } from './providers/AppRouter';
 
-if ('navigator' in globalThis && 'serviceWorker' in globalThis.navigator) {
-  navigator.serviceWorker.register('/serviceworker.js');
-}
-
 export const App: FC = () => {
   const isInitiated = useAppSelector((state) => state.auth.isInitiated);
   const dispatch = useAppDispatch();
