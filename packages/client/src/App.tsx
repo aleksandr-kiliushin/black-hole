@@ -12,7 +12,8 @@ import { useAppSelector } from '@utils/useAppSelector';
 
 import { AppRouter } from './providers/AppRouter';
 
-if ('serviceWorker' in navigator) {
+if ('navigator' in globalThis && 'serviceWorker' in globalThis.navigator) {
+  console.log('globalThis.navigator >>', globalThis.navigator);
   navigator.serviceWorker.register('/serviceworker.js');
 }
 
