@@ -9,10 +9,6 @@ import { App } from './App';
 import './index.css';
 import { store } from './store';
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/serviceworker.js');
-}
-
 const rootNode = document.querySelector('#root');
 
 if (rootNode === null) {
