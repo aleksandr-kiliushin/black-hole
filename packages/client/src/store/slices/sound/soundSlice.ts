@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TSoundState } from './types';
 
 const initialState: TSoundState = {
-  isPlay: false,
+  isPlay: true,
 };
 
 const soundSlice = createSlice({
