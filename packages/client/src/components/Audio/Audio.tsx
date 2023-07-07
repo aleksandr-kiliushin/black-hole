@@ -65,34 +65,32 @@ export const Audio: FC = () => {
 
   return (
     <>
-      <div>
-        <div className="fixed top-20 right-10">
-          <div>
-            <button
-              className="h-9 w-9 bg-slate-200 hover:bg-slate-300 text-black rounded-t-full flex justify-center items-center"
-              onClick={handleSoundPlaySwitch}
-            >
-              {isPlay ? (
-                <ImVolumeMedium className="h-7 w-7" />
-              ) : (
-                <ImVolumeMute2 className="h-7 w-7" />
-              )}
-            </button>
-          </div>
-          <div className="flex justify-around">
-            <button
-              className="h-4 w-4 bg-slate-200 hover:bg-slate-300 text-black rounded-bl-lg grow flex justify-center items-center"
-              onClick={handleVolumeMinus}
-            >
-              <ImVolumeDecrease className="h-3 w-3" />
-            </button>
-            <button
-              className="h-4 w-4 bg-slate-200 hover:bg-slate-300 text-black rounded-br-lg grow flex justify-center items-center"
-              onClick={handleVolumePlus}
-            >
-              <ImVolumeIncrease className="h-3 w-3" />
-            </button>
-          </div>
+      <div className="fixed top-20 right-10">
+        <div>
+          <button
+            className="h-9 w-9 bg-slate-200 hover:bg-slate-300 text-black rounded-t-full flex justify-center items-center"
+            onClick={handleSoundPlaySwitch}
+          >
+            {isPlay ? (
+              <ImVolumeMedium className="h-7 w-7" />
+            ) : (
+              <ImVolumeMute2 className="h-7 w-7" />
+            )}
+          </button>
+        </div>
+        <div className="flex justify-around">
+          <button
+            className="h-4 w-4 bg-slate-200 hover:bg-slate-300 text-black rounded-bl-lg grow flex justify-center items-center"
+            onClick={handleVolumeMinus}
+          >
+            <ImVolumeDecrease className="h-3 w-3" />
+          </button>
+          <button
+            className="h-4 w-4 bg-slate-200 hover:bg-slate-300 text-black rounded-br-lg grow flex justify-center items-center"
+            onClick={handleVolumePlus}
+          >
+            <ImVolumeIncrease className="h-3 w-3" />
+          </button>
         </div>
       </div>
       <audio ref={audioRef} src={soundPath} />
