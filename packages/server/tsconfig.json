@@ -14,10 +14,10 @@
     "noImplicitReturns": true,
     "noImplicitOverride": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es2019", "esnext.asynciterable"],
+    "lib": ["es2019", "esnext.asynciterable", "DOM"],
     "types": ["node", "jest"],
     "baseUrl": ".",
     "paths": {
@@ -25,5 +25,12 @@
     },
     "outDir": "dist"
   },
-  "include": ["./.eslintrc.js", "./index.ts", "./db.ts", "./__tests__/**/*", "./jest.config.js"]
+  "include": [
+    "./.eslintrc.js",
+    "./index.ts",
+    "./db.ts",
+    "./__tests__/**/*",
+    "./jest.config.js",
+    "./tailwind.config.js"
+  ]
 }

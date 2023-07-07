@@ -24,17 +24,13 @@ export const App: FC = () => {
   const { isOnline } = useIsOnline();
 
   if (!isInitiated) {
-    return null;
+    return <p>Загрузка ...</p>;
   }
 
   return (
     <>
       <NoInternetConnectionNotification />
-      <div
-        className={clsx({
-          grayscale: !isOnline,
-        })}
-      >
+      <div className={clsx({ grayscale: !isOnline })}>
         <Background />
         <div className="relative z-1">
           <AppRouter />

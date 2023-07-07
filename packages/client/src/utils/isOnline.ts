@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useIsOnline = () => {
-  const [isOnline, setIsOnline] = useState(() => window.navigator.onLine);
+  const [isOnline, setIsOnline] = useState(true);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
