@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { gameStatsSlice } from '@store/slices/gameStats/gameStatsSlice';
 import { TSetGameStatsPayload } from '@store/slices/gameStats/types';
 
+import { Audio } from '@components/Audio';
+
 import { useAppDispatch } from '@utils/useAppDispatch';
 
 import { RoutePaths } from '@src/providers/AppRouter/constants';
@@ -57,5 +59,10 @@ export const Game: FC = () => {
     };
   }, []);
 
-  return <canvas height={CANVAS_HEIGHT} ref={canvasRef} width={CANVAS_WIDTH} />;
+  return (
+    <>
+      <canvas height={CANVAS_HEIGHT} ref={canvasRef} width={CANVAS_WIDTH} />;
+      <Audio />
+    </>
+  );
 };

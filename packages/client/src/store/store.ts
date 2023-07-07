@@ -2,9 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import { authReducer } from './slices/auth/authSlice';
 import { gameStatsSlice } from './slices/gameStats/gameStatsSlice';
+import { soundReducer } from './slices/sound/soundSlice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  sound: soundReducer,
   gameStats: gameStatsSlice.reducer,
 });
 
