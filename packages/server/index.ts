@@ -5,6 +5,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { ViteDevServer, createServer as createViteServer } from 'vite';
 
+interface SSRModule {
+  render: (uri: string) => [string, Record<string, any>];
+}
+
 dotenv.config();
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -68,17 +72,22 @@ const startServer = async () => {
         template = fs.readFileSync(path.resolve(spaBundleDistPath, 'index.html'), 'utf-8');
       }
 
-      let render = () => '';
+      let module: SSRModule;
       if (isDev) {
         const _viteServer = viteDevServer as ViteDevServer;
-        render = (await _viteServer.ssrLoadModule(path.resolve(clientPackageDirPath, 'ssr.tsx')))
-          .render;
+        module = (await _viteServer.ssrLoadModule(
+          path.resolve(clientPackageDirPath, 'ssr.tsx')
+        )) as SSRModule;
       } else {
-        render = (await import(path.resolve(clientPackageDirPath, 'dist-ssr/client.js'))).render;
+        module = await import(path.resolve(clientPackageDirPath, 'dist-ssr/client.js'));
       }
 
-      const appHtml = render();
-      const html = template.replace('<!--ssr-outlet-->', appHtml);
+      const { render } = module;
+
+      const [appHtml, store] = render(request.url);
+      const html = template
+        .replace('<!--ssr-outlet-->', appHtml)
+        .replace('<!--store-data-->', `window.initialState = ${JSON.stringify(store)}`);
 
       response.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (error) {

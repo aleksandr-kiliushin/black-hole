@@ -23,9 +23,9 @@ export const App: FC = () => {
 
   const { isOnline } = useIsOnline();
 
-  if (!isInitiated) {
-    return <p>Загрузка ...</p>;
-  }
+  // if (!isInitiated) {
+  //   return <p>Загрузка ...</p>;
+  // }
 
   return (
     <>
