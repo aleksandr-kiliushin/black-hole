@@ -8,12 +8,10 @@ import { NoInternetConnectionNotification } from '@components/NoInternetConnecti
 
 import { useIsOnline } from '@utils/isOnline';
 import { useAppDispatch } from '@utils/useAppDispatch';
-import { useAppSelector } from '@utils/useAppSelector';
 
 import { AppRouter } from './providers/AppRouter';
 
 export const App: FC = () => {
-  const isInitiated = useAppSelector((state) => state.auth.isInitiated);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -22,10 +20,6 @@ export const App: FC = () => {
   }, [dispatch]);
 
   const { isOnline } = useIsOnline();
-
-  // if (!isInitiated) {
-  //   return <p>Загрузка ...</p>;
-  // }
 
   return (
     <>

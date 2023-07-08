@@ -19,7 +19,11 @@ export const getAuthUserInfo = createAsyncThunk<TUser>('auth/get', async (arg, t
     if (!res.data) {
       throw new Error();
     }
-    localStorage.setItem('user', JSON.stringify(res.data));
+
+    // TODO написать свои методы для работы с локалсторажем
+    if ('localStorage' in globalThis) {
+      localStorage.setItem('user', JSON.stringify(res.data));
+    }
 
     return { ...res.data, id: Number(res.data.id) };
   } catch (error) {

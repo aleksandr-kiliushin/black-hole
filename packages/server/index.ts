@@ -6,8 +6,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { ViteDevServer, createServer as createViteServer } from 'vite';
 
+import { UserRepository } from './repositories/UserRepository';
+
 interface ISsrModule {
-  render: (uri: string) => [string, Record<string, unknown>];
+  render: (
+    uri: string,
+    repository: { userRepo: UserRepository }
+  ) => Promise<[string, Record<string, unknown>]>;
 }
 
 dotenv.config();
@@ -94,7 +99,9 @@ const startServer = async () => {
 
       const { render } = module;
 
-      const [appHtml, store] = render(request.url);
+      const [appHtml, store] = await render(request.url, {
+        userRepo: new UserRepository(request.headers['cookie']),
+      });
       const html = template
         .replace('<!--ssr-outlet-->', appHtml)
         .replace('<!--store-data-->', `window.initialState = ${JSON.stringify(store)}`);
