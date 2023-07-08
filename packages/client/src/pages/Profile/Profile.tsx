@@ -29,8 +29,20 @@ export const Profile = () => {
   };
 
   const fetchUserInfo = async () => {
-    const response = await authApi.getUserInfo();
-    setUserInfo(response.data);
+    const {
+      data: { avatar, display_name, email, first_name, id, login, phone, second_name },
+    } = await authApi.getUserInfo();
+    const profile: TUser = {
+      avatar,
+      display_name,
+      email,
+      first_name,
+      id: Number(id),
+      login,
+      phone,
+      second_name,
+    };
+    setUserInfo(profile);
   };
 
   if (!userInfo) {
@@ -44,14 +56,13 @@ export const Profile = () => {
         <FormChangeUserData fetchUserInfo={fetchUserInfo} userInfo={userInfo} />
         <Link
           className="btn btn-primary text-center w-full max-w-md gap-y-2 mt-3.5"
-            to={RoutePaths.CHANGE_PASSWORD}
-          >
-            Изменить пароль
-          </Link>
-          <button className="btn btn-danger w-full max-w-md gap-y-2 mt-3.5" onClick={onLogout}>
-            Выйти из профиля
-          </button>
-
+          to={RoutePaths.CHANGE_PASSWORD}
+        >
+          Изменить пароль
+        </Link>
+        <button className="btn btn-danger w-full max-w-md gap-y-2 mt-3.5" onClick={onLogout}>
+          Выйти из профиля
+        </button>
       </div>
     </div>
   );

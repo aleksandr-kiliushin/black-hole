@@ -1,10 +1,15 @@
 import { baseAxiosInstance } from '@api/baseAxiosInstance';
 
+import { UserRepository } from '@src/repository/UserRepository/UserRepository';
+import { IUserRepository } from '@src/repository/UserRepository/types';
+
 import { IAuthApi, TSignInDto, TSignUpDto, TSignUpResponse } from './types';
 
 class AuthApi implements IAuthApi {
+  constructor(private _userRepository: IUserRepository) {}
+
   getUserInfo() {
-    return baseAxiosInstance.get('/auth/user');
+    return this._userRepository.getCurrentUser();
   }
 
   signIn(dto: TSignInDto) {
@@ -20,4 +25,4 @@ class AuthApi implements IAuthApi {
   }
 }
 
-export const authApi = new AuthApi();
+export const authApi = new AuthApi(new UserRepository());

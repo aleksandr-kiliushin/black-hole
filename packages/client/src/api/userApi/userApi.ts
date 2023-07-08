@@ -2,22 +2,31 @@ import { AxiosResponse } from 'axios';
 
 import { baseAxiosInstance } from '@api/baseAxiosInstance';
 
+import { UserRepository } from '@src/repository/UserRepository/UserRepository';
+import { IUserRepository } from '@src/repository/UserRepository/types';
+
 import { TChangePassword, TPasswordResponse, TUser, TUserResponse } from './types';
 
-const changeAvatar = (data: FormData) => {
-  return baseAxiosInstance.put('/user/profile/avatar', data);
-};
+export interface IUserApi {
+  changeAvatar(data: FormData): Promise<AxiosResponse<'OK'>>;
+  changeUserProfile(data: TUser): Promise<AxiosResponse<TUserResponse>>;
+  changeUserPassword(data: TChangePassword): Promise<AxiosResponse<TPasswordResponse>>;
+}
 
-const changeUserProfile = (data: TUser): Promise<AxiosResponse<TUserResponse>> => {
-  return baseAxiosInstance.put('/user/profile', data);
-};
+export class UserApi implements IUserApi {
+  constructor(private _userRepository: IUserRepository) {}
 
-const changeUserPassword = (data: TChangePassword): Promise<AxiosResponse<TPasswordResponse>> => {
-  return baseAxiosInstance.put('/user/password', data);
-};
+  changeAvatar(data: FormData): Promise<AxiosResponse<'OK'>> {
+    return baseAxiosInstance.put<'OK'>('/user/profile/avatar', data);
+  }
 
-export const userApi = {
-  changeAvatar,
-  changeUserProfile,
-  changeUserPassword,
-};
+  changeUserPassword(data: TChangePassword): Promise<AxiosResponse<TPasswordResponse>> {
+    return baseAxiosInstance.put<TPasswordResponse>('/user/profile', data);
+  }
+
+  changeUserProfile(data: TUser): Promise<AxiosResponse<TUserResponse>> {
+    return baseAxiosInstance.put<TUserResponse>('/user/profile', data);
+  }
+}
+
+export const userApi = new UserApi(new UserRepository());

@@ -1,12 +1,13 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 import fs from 'node:fs';
 import path from 'node:path';
 import { ViteDevServer, createServer as createViteServer } from 'vite';
 
-interface SSRModule {
-  render: (uri: string) => [string, Record<string, any>];
+interface ISsrModule {
+  render: (uri: string) => [string, Record<string, unknown>];
 }
 
 dotenv.config();
@@ -26,6 +27,15 @@ const startServer = async () => {
   const app = express();
   app.use(cors());
   const port = Number(process.env.SERVER_PORT) || 3001;
+
+  app.use(
+    '/api/v2',
+    createProxyMiddleware({
+      changeOrigin: true,
+      cookieDomainRewrite: { '*': '' },
+      target: 'https://ya-praktikum.tech',
+    })
+  );
 
   let viteDevServer: ViteDevServer | undefined = undefined;
 
@@ -72,12 +82,12 @@ const startServer = async () => {
         template = fs.readFileSync(path.resolve(spaBundleDistPath, 'index.html'), 'utf-8');
       }
 
-      let module: SSRModule;
+      let module: ISsrModule;
       if (isDev) {
         const _viteServer = viteDevServer as ViteDevServer;
         module = (await _viteServer.ssrLoadModule(
           path.resolve(clientPackageDirPath, 'ssr.tsx')
-        )) as SSRModule;
+        )) as ISsrModule;
       } else {
         module = await import(path.resolve(clientPackageDirPath, 'dist-ssr/client.js'));
       }

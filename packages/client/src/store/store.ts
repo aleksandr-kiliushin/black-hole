@@ -1,5 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import { IAppServices } from '@src/repository/types';
+
 import { authReducer } from './slices/auth/authSlice';
 import { TAuthState } from './slices/auth/types';
 import { gameStatsSlice } from './slices/gameStats/gameStatsSlice';
@@ -15,11 +17,14 @@ export type TStoreState = {
   gameStats: TGameState;
 };
 
-export const createStore = (initialState?: TStoreState) =>
+export const createStore = (services: IAppServices, initialState?: TStoreState) =>
   configureStore({
     reducer: rootReducer,
     devTools: true,
     preloadedState: initialState,
+    middleware: (getDefaultMiddleWare) => {
+      return getDefaultMiddleWare({ thunk: { extraArgument: services } });
+    },
   });
 
 export type TRootState = ReturnType<ReturnType<typeof createStore>['getState']>;
