@@ -28,14 +28,10 @@ export const Audio: FC = () => {
     const handleTrackEnded = () => {
       ref?.play();
     };
-    if (ref) {
-      ref.addEventListener('ended', handleTrackEnded);
-    }
+    ref?.addEventListener('ended', handleTrackEnded);
 
     return () => {
-      if (ref) {
-        ref.removeEventListener('ended', handleTrackEnded);
-      }
+      ref?.removeEventListener('ended', handleTrackEnded);
     };
   }, []);
 
@@ -53,6 +49,7 @@ export const Audio: FC = () => {
     if (!audioRef.current || roundToOne(audioRef.current.volume) === 0.0) {
       return;
     }
+
     audioRef.current.volume -= 0.1;
   };
 
@@ -60,6 +57,7 @@ export const Audio: FC = () => {
     if (!audioRef.current || roundToOne(audioRef.current.volume) === 1.0) {
       return;
     }
+
     audioRef.current.volume += 0.1;
   };
 
