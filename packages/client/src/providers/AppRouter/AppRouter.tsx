@@ -26,7 +26,6 @@ const routeConfig: Record<AppRoutes, TAppRouteProps> = {
   [AppRoutes.HOME]: {
     path: RoutePaths.HOME,
     element: <Home />,
-    authOnly: true,
   },
   [AppRoutes.GAME]: {
     path: RoutePaths.GAME,

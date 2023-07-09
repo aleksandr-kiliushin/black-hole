@@ -1,7 +1,10 @@
 import clsx from 'clsx';
-import { FC, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { authActions, getAuthUserInfo } from '@store/slices/auth/authSlice';
+
+import { oAuthApi } from '@api/OAuthApi';
 
 import { Background } from '@components/Background';
 import { NoInternetConnectionNotification } from '@components/NoInternetConnectionNotification';
@@ -15,13 +18,27 @@ import { AppRouter } from './providers/AppRouter';
 export const App: FC = () => {
   const isInitiated = useAppSelector((state) => state.auth.isInitiated);
   const dispatch = useAppDispatch();
+  const { isOnline } = useIsOnline();
 
-  useEffect(() => {
+  const onSignIn = useCallback(async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+      try {
+        await oAuthApi.getAccessToken(code);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
     dispatch(getAuthUserInfo());
     dispatch(authActions.initAuthData());
   }, [dispatch]);
 
-  const { isOnline } = useIsOnline();
+  useEffect(() => {
+    onSignIn();
+  }, [onSignIn]);
 
   if (!isInitiated) {
     return <p>Загрузка ...</p>;
