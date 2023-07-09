@@ -4,10 +4,10 @@ import { leaderboardApi } from '@api/leaderboardApi/leaderboardApi';
 
 import { randomAvatarPath } from '@utils/randomAvatarPath';
 
-import { TleaderboardItems } from './types';
+import { TLeaderboardItems } from './types';
 
 export const Leaderboard: FC = () => {
-  const [list, setList] = useState<TleaderboardItems[]>([]);
+  const [list, setList] = useState<TLeaderboardItems[]>([]);
   const [correctPage, setCorrectPage] = useState<number>(1);
 
   useEffect(() => {
