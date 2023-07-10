@@ -17,27 +17,25 @@ export const GameEnd: FC = () => {
   const playTimeInSeconds = (playTime ?? 0) / 1000;
 
   useEffect(() => {
-    if (maxSize != null && consumedEnemies != null) {
-      const userData = localStorage.getItem('user');
+    if (!maxSize || !consumedEnemies) return;
 
-      if (userData === null) {
-        return;
-      }
+    const userData = localStorage.getItem('user');
 
-      const user = JSON.parse(userData);
+    if (!userData) return;
 
-      leaderboardApi.saveResult({
-        data: {
-          userDisplayName: user.display_name,
-          userID: user.id,
-          userAvatar: user.avatar,
-          score: maxSize,
-          consumedEnemies: consumedEnemies,
-        },
-        ratingFieldName: 'score',
-        teamName: 'JustRockStars',
-      });
-    }
+    const user = JSON.parse(userData);
+
+    leaderboardApi.saveResult({
+      data: {
+        userDisplayName: user.display_name,
+        userID: user.id,
+        userAvatar: user.avatar,
+        score: maxSize,
+        consumedEnemies: consumedEnemies,
+      },
+      ratingFieldName: 'score',
+      teamName: 'JustRockStars',
+    });
   }, [maxSize, consumedEnemies]);
 
   return (
