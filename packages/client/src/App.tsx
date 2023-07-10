@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { FC, useCallback, useEffect } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { authActions, getAuthUserInfo } from '@store/slices/auth/authSlice';
 
