@@ -1,6 +1,8 @@
 import { TUser } from '@app-types/TUser';
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+import { LocalStorageKeys, getItem, setItem } from '@utils/localStorage';
+
 import { IAppServices } from '@src/repository/types';
 
 import { TAuthState } from './types';
@@ -20,10 +22,7 @@ export const getAuthUserInfo = createAsyncThunk<TUser>('auth/get', async (arg, t
       throw new Error();
     }
 
-    // TODO написать свои методы для работы с локалсторажем
-    if ('localStorage' in globalThis) {
-      localStorage.setItem('user', JSON.stringify(res.data));
-    }
+    setItem(LocalStorageKeys.User, JSON.stringify(res.data));
 
     return { ...res.data, id: Number(res.data.id) };
   } catch (error) {
@@ -40,7 +39,7 @@ const authSlice = createSlice({
       state.authorizedUser = action.payload;
     },
     initAuthData: (state) => {
-      const user = localStorage.getItem('user');
+      const user = getItem(LocalStorageKeys.User);
       if (user) {
         state.authorizedUser = JSON.parse(user);
       }
