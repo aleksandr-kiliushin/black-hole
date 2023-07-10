@@ -20,12 +20,10 @@ class OAuthApi {
   }
 
   public async getAccessToken(code: string): Promise<void> {
-    const response = await baseAxiosInstance.post('/oauth/yandex', {
+    await baseAxiosInstance.post('/oauth/yandex', {
       redirect_uri: this.redirectUri,
       code,
     });
-
-    console.log(response);
   }
 }
 
