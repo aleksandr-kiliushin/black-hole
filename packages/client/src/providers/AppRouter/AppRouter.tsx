@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { ChangePassword } from '@pages/ChangePassword';
-import { Error400, Error500 } from '@pages/Error';
 import { ForumList } from '@pages/Forum/ForumList';
 import { Topic } from '@pages/Forum/Topic';
 import { TopicList } from '@pages/Forum/TopicList';
@@ -11,7 +10,9 @@ import { GameEnd } from '@pages/GameEnd';
 import { GameStart } from '@pages/GameStart';
 import { Home } from '@pages/Home';
 import { Leaderboard } from '@pages/Leaderboard';
+import { NotFoundError } from '@pages/NotFoundError';
 import { Profile } from '@pages/Profile';
+import { ServerError } from '@pages/ServerError';
 import { SignIn } from '@pages/SignIn';
 import { SignUp } from '@pages/SignUp';
 
@@ -82,11 +83,11 @@ const routeConfig: Record<AppRoutes, TAppRouteProps> = {
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePaths.NOT_FOUND,
-    element: <Error400 />,
+    element: <NotFoundError />,
   },
   [AppRoutes.SERVER_ERROR]: {
     path: RoutePaths.SERVER_ERROR,
-    element: <Error500 />,
+    element: <ServerError />,
   },
 };
 

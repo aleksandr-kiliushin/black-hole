@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-export const Error500: FC = () => {
+export const ServerError: FC = () => {
   return (
     <div className="mt-20 text-center text-white flex flex-col items-center">
       <p className="text-7xl font-bold">500</p>
