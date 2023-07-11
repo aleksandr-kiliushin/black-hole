@@ -4,19 +4,12 @@ import { BiLoaderAlt } from 'react-icons/bi';
 
 import { oAuthApi } from '@api/OAuthApi';
 
-const redirectToYandexOAuthPage = (id: string) =>
-  window.location.assign(
-    `https://oauth.yandex.ru/authorize?response_type=code&client_id=${id}&redirect_uri=${window.location.origin}`
-  );
-
 export const YandexAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onAuth = async () => {
     setIsLoading(true);
-
-    const id = await oAuthApi.getId();
-    redirectToYandexOAuthPage(id);
+    await oAuthApi.auth();
   };
 
   return (

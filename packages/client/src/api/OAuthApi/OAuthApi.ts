@@ -7,7 +7,18 @@ class OAuthApi {
     this.redirectUri = window.location.origin;
   }
 
-  public async getId(): Promise<string> {
+  public async auth(): Promise<void> {
+    const id = await this.getId();
+    this.redirectToYandexOAuthPage(id);
+  }
+
+  private redirectToYandexOAuthPage(id: string): void {
+    window.location.assign(
+      `https://oauth.yandex.ru/authorize?response_type=code&client_id=${id}&redirect_uri=${this.redirectUri}`
+    );
+  }
+
+  private async getId(): Promise<string> {
     const response = await baseAxiosInstance.get('/oauth/yandex/service-id', {
       params: {
         redirect_uri: this.redirectUri,
