@@ -8,6 +8,7 @@ import { authApi } from '@api/authApi';
 
 import { FormButton } from '@components/FormButton';
 import { Input } from '@components/Input';
+import { YandexAuth } from '@components/Oauth/YandexAuth';
 
 import { validateLogin, validatePassword } from '@utils/authFormValidation';
 import { isNetworkError } from '@utils/isNetworkError';
@@ -69,35 +70,36 @@ export const SignIn: FC = () => {
       <form
         action="submit"
         className="flex flex-col items-center justify-center w-full max-w-md gap-y-2"
-          noValidate
-          onSubmit={handleSubmit(onSubmit)}
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Input
+          className="text-xs p-0.5 text-xs"
+          label="Логин"
+          validationError={errors.login?.message}
+          {...register('login', { validate: validateLogin })}
+        />
+        <Input
+          className="text-xs p-0.5 text-xs"
+          label="Пароль"
+          type="password"
+          validationError={errors.password?.message}
+          {...register('password', { validate: validatePassword })}
+        />
+        <FormButton
+          className="w-full px-3 py-2"
+          containerClassName="w-full"
+          disabled={isSubmitting}
+          error={errors.root?.message}
+          type="submit"
         >
-          <Input
-            className="text-xs p-0.5 text-xs"
-            label="Логин"
-            validationError={errors.login?.message}
-            {...register('login', { validate: validateLogin })}
-          />
-          <Input
-            className="text-xs p-0.5 text-xs"
-            label="Пароль"
-            type="password"
-            validationError={errors.password?.message}
-            {...register('password', { validate: validatePassword })}
-          />
-          <FormButton
-            className="w-full px-3 py-2"
-            containerClassName="w-full"
-            disabled={isSubmitting}
-            error={errors.root?.message}
-            type="submit"
-          >
-            Войти
-          </FormButton>
-          <Link className="btn btn-secondary text-center w-full" title="Регистрация" to="/sign-up">
-            Регистрация
-          </Link>
-        </form>
+          Войти
+        </FormButton>
+        <Link className="btn btn-secondary text-center w-full" title="Регистрация" to="/sign-up">
+          Регистрация
+        </Link>
+        <YandexAuth />
+      </form>
     </div>
   );
 };
