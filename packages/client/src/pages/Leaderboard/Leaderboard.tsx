@@ -19,10 +19,7 @@ export const Leaderboard: FC = () => {
         cursor: (currentPage - 1) * 10,
         limit: 10,
       })
-      .then((res) => {
-        setLeaders(res.data);
-        console.log(res.data);
-      });
+      .then((res) => setLeaders(res.data));
   }, [currentPage]);
 
   return (
