@@ -4,6 +4,8 @@ import { leaderboardApi } from '@api/leaderboardApi/leaderboardApi';
 
 import { randomAvatarPath } from '@utils/randomAvatarPath';
 
+import { API_BASE_URL } from '@constants';
+
 import { TLeaderboardItems } from './types';
 
 export const Leaderboard: FC = () => {
@@ -45,9 +47,7 @@ export const Leaderboard: FC = () => {
                   alt=""
                   className="h-10 w-10 rounded-full"
                   src={
-                    userAvatar != null
-                      ? 'https://ya-praktikum.tech/api/v2/resources/' + userAvatar
-                      : randomAvatarPath
+                    userAvatar != null ? `${API_BASE_URL}/resources${userAvatar}` : randomAvatarPath
                   }
                 />
 
