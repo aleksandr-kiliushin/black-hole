@@ -5,6 +5,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { ViteDevServer, createServer as createViteServer } from 'vite';
 
+import { createClientAndConnect } from './db';
+
 dotenv.config();
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -22,6 +24,11 @@ const startServer = async () => {
   const app = express();
   app.use(cors());
   const port = Number(process.env.SERVER_PORT) || 3001;
+
+  const client = await createClientAndConnect();
+  if (client === null) {
+    throw new Error('Database connection failed. Cannot start server.');
+  }
 
   let viteDevServer: ViteDevServer | undefined = undefined;
 

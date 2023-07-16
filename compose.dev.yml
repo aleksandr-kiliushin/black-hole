@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: blackhole-database
+    env_file:
+      - ./.env
+    image: postgres:15.3
+    ports:
+      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
+    volumes:
+      - ./tmp/pgdata/:/var/lib/postgresql/data/
+
+  server:
+    build:
+      context: ./
+      dockerfile: ./packages/server/Dockerfile.dev
+    container_name: blackhole-server
+    depends_on:
+      - postgres
+    env_file:
+      - ./.env
+    image: blackhole-server
+    ports:
+      - '${SERVER_PORT}:${SERVER_PORT}'
+      - '24678:24678'
+    restart: on-failure
+    volumes:
+      - ./:/app/
+      - /app/node_modules
+      - /app/packages/client/node_modules
+      - /app/packages/server/node_modules
+
+  pgadmin:
+    container_name: blackhole-pgadmin
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
+      PGADMIN_DEFAULT_PASSWORD: 123
+    image: dpage/pgadmin4
+    ports:
+      - '3002:80'
+    restart: on-failure
+    volumes:
+      - ./pgadmin-data/:/var/lib/pgadmin/
