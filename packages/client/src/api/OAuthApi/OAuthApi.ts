@@ -1,10 +1,8 @@
 import { baseAxiosInstance } from '@api/baseAxiosInstance';
 
 class OAuthApi {
-  private readonly redirectUri: string;
-
-  constructor() {
-    this.redirectUri = window.location.origin;
+  private get redirectUri() {
+    return window.location.origin;
   }
 
   public async auth(): Promise<void> {
