@@ -1,4 +1,4 @@
-export type TLeaderboardItems = {
+export interface ILeadersListItem {
   data: {
     userID: number;
     userDisplayName: string;
@@ -6,4 +6,5 @@ export type TLeaderboardItems = {
     score: number;
     consumedEnemies: number;
   };
-};
+  place: number;
+}
