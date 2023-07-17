@@ -1,7 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import { IAppServices } from '@src/repository/types';
+
 import { authReducer } from './slices/auth/authSlice';
+import { TAuthState } from './slices/auth/types';
 import { gameStatsSlice } from './slices/gameStats/gameStatsSlice';
+import { TGameState } from './slices/gameStats/types';
 import { soundReducer } from './slices/sound/soundSlice';
 
 const rootReducer = combineReducers({
@@ -10,10 +14,20 @@ const rootReducer = combineReducers({
   gameStats: gameStatsSlice.reducer,
 });
 
-export const store = configureStore({
-  reducer: rootReducer,
-  devTools: true,
-});
+export type TStoreState = {
+  auth: TAuthState;
+  gameStats: TGameState;
+};
 
-export type TRootState = ReturnType<typeof store.getState>;
-export type TAppDispatch = typeof store.dispatch;
+export const createStore = (services: IAppServices, initialState?: TStoreState) =>
+  configureStore({
+    reducer: rootReducer,
+    devTools: true,
+    preloadedState: initialState,
+    middleware: (getDefaultMiddleWare) => {
+      return getDefaultMiddleWare({ thunk: { extraArgument: services } });
+    },
+  });
+
+export type TRootState = ReturnType<ReturnType<typeof createStore>['getState']>;
+export type TAppDispatch = ReturnType<typeof createStore>['dispatch'];

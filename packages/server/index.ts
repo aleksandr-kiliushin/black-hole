@@ -1,9 +1,19 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 import fs from 'node:fs';
 import path from 'node:path';
 import { ViteDevServer, createServer as createViteServer } from 'vite';
+
+import { UserRepository } from './repositories/UserRepository';
+
+interface ISsrModule {
+  render: (
+    uri: string,
+    repository: { userRepo: UserRepository }
+  ) => Promise<[string, Record<string, unknown>]>;
+}
 
 dotenv.config();
 
@@ -22,6 +32,15 @@ const startServer = async () => {
   const app = express();
   app.use(cors());
   const port = Number(process.env.SERVER_PORT) || 3001;
+
+  app.use(
+    '/api/v2',
+    createProxyMiddleware({
+      changeOrigin: true,
+      cookieDomainRewrite: { '*': '' },
+      target: 'https://ya-praktikum.tech',
+    })
+  );
 
   let viteDevServer: ViteDevServer | undefined = undefined;
 
@@ -68,17 +87,26 @@ const startServer = async () => {
         template = fs.readFileSync(path.resolve(spaBundleDistPath, 'index.html'), 'utf-8');
       }
 
-      let render = () => '';
+      let module: ISsrModule;
       if (isDev) {
         const _viteServer = viteDevServer as ViteDevServer;
-        render = (await _viteServer.ssrLoadModule(path.resolve(clientPackageDirPath, 'ssr.tsx')))
-          .render;
+        module = (await _viteServer.ssrLoadModule(
+          path.resolve(clientPackageDirPath, 'ssr.tsx')
+        )) as ISsrModule;
       } else {
-        render = (await import(path.resolve(clientPackageDirPath, 'dist-ssr/client.js'))).render;
+        module = await import(path.resolve(clientPackageDirPath, 'dist-ssr/client.js'));
       }
 
-      const appHtml = render();
-      const html = template.replace('<!--ssr-outlet-->', appHtml);
+      const { render } = module;
+
+      const [appHtml, store] = await render(request.url, {
+        userRepo: new UserRepository(request.headers['cookie']),
+      });
+      const initialState = JSON.stringify(store).replace(/</g, '\\u003c');
+
+      const html = template
+        .replace('<!--ssr-outlet-->', appHtml)
+        .replace('<!--store-data-->', `window.initialState = ${initialState}`);
 
       response.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (error) {

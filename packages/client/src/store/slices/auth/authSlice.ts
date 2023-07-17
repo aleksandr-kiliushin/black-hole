@@ -1,7 +1,9 @@
 import { TUser } from '@app-types/TUser';
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { authApi } from '@api/authApi';
+import { LocalStorageKeys, getLocalStorageItem, setLocalStorageItem } from '@utils/localStorage';
+
+import { IAppServices } from '@src/repository/types';
 
 import { TAuthState } from './types';
 
@@ -10,16 +12,19 @@ const initialState: TAuthState = {
   isInitiated: false,
 };
 
-export const getAuthUserInfo = createAsyncThunk('auth/get', async (arg, thunkApi) => {
+export const getAuthUserInfo = createAsyncThunk<TUser>('auth/get', async (arg, thunkApi) => {
   try {
-    const res = await authApi.getUserInfo();
+    const { userService }: IAppServices = thunkApi.extra as IAppServices;
+
+    const res = await userService.getCurrentUser();
 
     if (!res.data) {
       throw new Error();
     }
-    localStorage.setItem('user', JSON.stringify(res.data));
 
-    return res.data;
+    setLocalStorageItem(LocalStorageKeys.User, JSON.stringify(res.data));
+
+    return { ...res.data, id: res.data.id };
   } catch (error) {
     console.error('Вы не авторизованы');
     return thunkApi.rejectWithValue(undefined);
@@ -34,7 +39,7 @@ const authSlice = createSlice({
       state.authorizedUser = action.payload;
     },
     initAuthData: (state) => {
-      const user = localStorage.getItem('user');
+      const user = getLocalStorageItem(LocalStorageKeys.User);
       if (user) {
         state.authorizedUser = JSON.parse(user);
       }

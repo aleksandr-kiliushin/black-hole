@@ -57,7 +57,7 @@ export const Game: FC = () => {
     return () => {
       window.removeEventListener('keydown', listener);
     };
-  }, []);
+  }, [dispatch, navigate]);
 
   return (
     <>
