@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { ViteDevServer, createServer as createViteServer } from 'vite';
 
+import { createClientAndConnect } from './db';
 import { UserRepository } from './repositories/UserRepository';
 
 interface ISsrModule {
@@ -33,6 +34,10 @@ const startServer = async () => {
   app.use(cors());
   const port = Number(process.env.SERVER_PORT) || 3001;
 
+  const client = await createClientAndConnect();
+  if (client === null) {
+    throw new Error('Database connection failed. Cannot start server.');
+  }
   app.use(
     '/api/v2',
     createProxyMiddleware({
