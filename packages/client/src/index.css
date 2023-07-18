@@ -4,7 +4,7 @@
 
 @layer components {
   .btn {
-    @apply py-2 px-4 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75;
+    @apply py-2 px-2 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75;
   }
 
   .btn-primary {
@@ -21,5 +21,9 @@
 
   .page-container {
     @apply container m-auto max-w-screen-xl w-11/12;
+  }
+
+  .overlay {
+    @apply p-8 rounded-xl bg-black/50 text-white;
   }
 }

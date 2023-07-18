@@ -46,7 +46,7 @@ export const FormChangeUserData: FC<TFormChangeUserDataProps> = ({ fetchUserInfo
   return (
     <form
       action="submit"
-      className="flex flex-col items-center justify-center xs:w-1/2 sm:w-1/2 lg:w-1/3 lg:max-w-464px gap-y-2"
+      className="flex flex-col items-center justify-center w-full max-w-md gap-y-2"
       noValidate
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -96,7 +96,7 @@ export const FormChangeUserData: FC<TFormChangeUserDataProps> = ({ fetchUserInfo
       />
       <FormButton
         className="w-full"
-        containerClassName="w-full mt-5"
+        containerClassName="w-full"
         disabled={isSubmitting}
         error={errors.root?.message}
         type="submit"

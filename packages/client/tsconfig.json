@@ -33,9 +33,12 @@
   },
   "include": [
     "./src",
+    "./public/serviceworker.js",
     "./.eslintrc.js",
-    "./jest.config.js",
+    "./jest.config.ts",
     "./postcss.config.js",
+    "./ssr.config.ts",
+    "./ssr.tsx",
     "./tailwind.config.js",
     "./vite.config.ts"
   ],
