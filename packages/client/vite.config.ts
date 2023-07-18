@@ -5,6 +5,10 @@ import { defineConfig } from 'vite';
 
 dotenv.config();
 
+/**
+ * Конфиг для клиентского бандла веб SPA приложения.
+ * Результатом сборки будет index.html, bundle.js, bundle.css, serviceworker.js, различные ассеты и тд.
+ */
 module.exports = defineConfig({
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,

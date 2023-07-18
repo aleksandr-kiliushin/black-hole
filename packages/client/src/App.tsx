@@ -10,10 +10,11 @@ import { useIsOnline } from '@utils/isOnline';
 import { useAppDispatch } from '@utils/useAppDispatch';
 import { useAppSelector } from '@utils/useAppSelector';
 
+import { useAuth } from '@src/hooks/useAuth';
+
 import { AppRouter } from './providers/AppRouter';
 
 export const App: FC = () => {
-  const isInitiated = useAppSelector((state) => state.auth.isInitiated);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -21,20 +22,14 @@ export const App: FC = () => {
     dispatch(authActions.initAuthData());
   }, [dispatch]);
 
+  const isInitiated = useAppSelector((state) => state.auth.isInitiated);
   const { isOnline } = useIsOnline();
-
-  if (!isInitiated) {
-    return null;
-  }
+  useAuth();
 
   return (
     <>
       <NoInternetConnectionNotification />
-      <div
-        className={clsx({
-          grayscale: !isOnline,
-        })}
-      >
+      <div className={clsx({ grayscale: !isOnline })}>
         <Background />
         <div className="relative z-1">
           <AppRouter />
