@@ -1,13 +1,14 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
 
-import { IThemeState, ThemesEnum } from './types';
+import { Theme } from '../../../constants';
+import { IThemeState } from './types';
 
 const initialState: IThemeState = {
-  colorScheme: ThemesEnum.DARK,
+  colorScheme: Theme.DARK,
 };
 
-const toggleTheme = createAction('themeSlice/toggleTheme', (theme: ThemesEnum) => {
-  localStorage.setItem(ThemesEnum.TRIGGER, theme);
+const toggleTheme = createAction('themeSlice/toggleTheme', (theme: Theme) => {
+  localStorage.setItem('theme', theme);
 
   return { payload: theme };
 });

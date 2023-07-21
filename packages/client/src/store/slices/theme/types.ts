@@ -1,10 +1,5 @@
-export interface IThemeState {
-  colorScheme: ThemesEnum;
-}
+import { Theme } from '@constants';
 
-export enum ThemesEnum {
-  TRIGGER = 'theme',
-  TAILWIND_DARK_TRIGGER = 'dark',
-  LIGHT = 'light',
-  DARK = 'dark',
+export interface IThemeState {
+  colorScheme: Theme;
 }
